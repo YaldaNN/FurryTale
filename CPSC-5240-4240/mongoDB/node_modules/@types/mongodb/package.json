@@ -1,0 +1,66 @@
+{
+    "name": "@types/mongodb",
+    "version": "3.0.15",
+    "description": "TypeScript definitions for MongoDB",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Federico Caselli",
+            "url": "https://github.com/CaselIT",
+            "githubUsername": "CaselIT"
+        },
+        {
+            "name": "Alan Marcell",
+            "url": "https://github.com/alanmarcell",
+            "githubUsername": "alanmarcell"
+        },
+        {
+            "name": "Gady Piazza",
+            "url": "https://github.com/kikar",
+            "githubUsername": "kikar"
+        },
+        {
+            "name": "Jason Dreyzehner",
+            "url": "https://github.com/bitjson",
+            "githubUsername": "bitjson"
+        },
+        {
+            "name": "Gaurav Lahoti",
+            "url": "https://github.com/dante-101",
+            "githubUsername": "dante-101"
+        },
+        {
+            "name": "Mariano Cortesi",
+            "url": "https://github.com/mcortesi",
+            "githubUsername": "mcortesi"
+        },
+        {
+            "name": "Enrico Picci",
+            "url": "https://github.com/EnricoPicci",
+            "githubUsername": "EnricoPicci"
+        },
+        {
+            "name": "Alexander Christie",
+            "url": "https://github.com/AJCStriker",
+            "githubUsername": "AJCStriker"
+        },
+        {
+            "name": "Julien Chaumond",
+            "url": "https://github.com/julien-c",
+            "githubUsername": "julien-c"
+        }
+    ],
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/bson": "*",
+        "@types/events": "*",
+        "@types/node": "*"
+    },
+    "typesPublisherContentHash": "ab3939d792238b0e6ff38887a1ac474ced977acf9bf4c5584a34d84ed1a18317",
+    "typeScriptVersion": "2.3"
+}
