@@ -21,6 +21,7 @@ class App {
     this.routes();
     this.Lists = new ListModel();
     this.Tasks = new TaskModel();
+    this.Account = new AccountModel();
   }
 
   // Configure Express middleware.

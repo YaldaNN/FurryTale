@@ -5,6 +5,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var ListModel_1 = require("./model/ListModel");
 var TaskModel_1 = require("./model/TaskModel");
+var AccountModel_1 = require("./model/AccountModel");
 var crypto = require("crypto");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
@@ -15,6 +16,7 @@ var App = /** @class */ (function () {
         this.routes();
         this.Lists = new ListModel_1.ListModel();
         this.Tasks = new TaskModel_1.TaskModel();
+        this.Account = new AccountModel_1.AccountModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
