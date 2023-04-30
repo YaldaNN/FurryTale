@@ -63,6 +63,19 @@ var App = /** @class */ (function () {
             console.log("Better your achievment worth it!");
             _this.Achievement.retrieveAllAchievement(res);
         });
+        router.post('/achievement/', function (req, res) {
+            var achievementId = crypto.randomBytes(16).toString("hex");
+            var userId = crypto.randomBytes(16).toString("hex");
+            var jsonObj = req.body;
+            jsonObj.achievementId = achievementId;
+            jsonObj.userId = userId;
+            _this.Achievement.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send('{"Achievement Id is":"' + achievementId + '"}');
+        });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/img'));
