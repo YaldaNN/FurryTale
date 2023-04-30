@@ -40,7 +40,7 @@ class App {
       
   });
 
-  router.post('/account/', (req, res) => {
+    router.post('/account/', (req, res) => {
       const accountId = crypto.randomBytes(16).toString("hex");
       const userId = crypto.randomBytes(16).toString("hex");
       var jsonObj = req.body;
@@ -52,46 +52,46 @@ class App {
           }
       });
       res.send('{"Account Id is":"' + accountId + '"}');
-  });
+    });
 
 
     router.get('/comment/', (req, res) => {
       console.log("Your stupid comments!");
       this.Comment.retrieveAllComments(res);
       
-  });
-
-  router.post('/comment/', (req, res) => {
-    const commentId = crypto.randomBytes(16).toString("hex");
-    var jsonObj = req.body;
-    jsonObj.commentId = commentId;
-    this.Comment.model.create([jsonObj], (err) => {
-        if (err) {
-            console.log('object creation failed');
-        }
     });
-    res.send('{"Comment Id is":"' + commentId + '"}');
-});
 
-router.get('/achievement/', (req, res) => {
-  console.log("Better your achievment worth it!");
-  this.Achievement.retrieveAllAchievement(res);
+    router.post('/comment/', (req, res) => {
+      const commentId = crypto.randomBytes(16).toString("hex");
+      var jsonObj = req.body;
+      jsonObj.commentId = commentId;
+      this.Comment.model.create([jsonObj], (err) => {
+         if (err) {
+              console.log('object creation failed');
+         }
+      });
+      res.send('{"Comment Id is":"' + commentId + '"}');
+    });
+
+    router.get('/achievement/', (req, res) => {
+      console.log("Better your achievment worth it!");
+      this.Achievement.retrieveAllAchievement(res);
   
-});
+    });
 
-router.post('/achievement/', (req, res) => {
-  const achievementId = crypto.randomBytes(16).toString("hex");
-  const userId = crypto.randomBytes(16).toString("hex");
-  var jsonObj = req.body;
-  jsonObj.achievementId = achievementId;
-  jsonObj.userId = userId
-  this.Achievement.model.create([jsonObj], (err) => {
-      if (err) {
+    router.post('/achievement/', (req, res) => {
+      const achievementId = crypto.randomBytes(16).toString("hex");
+      const userId = crypto.randomBytes(16).toString("hex");
+      var jsonObj = req.body;
+      jsonObj.achievementId = achievementId;
+      jsonObj.userId = userId
+      this.Achievement.model.create([jsonObj], (err) => {
+        if (err) {
           console.log('object creation failed');
-      }
-  });
-  res.send('{"Achievement Id is":"' + achievementId + '"}');
-});
+        }
+      });
+      res.send('{"Achievement Id is":"' + achievementId + '"}');
+    });
 
     this.expressApp.use('/', router);
 
