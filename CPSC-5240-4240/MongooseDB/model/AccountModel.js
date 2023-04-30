@@ -19,7 +19,7 @@ var AccountModel = /** @class */ (function () {
         }, { collection: 'accounts' });
     };
     AccountModel.prototype.createAccountModel = function () {
-        this.model = mongooseConnection.model("Accounts", this.schema);
+        this.model = mongooseConnection.model("accounts", this.schema);
     };
     AccountModel.prototype.retrieveAllAccounts = function (response) {
         console.log("retrieve all list ...");

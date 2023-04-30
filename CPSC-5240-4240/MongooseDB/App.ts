@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {AccountModel} from './model/AccountModel';
+import {PostModel} from './model/PostModel';
 import * as crypto from 'crypto';
 import {CommentModel} from './model/CommentModel';
 import {AchievementModel} from './model/AchievementModel';
@@ -14,7 +15,11 @@ class App {
   public Account:AccountModel;
   public Comment:CommentModel;
   public Achievement:AchievementModel;
+<<<<<<< Updated upstream
   public VerificationBadge:VerificationBadgeModel;
+=======
+  public Post:PostModel;
+>>>>>>> Stashed changes
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -24,7 +29,11 @@ class App {
     this.Account = new AccountModel();
     this.Comment = new CommentModel();
     this.Achievement = new AchievementModel();
+<<<<<<< Updated upstream
     this.VerificationBadge = new VerificationBadgeModel();
+=======
+    this.Post = new PostModel();
+>>>>>>> Stashed changes
   }
 
   // Configure Express middleware.
@@ -118,6 +127,13 @@ class App {
       });
       res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
     });
+
+
+router.get('/posts/', (req, res) => {
+  console.log("Here are your posts");
+  this.Post.retrieveAllPosts(res);
+  
+});
 
 
     this.expressApp.use('/', router);

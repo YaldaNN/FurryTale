@@ -26,7 +26,7 @@ class AccountModel {
     }
 
     public createAccountModel(): void {
-        this.model = mongooseConnection.model<IAccountModel>("Accounts", this.schema);
+        this.model = mongooseConnection.model<IAccountModel>("accounts", this.schema);
     }
 
     public retrieveAllAccounts(response:any): any {

@@ -6,6 +6,7 @@
   "dependencies": {
     "@types/es6-promise": "^3.3.0",
     "@types/express": "^4.17.17",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^18.16.3",
     "assert": "^2.0.0",
     "body-parser": "^1.20.2",
