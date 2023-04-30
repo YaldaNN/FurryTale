@@ -53,10 +53,6 @@ class App {
 
 
 
-    router.get('/app/listcount', (req, res) => {
-      console.log('Query the number of list elements in db');
-      this.Lists.retrieveListCount(res);
-    });
 
     router.get('/comment/', (req, res) => {
       console.log("Your stupid comments!");
