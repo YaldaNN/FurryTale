@@ -11,8 +11,6 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
-  public Lists:ListModel;
-  public Tasks:TaskModel;
   public Account:AccountModel;
   public Comment:CommentModel;
 
@@ -21,8 +19,6 @@ class App {
     this.expressApp = express();
     this.middleware();
     this.routes();
-    this.Lists = new ListModel();
-    this.Tasks = new TaskModel();
     this.Account = new AccountModel();
     this.Comment= new CommentModel();
   }
