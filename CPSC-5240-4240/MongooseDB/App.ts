@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import {AccountModel} from './model/AccountModel';
 import * as crypto from 'crypto';
 import {CommentModel} from './model/CommentModel';
+import {AchievementModel} from './model/AchievementModel';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -11,6 +12,7 @@ class App {
   public expressApp: express.Application;
   public Account:AccountModel;
   public Comment:CommentModel;
+  public Achievement:AchievementModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -18,7 +20,8 @@ class App {
     this.middleware();
     this.routes();
     this.Account = new AccountModel();
-    this.Comment= new CommentModel();
+    this.Comment = new CommentModel();
+    this.Achievement = new AchievementModel();
   }
 
   // Configure Express middleware.
@@ -52,8 +55,6 @@ class App {
   });
 
 
-
-
     router.get('/comment/', (req, res) => {
       console.log("Your stupid comments!");
       this.Comment.retrieveAllComments(res);
@@ -70,6 +71,12 @@ class App {
         }
     });
     res.send('{"Comment Id is":"' + commentId + '"}');
+});
+
+router.get('/achievement/', (req, res) => {
+  console.log("Better your achievment worth it!");
+  this.Achievement.retrieveAllAchievement(res);
+  
 });
 
     this.expressApp.use('/', router);

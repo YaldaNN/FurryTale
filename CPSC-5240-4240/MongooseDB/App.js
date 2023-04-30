@@ -3,11 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
 var express = require("express");
 var bodyParser = require("body-parser");
-var ListModel_1 = require("./model/ListModel");
-var TaskModel_1 = require("./model/TaskModel");
 var AccountModel_1 = require("./model/AccountModel");
 var crypto = require("crypto");
 var CommentModel_1 = require("./model/CommentModel");
+var AchievementModel_1 = require("./model/AchievementModel");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -15,10 +14,9 @@ var App = /** @class */ (function () {
         this.expressApp = express();
         this.middleware();
         this.routes();
-        this.Lists = new ListModel_1.ListModel();
-        this.Tasks = new TaskModel_1.TaskModel();
         this.Account = new AccountModel_1.AccountModel();
         this.Comment = new CommentModel_1.CommentModel();
+        this.Achievement = new AchievementModel_1.AchievementModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -46,10 +44,6 @@ var App = /** @class */ (function () {
             });
             res.send('{"Account Id is":"' + accountId + '"}');
         });
-        router.get('/app/listcount', function (req, res) {
-            console.log('Query the number of list elements in db');
-            _this.Lists.retrieveListCount(res);
-        });
         router.get('/comment/', function (req, res) {
             console.log("Your stupid comments!");
             _this.Comment.retrieveAllComments(res);
@@ -64,6 +58,10 @@ var App = /** @class */ (function () {
                 }
             });
             res.send('{"Comment Id is":"' + commentId + '"}');
+        });
+        router.get('/achievement/', function (req, res) {
+            console.log("Better your achievment worth it!");
+            _this.Achievement.retrieveAllAchievement(res);
         });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
