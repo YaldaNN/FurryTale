@@ -62,9 +62,9 @@ var App = /** @class */ (function () {
             console.log('Query All list');
             _this.Lists.retrieveAllLists(res);
         });
-        router.get('/dummy', function (req, res) {
-            console.log('wtf?');
-            res.send("I will literaaly kill myself right now");
+        router.get('/account/', function (req, res) {
+            console.log("why?");
+            _this.Account.retrieveAllAccounts("");
         });
         router.get('/app/listcount', function (req, res) {
             console.log('Query the number of list elements in db');

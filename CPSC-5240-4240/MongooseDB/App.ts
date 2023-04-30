@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {ListModel} from './model/ListModel';
 import {TaskModel} from './model/TaskModel';
+import {AccountModel} from './model/AccountModel';
 import * as crypto from 'crypto';
 
 // Creates and configures an ExpressJS web server.
@@ -11,6 +12,7 @@ class App {
   public expressApp: express.Application;
   public Lists:ListModel;
   public Tasks:TaskModel;
+  public Account:AccountModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -72,9 +74,9 @@ class App {
         this.Lists.retrieveAllLists(res);
     });
 
-    router.get('/dummy', (req, res) => {
-      console.log('wtf?');
-      res.send("I will literaaly kill myself right now")
+    router.get('/account/', (req, res) => {
+      console.log("why?");
+      this.Account.retrieveAllAccounts("");
       
   });
 

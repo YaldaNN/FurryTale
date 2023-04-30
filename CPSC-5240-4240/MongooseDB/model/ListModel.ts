@@ -32,6 +32,7 @@ class ListModel {
     }
 
     public retrieveAllLists(response:any): any {
+        
         var query = this.model.find({});
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;
