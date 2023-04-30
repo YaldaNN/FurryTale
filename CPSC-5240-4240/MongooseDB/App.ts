@@ -77,7 +77,7 @@ class App {
 
     router.get('/account/', (req, res) => {
       console.log("why?");
-      this.Account.retrieveAllAccounts("");
+      this.Account.retrieveAllAccounts(res);
       
   });
 

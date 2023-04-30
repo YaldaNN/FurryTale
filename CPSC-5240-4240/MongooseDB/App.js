@@ -66,7 +66,7 @@ var App = /** @class */ (function () {
         });
         router.get('/account/', function (req, res) {
             console.log("why?");
-            _this.Account.retrieveAllAccounts("");
+            _this.Account.retrieveAllAccounts(res);
         });
         router.get('/app/listcount', function (req, res) {
             console.log('Query the number of list elements in db');

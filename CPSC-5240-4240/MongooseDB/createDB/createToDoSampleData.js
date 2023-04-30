@@ -1,8 +1,8 @@
 db = db.getSiblingDB('toDoSample')
-db.createCollection('lists')
+//db.createCollection('lists')
 listsCollection = db.getCollection("lists")
 listsCollection.remove({})
-listsCollection.insert(
+listsCollection.insertOne(
 {
 	  name: "Grocery List",
 	  description: "Grocery List for home.",
@@ -12,7 +12,7 @@ listsCollection.insert(
 	  owner: "israelh"
 }
 )
-listsCollection.insert(
+listsCollection.insertOne(
 {
 	  name: "Car Shopping List",
 	  description: "Cars I need to try before buying a car.",
@@ -22,7 +22,7 @@ listsCollection.insert(
 	  owner: "israelh"
 }
 )
-listsCollection.insert(
+listsCollection.insertOne(
 {
 	  name: "School Supply List",
 	  description: "Supply list for school classes.",

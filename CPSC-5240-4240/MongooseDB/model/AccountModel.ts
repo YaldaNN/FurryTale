@@ -31,6 +31,7 @@ class AccountModel {
 
     public retrieveAllAccounts(response:any): any {
         console.log("retrieve all list ...");
+        
         var query = this.model.find({});
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;
