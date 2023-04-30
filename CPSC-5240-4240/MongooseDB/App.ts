@@ -6,6 +6,7 @@ import * as crypto from 'crypto';
 import {CommentModel} from './model/CommentModel';
 import {AchievementModel} from './model/AchievementModel';
 import {VerificationBadgeModel} from './model/VerificationBadgeModel';
+import { UserModel } from './model/UserModel';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -15,11 +16,9 @@ class App {
   public Account:AccountModel;
   public Comment:CommentModel;
   public Achievement:AchievementModel;
-<<<<<<< Updated upstream
   public VerificationBadge:VerificationBadgeModel;
-=======
   public Post:PostModel;
->>>>>>> Stashed changes
+  public User:UserModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -29,11 +28,9 @@ class App {
     this.Account = new AccountModel();
     this.Comment = new CommentModel();
     this.Achievement = new AchievementModel();
-<<<<<<< Updated upstream
     this.VerificationBadge = new VerificationBadgeModel();
-=======
     this.Post = new PostModel();
->>>>>>> Stashed changes
+    this.User = new UserModel();
   }
 
   // Configure Express middleware.
@@ -128,13 +125,34 @@ class App {
       res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
     });
 
-
-router.get('/posts/', (req, res) => {
-  console.log("Here are your posts");
-  this.Post.retrieveAllPosts(res);
+    //POST
+    router.get('/posts/', (req, res) => {
+      console.log("Here are your posts");
+      this.Post.retrieveAllPosts(res);
   
-});
+    });
 
+
+    //USER
+    router.get('/users/', (req, res) => {
+      console.log("Here are users");
+      this.User.retrieveAllUsers(res);
+  
+    });
+
+    router.post('/users/', (req, res) => {
+      const accountId = crypto.randomBytes(16).toString("hex");
+      const userId = crypto.randomBytes(16).toString("hex");
+      var jsonObj = req.body;
+      jsonObj.accountId = accountId;
+      jsonObj.userId = userId
+      this.User.model.create([jsonObj], (err) => {
+          if (err) {
+              console.log('object creation failed');
+          }
+      });
+      res.send('{"User Id is":"' + userId + '"}');
+    });
 
     this.expressApp.use('/', router);
 

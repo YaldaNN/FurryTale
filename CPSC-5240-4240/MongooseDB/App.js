@@ -9,6 +9,7 @@ var crypto = require("crypto");
 var CommentModel_1 = require("./model/CommentModel");
 var AchievementModel_1 = require("./model/AchievementModel");
 var VerificationBadgeModel_1 = require("./model/VerificationBadgeModel");
+var UserModel_1 = require("./model/UserModel");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -19,11 +20,9 @@ var App = /** @class */ (function () {
         this.Account = new AccountModel_1.AccountModel();
         this.Comment = new CommentModel_1.CommentModel();
         this.Achievement = new AchievementModel_1.AchievementModel();
-<<<<<<< Updated upstream
         this.VerificationBadge = new VerificationBadgeModel_1.VerificationBadgeModel();
-=======
         this.Post = new PostModel_1.PostModel();
->>>>>>> Stashed changes
+        this.User = new UserModel_1.UserModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -73,7 +72,6 @@ var App = /** @class */ (function () {
             console.log("Better your achievment worth it!");
             _this.Achievement.retrieveAllAchievement(res);
         });
-<<<<<<< Updated upstream
         router.post('/achievement/', function (req, res) {
             var achievementId = crypto.randomBytes(16).toString("hex");
             var userId = crypto.randomBytes(16).toString("hex");
@@ -104,11 +102,29 @@ var App = /** @class */ (function () {
                 }
             });
             res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
-=======
+        });
+        //POST
         router.get('/posts/', function (req, res) {
             console.log("Here are your posts");
             _this.Post.retrieveAllPosts(res);
->>>>>>> Stashed changes
+        });
+        //USER
+        router.get('/users/', function (req, res) {
+            console.log("Here are users");
+            _this.User.retrieveAllUsers(res);
+        });
+        router.post('/users/', function (req, res) {
+            var accountId = crypto.randomBytes(16).toString("hex");
+            var userId = crypto.randomBytes(16).toString("hex");
+            var jsonObj = req.body;
+            jsonObj.accountId = accountId;
+            jsonObj.userId = userId;
+            _this.User.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send('{"User Id is":"' + userId + '"}');
         });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
