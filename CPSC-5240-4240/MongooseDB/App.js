@@ -68,6 +68,19 @@ var App = /** @class */ (function () {
             console.log("why?");
             _this.Account.retrieveAllAccounts(res);
         });
+        router.post('/account/', function (req, res) {
+            var accountId = crypto.randomBytes(16).toString("hex");
+            var userId = crypto.randomBytes(16).toString("hex");
+            var jsonObj = req.body;
+            jsonObj.accountId = accountId;
+            jsonObj.userId = userId;
+            _this.Account.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send('{"Account Id is":"' + accountId + '"}');
+        });
         router.get('/app/listcount', function (req, res) {
             console.log('Query the number of list elements in db');
             _this.Lists.retrieveListCount(res);

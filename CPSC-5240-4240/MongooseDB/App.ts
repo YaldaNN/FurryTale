@@ -81,6 +81,22 @@ class App {
       
   });
 
+  router.post('/account/', (req, res) => {
+      const accountId = crypto.randomBytes(16).toString("hex");
+      const userId = crypto.randomBytes(16).toString("hex");
+      var jsonObj = req.body;
+      jsonObj.accountId = accountId;
+      jsonObj.userId = userId
+      this.Account.model.create([jsonObj], (err) => {
+          if (err) {
+              console.log('object creation failed');
+          }
+      });
+      res.send('{"Account Id is":"' + accountId + '"}');
+  });
+
+
+
     router.get('/app/listcount', (req, res) => {
       console.log('Query the number of list elements in db');
       this.Lists.retrieveListCount(res);
