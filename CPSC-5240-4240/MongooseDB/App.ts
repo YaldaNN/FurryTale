@@ -36,47 +36,6 @@ class App {
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
-    router.get('/app/list/:listId/count', (req, res) => {
-        var id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksCount(res, {listId: id});
-    });
-
-    router.post('/app/list/', (req, res) => {
-      const id = crypto.randomBytes(16).toString("hex");
-      console.log(req.body);
-        var jsonObj = req.body;
-        jsonObj.listId = id;
-        this.Lists.model.create([jsonObj], (err) => {
-            if (err) {
-                console.log('object creation failed');
-            }
-        });
-        res.send('{"id":"' + id + '"}');
-    });
-
-    router.post('/app/list2/', (req, res) => {
-      const id = crypto.randomBytes(16).toString("hex");
-      console.log(req.body);
-        var jsonObj = req.body;
-        jsonObj.listId = id;
-        let doc = new this.Lists.model(jsonObj);
-        doc.save((err) => {
-           console.log('object creation failed');
-        });
-        res.send('{"id":"' + id + '"}');
-    });
-
-    router.get('/app/list/:listId', (req, res) => {
-        var id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksDetails(res, {listId: id});
-    });
-
-    router.get('/app/list/', (req, res) => {
-        console.log('Query All list');
-        this.Lists.retrieveAllLists(res);
-    });
 
     router.get('/account/', (req, res) => {
       console.log("why?");

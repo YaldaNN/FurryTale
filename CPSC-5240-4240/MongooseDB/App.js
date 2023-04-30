@@ -29,43 +29,6 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
-        router.get('/app/list/:listId/count', function (req, res) {
-            var id = req.params.listId;
-            console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksCount(res, { listId: id });
-        });
-        router.post('/app/list/', function (req, res) {
-            var id = crypto.randomBytes(16).toString("hex");
-            console.log(req.body);
-            var jsonObj = req.body;
-            jsonObj.listId = id;
-            _this.Lists.model.create([jsonObj], function (err) {
-                if (err) {
-                    console.log('object creation failed');
-                }
-            });
-            res.send('{"id":"' + id + '"}');
-        });
-        router.post('/app/list2/', function (req, res) {
-            var id = crypto.randomBytes(16).toString("hex");
-            console.log(req.body);
-            var jsonObj = req.body;
-            jsonObj.listId = id;
-            var doc = new _this.Lists.model(jsonObj);
-            doc.save(function (err) {
-                console.log('object creation failed');
-            });
-            res.send('{"id":"' + id + '"}');
-        });
-        router.get('/app/list/:listId', function (req, res) {
-            var id = req.params.listId;
-            console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksDetails(res, { listId: id });
-        });
-        router.get('/app/list/', function (req, res) {
-            console.log('Query All list');
-            _this.Lists.retrieveAllLists(res);
-        });
         router.get('/account/', function (req, res) {
             console.log("why?");
             _this.Account.retrieveAllAccounts(res);
