@@ -4,6 +4,7 @@ import {ListModel} from './model/ListModel';
 import {TaskModel} from './model/TaskModel';
 import {AccountModel} from './model/AccountModel';
 import * as crypto from 'crypto';
+import {CommentModel} from './model/CommentModel';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -13,6 +14,7 @@ class App {
   public Lists:ListModel;
   public Tasks:TaskModel;
   public Account:AccountModel;
+  public Comment:CommentModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -22,6 +24,7 @@ class App {
     this.Lists = new ListModel();
     this.Tasks = new TaskModel();
     this.Account = new AccountModel();
+    this.Comment= new CommentModel();
   }
 
   // Configure Express middleware.
@@ -101,6 +104,24 @@ class App {
       console.log('Query the number of list elements in db');
       this.Lists.retrieveListCount(res);
     });
+
+    router.get('/comment/', (req, res) => {
+      console.log("Your stupid comments!");
+      this.Comment.retrieveAllComments(res);
+      
+  });
+
+  router.post('/comment/', (req, res) => {
+    const commentId = crypto.randomBytes(16).toString("hex");
+    var jsonObj = req.body;
+    jsonObj.commentId = commentId;
+    this.Comment.model.create([jsonObj], (err) => {
+        if (err) {
+            console.log('object creation failed');
+        }
+    });
+    res.send('{"Comment Id is":"' + commentId + '"}');
+});
 
     this.expressApp.use('/', router);
 

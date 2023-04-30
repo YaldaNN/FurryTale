@@ -7,6 +7,7 @@ var ListModel_1 = require("./model/ListModel");
 var TaskModel_1 = require("./model/TaskModel");
 var AccountModel_1 = require("./model/AccountModel");
 var crypto = require("crypto");
+var CommentModel_1 = require("./model/CommentModel");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -17,6 +18,7 @@ var App = /** @class */ (function () {
         this.Lists = new ListModel_1.ListModel();
         this.Tasks = new TaskModel_1.TaskModel();
         this.Account = new AccountModel_1.AccountModel();
+        this.Comment = new CommentModel_1.CommentModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -84,6 +86,21 @@ var App = /** @class */ (function () {
         router.get('/app/listcount', function (req, res) {
             console.log('Query the number of list elements in db');
             _this.Lists.retrieveListCount(res);
+        });
+        router.get('/comment/', function (req, res) {
+            console.log("Your stupid comments!");
+            _this.Comment.retrieveAllComments(res);
+        });
+        router.post('/comment/', function (req, res) {
+            var commentId = crypto.randomBytes(16).toString("hex");
+            var jsonObj = req.body;
+            jsonObj.commentId = commentId;
+            _this.Comment.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send('{"Comment Id is":"' + commentId + '"}');
         });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
