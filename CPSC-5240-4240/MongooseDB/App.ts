@@ -105,6 +105,20 @@ class App {
   
     });
 
+    router.post('/verificationBadge/', (req, res) => {
+      const verificationBadgeId = crypto.randomBytes(16).toString("hex");
+      const userId = crypto.randomBytes(16).toString("hex");
+      var jsonObj = req.body;
+      jsonObj.verificationBadgeId = verificationBadgeId;
+      jsonObj.userId = userId
+      this.VerificationBadge.model.create([jsonObj], (err) => {
+          if (err) {
+              console.log('object creation failed');
+          }
+      });
+      res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
+    });
+
 
     this.expressApp.use('/', router);
 

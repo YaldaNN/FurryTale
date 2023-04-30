@@ -86,6 +86,19 @@ var App = /** @class */ (function () {
             console.log("Here is your verification badge docs!");
             _this.VerificationBadge.retrieveAllVerificationBadge(res);
         });
+        router.post('/verificationBadge/', function (req, res) {
+            var verificationBadgeId = crypto.randomBytes(16).toString("hex");
+            var userId = crypto.randomBytes(16).toString("hex");
+            var jsonObj = req.body;
+            jsonObj.verificationBadgeId = verificationBadgeId;
+            jsonObj.userId = userId;
+            _this.VerificationBadge.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
+        });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/img'));
