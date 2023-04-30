@@ -7,6 +7,7 @@ var AccountModel_1 = require("./model/AccountModel");
 var crypto = require("crypto");
 var CommentModel_1 = require("./model/CommentModel");
 var AchievementModel_1 = require("./model/AchievementModel");
+var VerificationBadgeModel_1 = require("./model/VerificationBadgeModel");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -17,6 +18,7 @@ var App = /** @class */ (function () {
         this.Account = new AccountModel_1.AccountModel();
         this.Comment = new CommentModel_1.CommentModel();
         this.Achievement = new AchievementModel_1.AchievementModel();
+        this.VerificationBadge = new VerificationBadgeModel_1.VerificationBadgeModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -24,6 +26,7 @@ var App = /** @class */ (function () {
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
     };
     // Configure API endpoints.
+    // ACCOUNT
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
@@ -44,6 +47,7 @@ var App = /** @class */ (function () {
             });
             res.send('{"Account Id is":"' + accountId + '"}');
         });
+        // COMMENT
         router.get('/comment/', function (req, res) {
             console.log("Your stupid comments!");
             _this.Comment.retrieveAllComments(res);
@@ -59,6 +63,7 @@ var App = /** @class */ (function () {
             });
             res.send('{"Comment Id is":"' + commentId + '"}');
         });
+        // ACHIEVEMENT
         router.get('/achievement/', function (req, res) {
             console.log("Better your achievment worth it!");
             _this.Achievement.retrieveAllAchievement(res);
@@ -75,6 +80,11 @@ var App = /** @class */ (function () {
                 }
             });
             res.send('{"Achievement Id is":"' + achievementId + '"}');
+        });
+        //VERIFICATION BADGE
+        router.get('/verificationBadge/', function (req, res) {
+            console.log("Here is your verification badge docs!");
+            _this.VerificationBadge.retrieveAllVerificationBadge(res);
         });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));

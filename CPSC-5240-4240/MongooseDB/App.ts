@@ -4,6 +4,7 @@ import {AccountModel} from './model/AccountModel';
 import * as crypto from 'crypto';
 import {CommentModel} from './model/CommentModel';
 import {AchievementModel} from './model/AchievementModel';
+import {VerificationBadgeModel} from './model/VerificationBadgeModel';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -13,6 +14,7 @@ class App {
   public Account:AccountModel;
   public Comment:CommentModel;
   public Achievement:AchievementModel;
+  public VerificationBadge:VerificationBadgeModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -22,6 +24,7 @@ class App {
     this.Account = new AccountModel();
     this.Comment = new CommentModel();
     this.Achievement = new AchievementModel();
+    this.VerificationBadge = new VerificationBadgeModel();
   }
 
   // Configure Express middleware.
@@ -31,6 +34,7 @@ class App {
   }
 
   // Configure API endpoints.
+  // ACCOUNT
   private routes(): void {
     let router = express.Router();
 
@@ -54,7 +58,7 @@ class App {
       res.send('{"Account Id is":"' + accountId + '"}');
     });
 
-
+    // COMMENT
     router.get('/comment/', (req, res) => {
       console.log("Your stupid comments!");
       this.Comment.retrieveAllComments(res);
@@ -73,6 +77,7 @@ class App {
       res.send('{"Comment Id is":"' + commentId + '"}');
     });
 
+    // ACHIEVEMENT
     router.get('/achievement/', (req, res) => {
       console.log("Better your achievment worth it!");
       this.Achievement.retrieveAllAchievement(res);
@@ -92,6 +97,14 @@ class App {
       });
       res.send('{"Achievement Id is":"' + achievementId + '"}');
     });
+
+    //VERIFICATION BADGE
+    router.get('/verificationBadge/', (req, res) => {
+      console.log("Here is your verification badge docs!");
+      this.VerificationBadge.retrieveAllVerificationBadge(res);
+  
+    });
+
 
     this.expressApp.use('/', router);
 
