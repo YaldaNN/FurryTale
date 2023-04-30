@@ -72,6 +72,12 @@ class App {
         this.Lists.retrieveAllLists(res);
     });
 
+    router.get('/dummy', (req, res) => {
+      console.log('wtf?');
+      res.send("I will literaaly kill myself right now")
+      
+  });
+
     router.get('/app/listcount', (req, res) => {
       console.log('Query the number of list elements in db');
       this.Lists.retrieveListCount(res);
