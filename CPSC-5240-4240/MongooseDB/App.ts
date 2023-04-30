@@ -1,7 +1,5 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import {ListModel} from './model/ListModel';
-import {TaskModel} from './model/TaskModel';
 import {AccountModel} from './model/AccountModel';
 import * as crypto from 'crypto';
 import {CommentModel} from './model/CommentModel';
