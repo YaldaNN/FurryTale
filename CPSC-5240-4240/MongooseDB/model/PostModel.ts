@@ -45,6 +45,53 @@ class PostModel {
         });
     }
 
+    public updatePost(postId: String, post:any, response:any): any {
+        console.log("Updating your Posts ...");
+        
+        var query = this.model.findOneAndUpdate(postId, post, {
+            new: true
+          });
+        query.exec( (err, item) => {
+            response.json(item) ;
+        });
+    }
+
+    public updatePostPaw(postId: String, pawerId : String, response:any): any {
+        console.log("Updating Paw in post id number ..."+postId);
+        
+        var query = this.model.findOne({postId: postId});
+        query.exec( (err, item) => {
+            
+            
+            var isPresent = item.paws.find(elem => elem == pawerId)
+            if(isPresent == undefined){
+                
+                item.paws.push(pawerId);
+
+            }
+            else{
+                
+                item.paws.forEach( (elem, index) => {
+                    console.log(elem == pawerId)
+                    if(elem == pawerId){
+                    console.log("entered")
+                     item.paws.splice(index,1);
+                    }
+                  });
+                console.log(item.paws.length)
+            }
+            
+            var queryUpdatePaw = this.model.findOneAndUpdate(postId, item, {
+                new: true
+              });
+
+              queryUpdatePaw.exec( (err, itemUpdatePaw) => {
+                response.json(itemUpdatePaw) ;
+            });
+            
+        });
+    }
+
     public retrievePostCount(response:any): any {
         console.log("retrieve Post Count ...");
         var query = this.model.estimatedDocumentCount();

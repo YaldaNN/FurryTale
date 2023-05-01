@@ -22,7 +22,10 @@ var App = /** @class */ (function () {
         this.Achievement = new AchievementModel_1.AchievementModel();
         this.VerificationBadge = new VerificationBadgeModel_1.VerificationBadgeModel();
         this.Post = new PostModel_1.PostModel();
+<<<<<<< Updated upstream
         this.User = new UserModel_1.UserModel();
+=======
+>>>>>>> Stashed changes
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -103,11 +106,15 @@ var App = /** @class */ (function () {
             });
             res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
         });
+<<<<<<< Updated upstream
         //POST
+=======
+>>>>>>> Stashed changes
         router.get('/posts/', function (req, res) {
             console.log("Here are your posts");
             _this.Post.retrieveAllPosts(res);
         });
+<<<<<<< Updated upstream
         //USER
         router.get('/users/', function (req, res) {
             console.log("Here are users");
@@ -120,11 +127,35 @@ var App = /** @class */ (function () {
             jsonObj.accountId = accountId;
             jsonObj.userId = userId;
             _this.User.model.create([jsonObj], function (err) {
+=======
+        router.post('/posts/', function (req, res) {
+            var postId = crypto.randomBytes(16).toString("hex");
+            var jsonObj = req.body;
+            jsonObj.postId = postId;
+            _this.Post.model.create([jsonObj], function (err) {
+>>>>>>> Stashed changes
                 if (err) {
                     console.log('object creation failed');
                 }
             });
+<<<<<<< Updated upstream
             res.send('{"User Id is":"' + userId + '"}');
+=======
+            res.send('{"Post Id is":"' + postId + '"}');
+        });
+        router.put('/updatePost/', function (req, res) {
+            console.log("Staterted Updating");
+            var jsonObj = req.body;
+            var postId = jsonObj.postId;
+            _this.Post.updatePost(postId, jsonObj, res);
+        });
+        router.put('/updatePostPaw/', function (req, res) {
+            console.log("Staterted Updating Post Paw");
+            var jsonObj = req.body;
+            var postId = jsonObj.postId;
+            var pawerUserId = jsonObj.pawerUserId;
+            _this.Post.updatePostPaw(postId, pawerUserId, res);
+>>>>>>> Stashed changes
         });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));

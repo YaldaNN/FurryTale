@@ -18,7 +18,10 @@ class App {
   public Achievement:AchievementModel;
   public VerificationBadge:VerificationBadgeModel;
   public Post:PostModel;
+<<<<<<< Updated upstream
   public User:UserModel;
+=======
+>>>>>>> Stashed changes
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -30,7 +33,10 @@ class App {
     this.Achievement = new AchievementModel();
     this.VerificationBadge = new VerificationBadgeModel();
     this.Post = new PostModel();
+<<<<<<< Updated upstream
     this.User = new UserModel();
+=======
+>>>>>>> Stashed changes
   }
 
   // Configure Express middleware.
@@ -125,12 +131,52 @@ class App {
       res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
     });
 
+<<<<<<< Updated upstream
     //POST
     router.get('/posts/', (req, res) => {
       console.log("Here are your posts");
       this.Post.retrieveAllPosts(res);
   
     });
+=======
+
+  router.get('/posts/', (req, res) => {
+    console.log("Here are your posts");
+    this.Post.retrieveAllPosts(res);
+  
+  });
+
+  router.post('/posts/', (req, res) => {
+    const postId = crypto.randomBytes(16).toString("hex");
+    var jsonObj = req.body;
+    jsonObj.postId = postId;
+    this.Post.model.create([jsonObj], (err) => {
+        if (err) {
+            console.log('object creation failed');
+        }
+    });
+    res.send('{"Post Id is":"' + postId + '"}');
+  
+  });
+
+  router.put('/updatePost/', (req, res) => {
+    console.log("Staterted Updating")
+    var jsonObj = req.body;
+    const postId = jsonObj.postId
+    this.Post.updatePost(postId, jsonObj, res);
+  
+  });
+
+  router.put('/updatePostPaw/', (req, res) => {
+    console.log("Staterted Updating Post Paw")
+    var jsonObj = req.body;
+    const postId = jsonObj.postId
+    const pawerUserId = jsonObj.pawerUserId
+    this.Post.updatePostPaw(postId, pawerUserId, res);
+  
+  });
+
+>>>>>>> Stashed changes
 
 
     //USER
