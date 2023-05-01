@@ -97,20 +97,7 @@ class App {
           this.User.retrieveAllUsers(res);
       
         });
-    
-        router.post('/users/', (req, res) => {
-          const accountId = crypto.randomBytes(16).toString("hex");
-          const userId = crypto.randomBytes(16).toString("hex");
-          var jsonObj = req.body;
-          jsonObj.accountId = accountId;
-          jsonObj.userId = userId
-          this.User.model.create([jsonObj], (err) => {
-              if (err) {
-                  console.log('object creation failed');
-              }
-          });
-          res.send('{"User Id is":"' + userId + '"}');
-        });
+  
 
     // COMMENT
     router.get('/comment/', (req, res) => {
@@ -137,6 +124,8 @@ class App {
       this.Comment.updateComment(jsonObj, res)
     });
 
+
+
     // ACHIEVEMENT
     router.get('/achievement/', (req, res) => {
       console.log("Better your achievment worth it!");
@@ -146,16 +135,37 @@ class App {
 
     router.post('/achievement/', (req, res) => {
       const achievementId = crypto.randomBytes(16).toString("hex");
-      const userId = crypto.randomBytes(16).toString("hex");
       var jsonObj = req.body;
       jsonObj.achievementId = achievementId;
-      jsonObj.userId = userId
       this.Achievement.model.create([jsonObj], (err) => {
         if (err) {
-          console.log('object creation failed');
+          console.log('achievement creation failed');
+        }
+        else{
+          var gettingUserQuery = this.User.model.findOne({userId : jsonObj.userId});
+          gettingUserQuery.exec((err, item) => {
+            console.log('achievement adding started');
+            item.achievement.push(achievementId);
+            console.log('achievement adding ended');
+            console.log(item.achievement)
+            var queryUpdateUser = this.User.model.findOneAndUpdate(jsonObj.userId, item, {
+              new: true
+            });
+
+            console.log('Starting updating user');
+            queryUpdateUser.exec((error, updatedUser) => {
+              if(error)
+               {console.log('User updating failed');}
+              
+              res.send("Added achievement")
+            })
+          });
+
+          
         }
       });
-      res.send('{"Achievement Id is":"' + achievementId + '"}');
+      
+      
     });
 
     //VERIFICATION BADGE

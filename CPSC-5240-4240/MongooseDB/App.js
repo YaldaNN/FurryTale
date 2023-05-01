@@ -79,19 +79,6 @@ var App = /** @class */ (function () {
             console.log("Here are users");
             _this.User.retrieveAllUsers(res);
         });
-        router.post('/users/', function (req, res) {
-            var accountId = crypto.randomBytes(16).toString("hex");
-            var userId = crypto.randomBytes(16).toString("hex");
-            var jsonObj = req.body;
-            jsonObj.accountId = accountId;
-            jsonObj.userId = userId;
-            _this.User.model.create([jsonObj], function (err) {
-                if (err) {
-                    console.log('object creation failed');
-                }
-            });
-            res.send('{"User Id is":"' + userId + '"}');
-        });
         // COMMENT
         router.get('/comment/', function (req, res) {
             console.log("Your stupid comments!");
@@ -119,16 +106,32 @@ var App = /** @class */ (function () {
         });
         router.post('/achievement/', function (req, res) {
             var achievementId = crypto.randomBytes(16).toString("hex");
-            var userId = crypto.randomBytes(16).toString("hex");
             var jsonObj = req.body;
             jsonObj.achievementId = achievementId;
-            jsonObj.userId = userId;
             _this.Achievement.model.create([jsonObj], function (err) {
                 if (err) {
-                    console.log('object creation failed');
+                    console.log('achievement creation failed');
+                }
+                else {
+                    var gettingUserQuery = _this.User.model.findOne({ userId: jsonObj.userId });
+                    gettingUserQuery.exec(function (err, item) {
+                        console.log('achievement adding started');
+                        item.achievement.push(achievementId);
+                        console.log('achievement adding ended');
+                        console.log(item.achievement);
+                        var queryUpdateUser = _this.User.model.findOneAndUpdate(jsonObj.userId, item, {
+                            new: true
+                        });
+                        console.log('Starting updating user');
+                        queryUpdateUser.exec(function (error, updatedUser) {
+                            if (error) {
+                                console.log('User updating failed');
+                            }
+                            res.send("Added achievement");
+                        });
+                    });
                 }
             });
-            res.send('{"Achievement Id is":"' + achievementId + '"}');
         });
         //VERIFICATION BADGE
         router.get('/verificationBadge/', function (req, res) {
