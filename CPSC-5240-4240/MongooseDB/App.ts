@@ -54,15 +54,63 @@ class App {
       const accountId = crypto.randomBytes(16).toString("hex");
       const userId = crypto.randomBytes(16).toString("hex");
       var jsonObj = req.body;
-      jsonObj.accountId = accountId;
-      jsonObj.userId = userId
-      this.Account.model.create([jsonObj], (err) => {
+      var accountJsonObj = {
+        
+          "accountId" : accountId,
+          "userId" : userId,
+          "accountType" : jsonObj.accountType,
+          "payment" : jsonObj.payment
+      
+      }
+
+      var userJsonObj = {
+        "userId" : userId,
+        "userName" : jsonObj.userName,
+        "userPassword" : jsonObj.userPassword,
+        "accountId" : accountId,
+        "tailers" : [],
+        "tailee" : [],
+        "about" : jsonObj.about,
+        "achievement" : [],
+        "posts" : [],
+        "openToWork" : jsonObj.openToWork,
+        "verified" : jsonObj.verified,
+        "verificationBadgeId" : jsonObj.verificationBadgeId
+    }
+      this.Account.model.create([accountJsonObj], (err) => {
           if (err) {
               console.log('object creation failed');
           }
       });
-      res.send('{"Account Id is":"' + accountId + '"}');
+
+      this.User.model.create([userJsonObj], (err) => {
+        if (err) {
+          console.log('object creation failed');
+      }
+      })
+      res.send("Account ID is "+accountId+" and User id is "+userId);
     });
+
+        //USER
+        router.get('/users/', (req, res) => {
+          console.log("Here are users");
+          this.User.retrieveAllUsers(res);
+      
+        });
+    
+        router.post('/users/', (req, res) => {
+          const accountId = crypto.randomBytes(16).toString("hex");
+          const userId = crypto.randomBytes(16).toString("hex");
+          var jsonObj = req.body;
+          jsonObj.accountId = accountId;
+          jsonObj.userId = userId
+          this.User.model.create([jsonObj], (err) => {
+              if (err) {
+                  console.log('object creation failed');
+              }
+          });
+          res.send('{"User Id is":"' + userId + '"}');
+        });
 
     // COMMENT
     router.get('/comment/', (req, res) => {
@@ -176,26 +224,6 @@ class App {
 
 
 
-    //USER
-    router.get('/users/', (req, res) => {
-      console.log("Here are users");
-      this.User.retrieveAllUsers(res);
-  
-    });
-
-    router.post('/users/', (req, res) => {
-      const accountId = crypto.randomBytes(16).toString("hex");
-      const userId = crypto.randomBytes(16).toString("hex");
-      var jsonObj = req.body;
-      jsonObj.accountId = accountId;
-      jsonObj.userId = userId
-      this.User.model.create([jsonObj], (err) => {
-          if (err) {
-              console.log('object creation failed');
-          }
-      });
-      res.send('{"User Id is":"' + userId + '"}');
-    });
 
     this.expressApp.use('/', router);
 
