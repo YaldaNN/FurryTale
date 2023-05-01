@@ -18,10 +18,7 @@ class App {
   public Achievement:AchievementModel;
   public VerificationBadge:VerificationBadgeModel;
   public Post:PostModel;
-<<<<<<< Updated upstream
   public User:UserModel;
-=======
->>>>>>> Stashed changes
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -33,10 +30,7 @@ class App {
     this.Achievement = new AchievementModel();
     this.VerificationBadge = new VerificationBadgeModel();
     this.Post = new PostModel();
-<<<<<<< Updated upstream
     this.User = new UserModel();
-=======
->>>>>>> Stashed changes
   }
 
   // Configure Express middleware.
@@ -89,6 +83,12 @@ class App {
       res.send('{"Comment Id is":"' + commentId + '"}');
     });
 
+    router.put('/updateComment', (req, res) => {
+      var jsonObj = req.body;
+      
+      this.Comment.updateComment(jsonObj, res)
+    });
+
     // ACHIEVEMENT
     router.get('/achievement/', (req, res) => {
       console.log("Better your achievment worth it!");
@@ -131,14 +131,12 @@ class App {
       res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
     });
 
-<<<<<<< Updated upstream
     //POST
     router.get('/posts/', (req, res) => {
       console.log("Here are your posts");
       this.Post.retrieveAllPosts(res);
   
     });
-=======
 
   router.get('/posts/', (req, res) => {
     console.log("Here are your posts");
@@ -176,7 +174,6 @@ class App {
   
   });
 
->>>>>>> Stashed changes
 
 
     //USER

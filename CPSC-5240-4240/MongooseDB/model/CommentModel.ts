@@ -1,6 +1,7 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
 import {ICommentModel} from '../interfaces/ICommentModel';
+import {PostModel} from './PostModel';
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
@@ -8,10 +9,11 @@ let mongooseObj = DataAccess.mongooseInstance;
 class CommentModel {
     public schema:any;
     public model:any;
-
+    public postModel:PostModel;
     public constructor() {
         this.createSchema();
         this.createCommentModel();
+        
     }
 
     public createSchema(): void {
@@ -39,12 +41,15 @@ class CommentModel {
         });
     }
 
-    public retrieveCommentCount(response:any): any {
-        console.log("retrieve Comment Count ...");
-        var query = this.model.estimatedDocumentCount();
-        query.exec( (err, numOfComments) => {
-            console.log("numberOfComments: " + numOfComments);
-            response.json(numOfComments) ;
+    public updateComment(commentInfo:any, response:any){
+        console.log("updating comment");
+        const commentId = commentInfo.commenterId;
+        
+        var query = this.model.findOneAndUpdate(commentId, commentInfo, {
+            new: true
+          });
+          query.exec( (err, item) => {
+            response.json(item) ;
         });
     }
 

@@ -29,12 +29,14 @@ var CommentModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
-    CommentModel.prototype.retrieveCommentCount = function (response) {
-        console.log("retrieve Comment Count ...");
-        var query = this.model.estimatedDocumentCount();
-        query.exec(function (err, numOfComments) {
-            console.log("numberOfComments: " + numOfComments);
-            response.json(numOfComments);
+    CommentModel.prototype.updateComment = function (commentInfo, response) {
+        console.log("updating comment");
+        var commentId = commentInfo.commenterId;
+        var query = this.model.findOneAndUpdate(commentId, commentInfo, {
+            new: true
+        });
+        query.exec(function (err, item) {
+            response.json(item);
         });
     };
     return CommentModel;
