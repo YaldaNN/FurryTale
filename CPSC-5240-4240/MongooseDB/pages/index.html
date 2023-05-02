@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,8 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
 
   <!-- Custom CSS -->
   <style>
@@ -17,117 +20,202 @@
       flex-direction: column;
       align-items: center;
     }
-	.rounded-circle {
-      width: 5%; /* set the width to 50% of the containing element */
-      height: auto; /* set the height to auto to maintain the aspect ratio */
+
+    .thumbnail {
+      width: 50px !important;
+      height: 50px !important;
     }
-	.card-link {
-	   width: 5%; /* set the width to 50% of the containing element */
-	   height: auto; /* set the height to auto to maintain the aspect ratio */  
-	}	
-    form.form-inline { 
-       width: 30%; 
-	   text-align: center; 
+
+    .thumbnail-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
-	div.col-md-3 h2 {
-		color: #E6A439;
-		font-family: Coiny;
-		font-style: normal;
-		font-size: 3em;
-		line-height: 100%;	
-		width: 103px;
-		height: 74px;
-		left: 161px;
-		top: 16px;
+
+    .rounded-circle {
+      width: 5%;
+      /* set the width to 50% of the containing element */
+      height: auto;
+      /* set the height to auto to maintain the aspect ratio */
     }
+
+    .card-link {
+      width: 5%;
+      /* set the width to 50% of the containing element */
+      height: auto;
+      /* set the height to auto to maintain the aspect ratio */
+    }
+
+    form.form-inline {
+      width: 30%;
+      text-align: center;
+    }
+
+    div.col-md-3 h2 {
+      color: #E6A439;
+      font-family: 'Coiny', cursive;
+      font-style: bold;
+      font-size: 3em;
+      line-height: 100%;
+      width: 103px;
+      height: 74px;
+      left: 161px;
+      top: 16px;
+    }
+
+    p {
+      color: gray;
+      font-family: 'Concert One', cursive;
+    }
+
   </style>
 </head>
+
 <body>
   <div class="container">
 
     <!-- Header -->
+    <!-- <div class="container-fluid bg-light mb-3">
+      <div class="row">
+        <div class="col-md-3 py-3">
+          <h2>FurryTale</h2>
+        </div>
+        <div class="col-md-9 py-4">
+          <a href="#" class="btn btn-link">Home</a>
+          <a href="#" class="btn btn-link">Pet Circle</a>
+          <a href="#" class="btn btn-link">Opportunities</a>
+          <a href="#" class="btn btn-link">Profile</a>
+        </div>
+      </div> ".\Images\home.png"
+    </div> -->
+
     <div class="container-fluid bg-light mb-3">
-        <div class="row">
-          <div class="col-md-3 py-3">
-            <h2>FurryTale</h2>
+      <div class="row">
+        <div class="col-md-3 py-3">
+          <h2>Furry<br>Tale</h2>
+        </div>
+        <div class="col-md-9 py-4">
+          <a href="#" class="btn btn-link">
+            <img src=".\Images\home.png" alt="Thumbnail 1" class="thumbnail">
+            <p>Home</p>
+          </a>
+          <a href="#" class="btn btn-link">
+            <img src=".\Images\pet.png" alt="Thumbnail 2" class="thumbnail">
+            <p>Pet Circle</p>
+          </a>
+          <a href="#" class="btn btn-link">
+            <img src=".\Images\opp.png" alt="Thumbnail 3" class="thumbnail">
+            <p>Opportunities</p>
+          </a>
+          <a href="#" class="btn btn-link">
+            <img src=".\Images\paw.png" alt="Thumbnail 4" class="thumbnail">
+            <p>Profile</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <!-- Search bar -->
+    <div class="row">
+      <div class="col">
+        <form class="form mb-3">
+          <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark" type="submit">Search</button>
           </div>
-          <div class="col-md-9 py-4">
-            <a href="#" class="btn btn-link">Home</a>
-            <a href="#" class="btn btn-link">Pet Circle</a>
-            <a href="#" class="btn btn-link">Opportunities</a>
-            <a href="#" class="btn btn-link">Profile</a>
+        </form>
+      </div>
+    </div>
+
+    <!-- Create Post -->
+    <div class="card mb-3">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-2">
+            <img class="thumbnail thumbnail-img" src=".\Images\Kitten.jpg" alt="Profile picture">
+          </div>
+          <div class="col">
+            <div class="input-group">
+              <input class="form-control" placeholder="Start a Post" aria-label="Search">
+              <button class="btn btn-light" type="submit">+</button> 
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-    <!-- Search bar -->
-    <form class="form-inline mb-3">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <!-- Create Post -->
-	<form class="form-inline mb-3">
-	   <input class="form-control" type="text" placeholder="Start a Post" aria-label="createPost">
-	</form>
     <!-- Posts -->
     <div class="row">
       <div class="col-md-8 offset-md-2">
-
         <!-- Post 1 -->
         <div class="card mb-3">
           <div class="card-header">
-					 <img src=".\Images\PostCircle.png" class="rounded-circle mr-2" alt="Profile picture">
-					Coco
-		   </div>
-          <img src=".\Images\Post.png" class="card-img-top" alt="Post image"width="600" height="300">
-          <div class="card-body">
-					<h5 class="card-title">Cutest Bundle of Joy..!!</h5>
-					 <!-- <a href="#" class="card-link"><i class="far fa-heart mr-1"></i>paws</a> -->
-					 <img src=".\Images\paw.png" class="card-link" alt="Paws image"><i class="far fa-heart mr-1">
-					<span class="float-right mb-1">11 paws</span>
-				  </div>
-          <!-- Add comment -->
-          <form class="form-inline mb-3">
-            <div class="form-group flex-grow-1 mr-2">
-              <input type="text" class="form-control w-100" placeholder="Add a comment...">
+            <div class="row">
+              <div class="col-2">
+                <img class="thumbnail thumbnail-img" src=".\Images\PostCircle.png" alt="Profile picture">
+              </div>
+              <div class="col">
+                Coco
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary">Post</button>
-          </form>
+          </div>
+          <img src=".\Images\Post.png" class="card-img-top" alt="Post image" width="600" height="300">
+          <div class="card-body">
+            <h6 class="card-title">Cutest Bundle of Joy..!!</h6>
+            <!-- <a href="#" class="card-link"><i class="far fa-heart mr-1"></i>paws</a> -->
+            <img src=".\Images\paw.png" class="card-link" alt="Paws image"><i class="far fa-heart mr-1">
+              <span class="float-right mb-1">11 paws</span>
+          </div>
+
+
+
           <!-- Comments -->
           <div class="card-footer">
-            <div class="media">
-              <img src=".\Images\Doll.jpg" class="rounded-circle mr-2" alt="Profile picture">
+            <!-- Add comment -->
+            <form class="form mb-3">
+              <div class="input-group">
+                <input class="form-control" type="search" placeholder="Add a comment" aria-label="Search">
+                <button class="btn btn-outline-dark" type="submit">Post</button>
+              </div>
+            </form>
+            <div class="media mb-3">
+              <img class="thumbnail thumbnail-img mr-3" src=".\Images\Doll.jpg" alt="Profile picture">
               <div class="media-body">
-                <h6 class="mt-0">Lookie</h6>
-                Oh my goodness, what a cute little kitten!
+                <h6 class="mb-0">Lookie</h6>
+                omg! what a cute little kitten!
               </div>
             </div>
-            <div class="media">
-              <img src=".\Images\Kitten.jpg" class="rounded-circle mr-2" alt="Profile picture">
+            <div class="media mb-3">
+              <img class="thumbnail thumbnail-img mr-3" src=".\Images\Kitten.jpg" alt="Profile picture">
               <div class="media-body">
                 <h6 class="mt-0">Piu</h6>
-                Thanks for brightening my day with this cute kitten.
+                Such a cute kitten.
               </div>
             </div>
-            <div class="media">
-                <img src=".\Images\puppy.jpg" class="rounded-circle mr-2" alt="Profile picture">
-                <div class="media-body">
-                  <h6 class="mt-0">Yogi</h6>
-                  This little furball is so fluffy and adorable!
-                </div>
+            <div class="media mb-3">
+              <img class="thumbnail thumbnail-img mr-3" src=".\Images\puppy.jpg" alt="Profile picture">
+              <div class="media-body">
+                <h6 class="mt-0">Yogi</h6>
+                This little furball is so fluffy and adorable!
+              </div>
             </div>
+
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
+  </div>
 
 
-       
 
- <!-- jQuery and Bootstrap JS -->
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>
