@@ -1,94 +1,133 @@
-<html>
-	<head> 
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FurryTale</title>
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-	</head>
-	</head>
-	<body onload="initXHR('home', null)">
-		<div class="container">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
-		  <!-- Static navbar -->
-		  <nav class="navbar navbar-default">
-			<div class="container-fluid">
-			  <div class="navbar-header">
-				<a class="navbar-brand" href="javascript:initXHR('home', null)">To Do</a>
-			  </div>
-			  <div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-				  <li><a href="#">Home</a></li>
-				  <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">List<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-					  <li><a href="#">Create</a></li>
-					  <li><a href="javascript:initXHR('lists', null)">Active</a></li>
-					  <li><a href="#">Disabled</a></li>
-					</ul>
-				  </li>
-				  <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shared<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-					  <li><a href="#">Active</a></li>
-					  <li><a href="#">Pending</a></li>
-					</ul>
-				  </li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-				  <li><a href="#">Login</a></li>
-				</ul>
-			  </div><!--/.nav-collapse -->
-			</div><!--/.container-fluid -->
-		  </nav>
-		  
-		<div id="home">
-		  <!-- Main component for a primary marketing message or call to action -->
-		  <div class="jumbotron">
-			<h1>To Do List</h1>
-			<p>Keep track of all of things you need to do by creating lists and sharing items with friends.</p>
-			<p>
-			  <a class="btn btn-lg btn-primary" href="javascript:initXHR('lists', null)" role="button">View</a>
-			</p>
-		  </div>
-		</div>
-		
-		<div id="lists" style="display:none;">
-		</div>
+  <!-- Custom CSS -->
+  <style>
+    /* Center the search bar and posts */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+	.rounded-circle {
+      width: 5%; /* set the width to 50% of the containing element */
+      height: auto; /* set the height to auto to maintain the aspect ratio */
+    }
+	.card-link {
+	   width: 5%; /* set the width to 50% of the containing element */
+	   height: auto; /* set the height to auto to maintain the aspect ratio */  
+	}	
+    form.form-inline { 
+       width: 30%; 
+	   text-align: center; 
+    }
+	div.col-md-3 h2 {
+		color: #E6A439;
+		font-family: Coiny;
+		font-style: normal;
+		font-size: 3em;
+		line-height: 100%;	
+		width: 103px;
+		height: 74px;
+		left: 161px;
+		top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
 
-		<div id="gList" style="display:none;">
-			<div class="panel panel-default">
-			  <!-- Default panel contents -->
-			  <div class="panel-heading"> 
-				  <h3>List</h3>
-				  <div>
-					<a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-					<a href="#"><span class="glyphicon glyphicon-trash"></span></a>
-					<a href="#"><span class="glyphicon glyphicon-ok"></span></a>
+    <!-- Header -->
+    <div class="container-fluid bg-light mb-3">
+        <div class="row">
+          <div class="col-md-3 py-3">
+            <h2>FurryTale</h2>
+          </div>
+          <div class="col-md-9 py-4">
+            <a href="#" class="btn btn-link">Home</a>
+            <a href="#" class="btn btn-link">Pet Circle</a>
+            <a href="#" class="btn btn-link">Opportunities</a>
+            <a href="#" class="btn btn-link">Profile</a>
+          </div>
+        </div>
+      </div>
+
+    <!-- Search bar -->
+    <form class="form-inline mb-3">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <!-- Create Post -->
+	<form class="form-inline mb-3">
+	   <input class="form-control" type="text" placeholder="Start a Post" aria-label="createPost">
+	</form>
+    <!-- Posts -->
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+
+        <!-- Post 1 -->
+        <div class="card mb-3">
+          <div class="card-header">
+					 <img src=".\Images\PostCircle.png" class="rounded-circle mr-2" alt="Profile picture">
+					Coco
+		   </div>
+          <img src=".\Images\Post.png" class="card-img-top" alt="Post image"width="600" height="300">
+          <div class="card-body">
+					<h5 class="card-title">Cutest Bundle of Joy..!!</h5>
+					 <!-- <a href="#" class="card-link"><i class="far fa-heart mr-1"></i>paws</a> -->
+					 <img src=".\Images\paw.png" class="card-link" alt="Paws image"><i class="far fa-heart mr-1">
+					<span class="float-right mb-1">11 paws</span>
 				  </div>
-			  </div>
-				<!-- Table -->
-				<table class="table" style="font-size:10pt;">
-					<thead>
-						<tr>
-							<th>Items</th>
-							<th width="5%">Shared</th>
-							<th width="5%">Status</th>
-						</tr>
-					</thead>
-					<tbody id='tasks'>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		
-		</div> <!-- /container -->
-	
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="/script.js"></script>
-	</body>
+          <!-- Add comment -->
+          <form class="form-inline mb-3">
+            <div class="form-group flex-grow-1 mr-2">
+              <input type="text" class="form-control w-100" placeholder="Add a comment...">
+            </div>
+            <button type="submit" class="btn btn-primary">Post</button>
+          </form>
+          <!-- Comments -->
+          <div class="card-footer">
+            <div class="media">
+              <img src=".\Images\Doll.jpg" class="rounded-circle mr-2" alt="Profile picture">
+              <div class="media-body">
+                <h6 class="mt-0">Lookie</h6>
+                Oh my goodness, what a cute little kitten!
+              </div>
+            </div>
+            <div class="media">
+              <img src=".\Images\Kitten.jpg" class="rounded-circle mr-2" alt="Profile picture">
+              <div class="media-body">
+                <h6 class="mt-0">Piu</h6>
+                Thanks for brightening my day with this cute kitten.
+              </div>
+            </div>
+            <div class="media">
+                <img src=".\Images\puppy.jpg" class="rounded-circle mr-2" alt="Profile picture">
+                <div class="media-body">
+                  <h6 class="mt-0">Yogi</h6>
+                  This little furball is so fluffy and adorable!
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+       
+
+ <!-- jQuery and Bootstrap JS -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
 </html>
