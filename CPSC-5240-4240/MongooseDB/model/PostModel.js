@@ -37,6 +37,9 @@ var PostModel = /** @class */ (function () {
             new: true
         });
         query.exec(function (err, item) {
+            if (err) {
+                console.log(err);
+            }
             response.json(item);
         });
     };

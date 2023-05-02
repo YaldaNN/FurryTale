@@ -52,6 +52,9 @@ class PostModel {
             new: true
           });
         query.exec( (err, item) => {
+            if(err){
+                console.log(err);
+            }
             response.json(item) ;
         });
     }
