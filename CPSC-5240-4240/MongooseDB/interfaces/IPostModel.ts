@@ -8,7 +8,6 @@ interface IPostModel extends Mongoose.Document {
     postType : Number,
     image : String,
     caption: String,
-    paws : [Number],
-    comments: [String]
+    paws : [String]
 }
 export {IPostModel};

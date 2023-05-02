@@ -96,6 +96,17 @@ var UserModel = /** @class */ (function () {
             }
         });
     };
+    UserModel.prototype.retrieveAllUsersOpenToWork = function (response) {
+        var query = this.model.find({ openToWork: true });
+        query.exec(function (err, item) {
+            if (err) {
+                console.log("error retrieving users open to work");
+            }
+            else {
+                response.send(item);
+            }
+        });
+    };
     UserModel.prototype.retrieveUserCount = function (response) {
         console.log("retrieve User Count ...");
         var query = this.model.estimatedDocumentCount();

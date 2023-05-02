@@ -37,7 +37,14 @@ class AccountModel {
             response.json(itemArray) ;
         });
     }
-
+    public updateAccountType(account : any, response : any) : any {
+        var query = this.model.findOneAndUpdate({accountId : account.accountId}, account, {
+            new : true
+        });
+        query.exec((err, item) => {
+            response.send(item);
+        })
+    }
     public retrieveAccountCount(response:any): any {
         console.log("retrieve Account Count ...");
         var query = this.model.estimatedDocumentCount();

@@ -10,8 +10,7 @@ postsCollection.insertOne(
     postType : 1,
     image : "Image Location",
     caption: "Homeowner can be pronounced as hoMEOWner. Good luck pronouncing it correct again",
-    paws : [],
-    comments: []
+    paws : []
 }
 )
 

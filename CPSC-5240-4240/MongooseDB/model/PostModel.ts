@@ -26,8 +26,7 @@ class PostModel {
                 postType : Number,
                 image : String,
                 caption: String,
-                paws : [Number],
-                comments: [Number]
+                paws : [String]
             }, {collection: 'posts'}
         );
     }
@@ -61,11 +60,15 @@ class PostModel {
 
     public updatePostPaw(postId: String, pawerId : String, response:any): any {
         console.log("Updating Paw in post id number ..."+postId);
-        
+       
         var query = this.model.findOne({postId: postId});
         query.exec( (err, item) => {
+            if(err){
+                console.log("error while exec query");
+                console.log(err);
+            }
             
-            
+            console.log("no error, came here");
             var isPresent = item.paws.find(elem => elem == pawerId)
             if(isPresent == undefined){
                 

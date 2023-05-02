@@ -17,8 +17,7 @@ var PostModel = /** @class */ (function () {
             postType: Number,
             image: String,
             caption: String,
-            paws: [Number],
-            comments: [Number]
+            paws: [String]
         }, { collection: 'posts' });
     };
     PostModel.prototype.createPostModel = function () {
@@ -48,6 +47,11 @@ var PostModel = /** @class */ (function () {
         console.log("Updating Paw in post id number ..." + postId);
         var query = this.model.findOne({ postId: postId });
         query.exec(function (err, item) {
+            if (err) {
+                console.log("error while exec query");
+                console.log(err);
+            }
+            console.log("no error, came here");
             var isPresent = item.paws.find(function (elem) { return elem == pawerId; });
             if (isPresent == undefined) {
                 item.paws.push(pawerId);

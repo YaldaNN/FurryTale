@@ -74,6 +74,10 @@ var App = /** @class */ (function () {
             });
             res.send("Account ID is " + accountId + " and User id is " + userId);
         });
+        router.put('/updateAccountType', function (req, res) {
+            var jsonObj = req.body;
+            _this.Account.updateAccountType(jsonObj, res);
+        });
         //USER
         router.get('/users/', function (req, res) {
             console.log("Here are users");
@@ -88,6 +92,10 @@ var App = /** @class */ (function () {
             var tailerId = req.body.tailerId;
             var taileeId = req.body.taileeId;
             _this.User.addTailer(tailerId, taileeId, res);
+        });
+        router.get('/openToWork/', function (req, res) {
+            console.log("Here are users");
+            _this.User.retrieveAllUsersOpenToWork(res);
         });
         // COMMENT
         router.get('/comment/', function (req, res) {
@@ -108,6 +116,9 @@ var App = /** @class */ (function () {
         router.put('/updateComment', function (req, res) {
             var jsonObj = req.body;
             _this.Comment.updateComment(jsonObj, res);
+        });
+        router.delete('/comment/delete', function (req, res) {
+            _this.Comment.deleteComment(req.query.commentId.toString(), res);
         });
         // ACHIEVEMENT
         router.get('/achievement/', function (req, res) {

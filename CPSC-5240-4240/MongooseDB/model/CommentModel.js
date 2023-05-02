@@ -39,6 +39,17 @@ var CommentModel = /** @class */ (function () {
             response.json(item);
         });
     };
+    CommentModel.prototype.deleteComment = function (commentId, response) {
+        var query = this.model.deleteOne({ commentId: commentId });
+        query.exec(function (err) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                response.send("successfully deleted");
+            }
+        });
+    };
     return CommentModel;
 }());
 exports.CommentModel = CommentModel;

@@ -110,6 +110,19 @@ class UserModel {
             }
         })
     }
+
+    public retrieveAllUsersOpenToWork(response : any) :any{
+        var query = this.model.find({openToWork : true});
+        query.exec((err, item) => {
+            if(err){
+                console.log("error retrieving users open to work");
+
+            }
+            else{
+                response.send(item);
+            }
+        })
+    }
     public retrieveUserCount(response:any): any {
         console.log("retrieve User Count ...");
         var query = this.model.estimatedDocumentCount();

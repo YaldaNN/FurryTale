@@ -53,5 +53,17 @@ class CommentModel {
         });
     }
 
+    public deleteComment(commentId : String, response : any) : any{
+        var query = this.model.deleteOne({commentId : commentId});
+        query.exec((err) => {
+            if(err){
+                console.log(err);
+            }
+            else{
+                response.send("successfully deleted");
+            }
+        })
+    }
+
 }
 export {CommentModel};

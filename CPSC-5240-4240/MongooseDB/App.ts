@@ -91,6 +91,11 @@ class App {
       res.send("Account ID is "+accountId+" and User id is "+userId);
     });
 
+    router.put('/updateAccountType', (req, res) => {
+      var jsonObj = req.body;
+      this.Account.updateAccountType(jsonObj, res);
+    })
+
     //USER
     router.get('/users/', (req, res) => {
           console.log("Here are users");
@@ -111,6 +116,11 @@ class App {
       this.User.addTailer(tailerId, taileeId, res);
     })
 
+    router.get('/openToWork/', (req, res) => {
+      console.log("Here are users");
+      this.User.retrieveAllUsersOpenToWork(res);
+  
+    });
     // COMMENT
     router.get('/comment/', (req, res) => {
       console.log("Your stupid comments!");
@@ -136,6 +146,9 @@ class App {
       this.Comment.updateComment(jsonObj, res)
     });
 
+    router.delete('/comment/delete', (req, res) => {
+       this.Comment.deleteComment(req.query.commentId.toString(), res);
+    });
 
 
     // ACHIEVEMENT

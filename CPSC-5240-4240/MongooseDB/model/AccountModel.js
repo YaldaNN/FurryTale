@@ -28,6 +28,14 @@ var AccountModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    AccountModel.prototype.updateAccountType = function (account, response) {
+        var query = this.model.findOneAndUpdate({ accountId: account.accountId }, account, {
+            new: true
+        });
+        query.exec(function (err, item) {
+            response.send(item);
+        });
+    };
     AccountModel.prototype.retrieveAccountCount = function (response) {
         console.log("retrieve Account Count ...");
         var query = this.model.estimatedDocumentCount();
