@@ -91,13 +91,25 @@ class App {
       res.send("Account ID is "+accountId+" and User id is "+userId);
     });
 
-        //USER
-        router.get('/users/', (req, res) => {
+    //USER
+    router.get('/users/', (req, res) => {
           console.log("Here are users");
           this.User.retrieveAllUsers(res);
       
         });
   
+    router.put('/user/updateUser/', (req, res) =>{
+      console.log("came to update user");
+      var jsonObj = req.body;
+      this.User.updateUser(jsonObj, res);
+
+    });
+
+    router.put('/user/addTailer', (req, res) => {
+      const tailerId = req.body.tailerId;
+      const taileeId = req.body.taileeId;
+      this.User.addTailer(tailerId, taileeId, res);
+    })
 
     // COMMENT
     router.get('/comment/', (req, res) => {

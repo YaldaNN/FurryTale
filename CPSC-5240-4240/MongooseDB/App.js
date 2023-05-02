@@ -79,6 +79,16 @@ var App = /** @class */ (function () {
             console.log("Here are users");
             _this.User.retrieveAllUsers(res);
         });
+        router.put('/user/updateUser/', function (req, res) {
+            console.log("came to update user");
+            var jsonObj = req.body;
+            _this.User.updateUser(jsonObj, res);
+        });
+        router.put('/user/addTailer', function (req, res) {
+            var tailerId = req.body.tailerId;
+            var taileeId = req.body.taileeId;
+            _this.User.addTailer(tailerId, taileeId, res);
+        });
         // COMMENT
         router.get('/comment/', function (req, res) {
             console.log("Your stupid comments!");
