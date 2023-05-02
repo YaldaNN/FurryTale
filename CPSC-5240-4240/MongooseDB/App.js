@@ -97,6 +97,10 @@ var App = /** @class */ (function () {
             console.log("Here are users");
             _this.User.retrieveAllUsersOpenToWork(res);
         });
+        router.get('/oneUser', function (req, res) {
+            console.log("Here is your post");
+            _this.User.retireveOneUser(req.query.userId.toString(), res);
+        });
         // COMMENT
         router.get('/comment/', function (req, res) {
             console.log("Your stupid comments!");
@@ -140,7 +144,7 @@ var App = /** @class */ (function () {
                         item.achievement.push(achievementId);
                         console.log('achievement adding ended');
                         console.log(item.achievement);
-                        var queryUpdateUser = _this.User.model.findOneAndUpdate(jsonObj.userId, item, {
+                        var queryUpdateUser = _this.User.model.findOneAndUpdate({ userId: jsonObj.userId }, item, {
                             new: true
                         });
                         console.log('Starting updating user');
@@ -148,6 +152,7 @@ var App = /** @class */ (function () {
                             if (error) {
                                 console.log('User updating failed');
                             }
+                            console.log(error);
                             res.send("Added achievement");
                         });
                     });
@@ -180,6 +185,10 @@ var App = /** @class */ (function () {
         router.get('/posts/', function (req, res) {
             console.log("Here are your posts");
             _this.Post.retrieveAllPosts(res);
+        });
+        router.get('/onePost', function (req, res) {
+            console.log("Here is your post");
+            _this.Post.retireveOnePost(req.query.postId.toString(), res);
         });
         router.post('/posts/', function (req, res) {
             var postId = crypto.randomBytes(16).toString("hex");

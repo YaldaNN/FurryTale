@@ -121,6 +121,12 @@ class App {
       this.User.retrieveAllUsersOpenToWork(res);
   
     });
+
+    router.get('/oneUser', (req, res) => {
+      console.log("Here is your post");
+      this.User.retireveOneUser(req.query.userId.toString(), res);
+    
+    });
     // COMMENT
     router.get('/comment/', (req, res) => {
       console.log("Your stupid comments!");
@@ -173,7 +179,7 @@ class App {
             item.achievement.push(achievementId);
             console.log('achievement adding ended');
             console.log(item.achievement)
-            var queryUpdateUser = this.User.model.findOneAndUpdate(jsonObj.userId, item, {
+            var queryUpdateUser = this.User.model.findOneAndUpdate({userId : jsonObj.userId}, item, {
               new: true
             });
 
@@ -181,6 +187,7 @@ class App {
             queryUpdateUser.exec((error, updatedUser) => {
               if(error)
                {console.log('User updating failed');}
+               console.log(error)
               
               res.send("Added achievement")
             })
@@ -224,6 +231,12 @@ class App {
   router.get('/posts/', (req, res) => {
     console.log("Here are your posts");
     this.Post.retrieveAllPosts(res);
+  
+  });
+
+  router.get('/onePost', (req, res) => {
+    console.log("Here is your post");
+    this.Post.retireveOnePost(req.query.postId.toString(), res);
   
   });
 

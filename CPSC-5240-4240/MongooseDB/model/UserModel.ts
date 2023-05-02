@@ -46,6 +46,21 @@ class UserModel {
         });
     }
 
+    public retireveOneUser(userId : String, response : any) : any{
+        console.log("retrieving a user");
+        var query = this.model.findOne({userId : userId});
+        query.exec((err, item) => {
+            if(err){
+                console.log("error while retrieving user");
+                response.send("error");
+            }
+            else{
+                response.send(item);
+            }
+            
+        })
+    }
+
     public updateUser(user:any, response:any) : any {
         console.log("updating user info");
         var query = this.model.findOneAndUpdate(user.userId, user, {

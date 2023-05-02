@@ -36,6 +36,19 @@ var UserModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    UserModel.prototype.retireveOneUser = function (userId, response) {
+        console.log("retrieving a user");
+        var query = this.model.findOne({ userId: userId });
+        query.exec(function (err, item) {
+            if (err) {
+                console.log("error while retrieving user");
+                response.send("error");
+            }
+            else {
+                response.send(item);
+            }
+        });
+    };
     UserModel.prototype.updateUser = function (user, response) {
         console.log("updating user info");
         var query = this.model.findOneAndUpdate(user.userId, user, {

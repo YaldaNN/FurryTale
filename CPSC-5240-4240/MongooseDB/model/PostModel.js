@@ -42,6 +42,19 @@ var PostModel = /** @class */ (function () {
             response.json(item);
         });
     };
+    PostModel.prototype.retireveOnePost = function (postId, response) {
+        console.log("retrieving a post");
+        var query = this.model.findOne({ postId: postId });
+        query.exec(function (err, item) {
+            if (err) {
+                console.log("error while retrieving user");
+                response.send("error");
+            }
+            else {
+                response.send(item);
+            }
+        });
+    };
     PostModel.prototype.updatePostPaw = function (postId, pawerId, response) {
         var _this = this;
         console.log("Updating Paw in post id number ..." + postId);
@@ -54,22 +67,25 @@ var PostModel = /** @class */ (function () {
             console.log("no error, came here");
             var isPresent = item.paws.find(function (elem) { return elem == pawerId; });
             if (isPresent == undefined) {
+                console.log("added paaw");
                 item.paws.push(pawerId);
             }
             else {
                 item.paws.forEach(function (elem, index) {
                     console.log(elem == pawerId);
                     if (elem == pawerId) {
-                        console.log("entered");
+                        console.log("removed paw");
                         item.paws.splice(index, 1);
                     }
                 });
                 console.log(item.paws.length);
             }
-            var queryUpdatePaw = _this.model.findOneAndUpdate(postId, item, {
+            var queryUpdatePaw = _this.model.findOneAndUpdate({ postId: postId }, item, {
                 new: true
             });
             queryUpdatePaw.exec(function (err, itemUpdatePaw) {
+                console.log("done updating paw");
+                console.log(itemUpdatePaw);
                 response.json(itemUpdatePaw);
             });
         });
