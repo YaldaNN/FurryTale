@@ -7,7 +7,8 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
 import { OpportunitiesComponent } from './opportunities/opportunities.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import {HomeService} from './home.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,13 +16,15 @@ import { ProfileComponent } from './profile/profile.component';
     OpportunitiesComponent,
     CreateProfileComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
+    
   ],
-  providers: [],
+  providers: [HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
