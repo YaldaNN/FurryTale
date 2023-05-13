@@ -78,6 +78,12 @@ var App = /** @class */ (function () {
             var jsonObj = req.body;
             _this.Account.updateAccountType(jsonObj, res);
         });
+        router.use(function (req, res, next) {
+            res.append('Access-Control-Allow-Origin', ['*']);
+            res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+            res.append('Access-Control-Allow-Headers', 'Content-Type');
+            next();
+        });
         //USER
         router.get('/users/', function (req, res) {
             console.log("Here are users");
@@ -215,7 +221,7 @@ var App = /** @class */ (function () {
             _this.Post.updatePostPaw(postId, pawerUserId, res);
         });
         this.expressApp.use('/', router);
-        this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
+        //this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/pages/Images'));
         this.expressApp.use('/', express.static(__dirname + '/pages'));
     };

@@ -19,11 +19,10 @@ var UserModel = /** @class */ (function () {
             tailers: [String],
             tailee: [String],
             about: String,
-            achievement: [String],
-            posts: [String],
             openToWork: Boolean,
             verified: Boolean,
-            verificationBadgeId: String
+            verificationBadgeId: String,
+            profilePic: String
         }, { collection: 'users' });
     };
     UserModel.prototype.createUserModel = function () {

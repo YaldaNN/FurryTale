@@ -1,6 +1,6 @@
 db = db.getSiblingDB('FurryTale')
 db.createCollection('verificationBadge')
-verificationBadgeCollection = db.getCollection("verificationBadge")
+//verificationBadgeCollection = db.getCollection("verificationBadge")
 verificationBadgeCollection.remove({})
 verificationBadgeCollection.insertOne(
 {
