@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+ /* Center the search bar and posts */
+ 
+
+  .thumbnail {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .rounded-circle {
+    width: 5%;
+    /* set the width to 50% of the containing element */
+    height: auto;
+    /* set the height to auto to maintain the aspect ratio */
+  }
+
+  .card-link {
+    width: 5%;
+    /* set the width to 50% of the containing element */
+    height: auto;
+    /* set the height to auto to maintain the aspect ratio */
+  }
+
+  form.form-inline {
+    width: 30%;
+    text-align: center;
+  }
+
+  
+
+  
+
+  
