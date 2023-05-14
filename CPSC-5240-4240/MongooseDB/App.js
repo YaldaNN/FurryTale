@@ -34,6 +34,12 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
+        router.use(function (req, res, next) {
+            res.append('Access-Control-Allow-Origin', ['*']);
+            res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+            res.append('Access-Control-Allow-Headers', 'Content-Type');
+            next();
+        });
         router.get('/account/', function (req, res) {
             console.log("why?");
             _this.Account.retrieveAllAccounts(res);
@@ -72,17 +78,11 @@ var App = /** @class */ (function () {
                     console.log('object creation failed');
                 }
             });
-            res.send("Account ID is " + accountId + " and User id is " + userId);
+            res.send(JSON.stringify(userJsonObj));
         });
         router.put('/updateAccountType', function (req, res) {
             var jsonObj = req.body;
             _this.Account.updateAccountType(jsonObj, res);
-        });
-        router.use(function (req, res, next) {
-            res.append('Access-Control-Allow-Origin', ['*']);
-            res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-            res.append('Access-Control-Allow-Headers', 'Content-Type');
-            next();
         });
         //USER
         router.get('/users/', function (req, res) {

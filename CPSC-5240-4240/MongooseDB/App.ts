@@ -39,10 +39,18 @@ class App {
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
   }
 
+
   // Configure API endpoints.
   // ACCOUNT
   private routes(): void {
     let router = express.Router();
+
+    router.use((req, res, next) => {
+      res.append('Access-Control-Allow-Origin', ['*']);
+      res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.append('Access-Control-Allow-Headers', 'Content-Type');
+      next();
+  });
 
     router.get('/account/', (req, res) => {
       console.log("why?");
@@ -88,7 +96,7 @@ class App {
           console.log('object creation failed');
       }
       })
-      res.send("Account ID is "+accountId+" and User id is "+userId);
+      res.send(JSON.stringify(userJsonObj));
     });
 
     router.put('/updateAccountType', (req, res) => {
@@ -96,12 +104,7 @@ class App {
       this.Account.updateAccountType(jsonObj, res);
     })
 
-    router.use((req, res, next) => {
-      res.append('Access-Control-Allow-Origin', ['*']);
-      res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-      res.append('Access-Control-Allow-Headers', 'Content-Type');
-      next();
-  });
+
   
     //USER
     router.get('/users/', (req, res) => {
