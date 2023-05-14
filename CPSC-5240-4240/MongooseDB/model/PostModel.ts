@@ -44,12 +44,31 @@ class PostModel {
                 from: 'users', 
                 localField: 'userId', 
                 foreignField: 'userId', 
-                as: 'joinedData' 
+                as: 'userAndPost' 
               }
+            },
+            
+            {
+                $lookup: {
+                  from: 'comments', 
+                  localField: 'postId', 
+                  foreignField: 'postId', 
+                  as: 'postAndComment' 
+                }
+            },
+            
+            {
+                $lookup: {
+                  from: 'users', 
+                  localField: 'postAndComment.commenterId', 
+                  foreignField: 'userId', 
+                  as: 'commentAndUser' 
+                }
             }
           ]);
         query.exec( (err, itemArray) => {
             console.log(itemArray);
+            
             response.json(itemArray) ;
         });
     }

@@ -2,60 +2,7 @@
 
  <!-- Custom CSS -->
  <style>
-    /* Center the search bar and posts */
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .thumbnail {
-      width: 50px !important;
-      height: 50px !important;
-    }
-
-    .thumbnail-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .rounded-circle {
-      width: 5%;
-      /* set the width to 50% of the containing element */
-      height: auto;
-      /* set the height to auto to maintain the aspect ratio */
-    }
-
-    .card-link {
-      width: 5%;
-      /* set the width to 50% of the containing element */
-      height: auto;
-      /* set the height to auto to maintain the aspect ratio */
-    }
-
-    form.form-inline {
-      width: 30%;
-      text-align: center;
-    }
-
-    div.col-md-3 h2 {
-      color: #E6A439;
-      font-family: 'Coiny', cursive;
-      font-style: bold;
-      font-size: 3em;
-      line-height: 100%;
-      width: 103px;
-      height: 74px;
-      left: 161px;
-      top: 16px;
-    }
-
-    p {
-      color: gray;
-      font-family: 'Concert One', cursive;
-    }
+   
 
   </style>
  <!-- Search bar -->
@@ -94,26 +41,29 @@
         <div class="card-header">
           <div class="row">
             <div class="col-2">
-              <img class="thumbnail thumbnail-img" src="{{post.joinedData[0].profilePic}}" alt="Profile picture">
+              <img class="thumbnail thumbnail-img" src="{{post.userAndPost[0].profilePic}}" alt="Profile picture">
             </div>
-            <div class="col" *ngIf="post.joinedData.length > 0">
+            <div class="col" >
               
-              {{post.joinedData[0].userName}}
+              {{post.userAndPost[0].userName}}
             </div>
           </div>
         </div>
 
-        <img src="{{post.image}}" class="card-img-top" alt="Post image" width="600" height="300">
+        <img src="{{post.image}}" class="card-img-top" alt="Post image" width="400" height="300" >
         <div class="card-body">
           <h6 class="card-title">{{post.caption}}</h6>
         
-          <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fen%2Fpng-nyzhd&psig=AOvVaw1ZEKhrYCGBV20OuKeKEjs1&ust=1684114287344000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKjf7eDU8_4CFQAAAAAdAAAAABAE" class="card-link" alt="Paws image"><i class="far fa-heart mr-1"></i>
-          <span class="float-right mb-1">11 paws</span>
+          <img src="https://illustoon.com/photo/7205.png" class="card-link" alt="Paws image" (click)="pawHandleClick(post.postId)"><i class="far fa-heart mr-1"></i>
+          <span class="float-right mb-1">{{post.paws.length}} paws</span>
            
         </div>
         
       </div>
     </div>
   </div>
-<p>testing-node works!</p>
-<p *ngFor="let post of posts"> {{post.caption}}</p>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+

@@ -15,4 +15,8 @@ export class HomeService {
     
     return this.http.get<Post[]>(this.hostUrl + 'posts/');
   }
+
+  addPaw(pawObj: any){
+    return this.http.put("http://localhost:8080/updatePostPaw/", pawObj);
+  }
 }
