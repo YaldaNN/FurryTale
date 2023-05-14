@@ -83,7 +83,9 @@ class App {
         "posts" : [],
         "openToWork" : jsonObj.openToWork,
         "verified" : jsonObj.verified,
-        "verificationBadgeId" : jsonObj.verificationBadgeId
+        "verificationBadgeId" : jsonObj.verificationBadgeId,
+        "email" : jsonObj.email,
+        "profilePic" : jsonObj.profilePic
     }
       this.Account.model.create([accountJsonObj], (err) => {
           if (err) {

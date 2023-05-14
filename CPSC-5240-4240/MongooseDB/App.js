@@ -66,7 +66,9 @@ var App = /** @class */ (function () {
                 "posts": [],
                 "openToWork": jsonObj.openToWork,
                 "verified": jsonObj.verified,
-                "verificationBadgeId": jsonObj.verificationBadgeId
+                "verificationBadgeId": jsonObj.verificationBadgeId,
+                "email": jsonObj.email,
+                "profilePic": jsonObj.profilePic
             };
             _this.Account.model.create([accountJsonObj], function (err) {
                 if (err) {

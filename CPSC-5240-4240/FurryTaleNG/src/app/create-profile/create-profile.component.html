@@ -1,1 +1,33 @@
-<p>create-profile works!</p>
+<h2>Create Profile</h2>
+<form (ngSubmit)="onSubmit(profileForm)" #profileForm="ngForm">
+  <div>
+    <label for="userName">User Name:</label>
+    <input type="text" id="userName" name="userName" [(ngModel)]="profile.userName" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="profile.email" required>
+  </div>
+  <div>
+    <label for="accountType">Account Type:</label>
+    <select id="accountType" name="accountType" [(ngModel)]="profile.accountType" required>
+      <option value="">--Select--</option>
+      <option value="1">Type 1</option>
+      <option value="2">Type 2</option>
+      <option value="3">Type 3</option>
+    </select>
+  </div>
+  <div>
+    <label for="about">About:</label>
+    <textarea id="about" name="about" [(ngModel)]="profile.about"></textarea>
+  </div>
+  <div>
+    <label for="openToWork">Open to Work:</label>
+    <input type="checkbox" id="openToWork" name="openToWork" [(ngModel)]="profile.openToWork">
+  </div>
+  <div>
+    <label for="profilePicture">Profile Picture:</label>
+    <input type="text" id="profilePicture" name="profilePicture" [(ngModel)]="profile.profilePic">
+  </div>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>

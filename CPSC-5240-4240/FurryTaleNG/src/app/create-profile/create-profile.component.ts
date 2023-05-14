@@ -1,13 +1,53 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import {CreateProfile} from '../create-profile'
-import {CreateProfileService} from '../create-profile.service'
+import { CreateProfileService } from '../create-profile.service';
+import { CreateProfile } from '../create-profile';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-create-profile',
   templateUrl: './create-profile.component.html',
   styleUrls: ['./create-profile.component.css']
 })
+
+export class CreateProfileComponent {
+  profile: CreateProfile = {
+    userName: '',
+    email: '',
+    accountType: 0,
+    about: '',
+    openToWork: false,
+    profilePic: '',
+    accountId : '',
+    userId : '',
+    payment : 0,
+    userPassword : '',
+    tailers : [],
+    tailee :[],
+    verified : false,
+    verificationBadgeId : "String",
+  };
+  submitted = false;
+
+  constructor(private http: HttpClient, private route: ActivatedRoute, private createprofileService: CreateProfileService) { }
+
+  onSubmit(form: NgForm) {
+    console.log("came to onSubmit");
+    this.submitted = true;
+    if (form.valid) {
+      console.log(this.profile);
+      this.createprofileService.createNewProfile(this.profile).subscribe((result : any) => {
+
+      })
+      
+    }
+  }
+}
+
+
+/**
 export class CreateProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private createprofileService: CreateProfileService) { }
   ngOnInit(): void {
@@ -42,3 +82,4 @@ export class CreateProfileComponent implements OnInit {
   }
 
 }
+ */

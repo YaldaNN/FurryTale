@@ -22,7 +22,8 @@ var UserModel = /** @class */ (function () {
             openToWork: Boolean,
             verified: Boolean,
             verificationBadgeId: String,
-            profilePic: String
+            profilePic: String,
+            email: String
         }, { collection: 'users' });
     };
     UserModel.prototype.createUserModel = function () {

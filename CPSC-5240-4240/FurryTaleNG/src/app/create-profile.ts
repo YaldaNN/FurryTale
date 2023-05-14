@@ -12,5 +12,5 @@ export interface CreateProfile {
     openToWork : Boolean,
     verified : Boolean,
     verificationBadgeId : String,
-    profilePicture : String
+    profilePic : String
 }
