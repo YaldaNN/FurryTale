@@ -33,17 +33,15 @@ import { OpportunitiesService } from './opportunities.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    MatTabsModule,
+    BrowserAnimationsModule
   ],  
   providers: [
     ProfileService, 
     HomeService, 
     CreateProfileService,
-    HttpClientModule,
-    MatTabsModule,
-    OpportunitiesService,
-    BrowserAnimationsModule
+    OpportunitiesService
   ],
 
   bootstrap: [AppComponent]
