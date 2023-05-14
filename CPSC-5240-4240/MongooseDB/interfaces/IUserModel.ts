@@ -11,6 +11,7 @@ interface IUserModel extends Mongoose.Document {
     openToWork : Boolean,
     verified : Boolean,
     verificationBadgeId : String,
-    profilePic : String
+    profilePic : String,
+    email : String
 }
 export {IUserModel};

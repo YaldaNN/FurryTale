@@ -17,6 +17,7 @@ usersCollection.insertOne({
         openToWork: false,
         verified: false,
         verificationBadgeId: "",
-        profilePic : "https://wallpaper.dog/large/5439024.jpg"
+        profilePic : "https://wallpaper.dog/large/5439024.jpg",
+        email : "meow@pet.com"
     
 })
