@@ -25,8 +25,18 @@ var PostModel = /** @class */ (function () {
     };
     PostModel.prototype.retrieveAllPosts = function (response) {
         console.log("retrieve all Posts ...");
-        var query = this.model.find({});
+        var query = this.model.aggregate([
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'userId',
+                    foreignField: 'userId',
+                    as: 'joinedData'
+                }
+            }
+        ]);
         query.exec(function (err, itemArray) {
+            console.log(itemArray);
             response.json(itemArray);
         });
     };

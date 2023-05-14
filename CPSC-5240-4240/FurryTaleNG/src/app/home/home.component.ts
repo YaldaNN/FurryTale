@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from '../home.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit{
     
     this.homeService.getPosts().subscribe((result: any) => 
     {
-      console.log('result' + JSON.stringify(result));
+      
+      console.log('result' + JSON.stringify(result[0]));
       this.posts = result;
       
     });
