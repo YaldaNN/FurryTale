@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CreateProfileService } from '../create-profile.service';
 import { CreateProfile } from '../create-profile';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class CreateProfileComponent {
+  selectedOption: string = '';
+
   profile: CreateProfile = {
     userName: '',
     email: '',
@@ -31,7 +34,7 @@ export class CreateProfileComponent {
   };
   submitted = false;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private createprofileService: CreateProfileService) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private createprofileService: CreateProfileService, private router: Router) { }
 
   onSubmit(form: NgForm) {
     console.log("came to onSubmit");
@@ -39,9 +42,8 @@ export class CreateProfileComponent {
     if (form.valid) {
       console.log(this.profile);
       this.createprofileService.createNewProfile(this.profile).subscribe((result : any) => {
-
       })
-      
+      this.router.navigateByUrl('/');
     }
   }
 }
