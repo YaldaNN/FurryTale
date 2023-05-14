@@ -188,9 +188,10 @@ var App = /** @class */ (function () {
             console.log("Here are your posts");
             _this.Post.retrieveAllPosts(res);
         });
-        router.get('/posts/', function (req, res) {
-            console.log("Here are your posts");
-            _this.Post.retrieveAllPosts(res);
+        router.get('/posts/:userId', function (req, res) {
+            console.log("Here are user posts");
+            var userId = req.params.userId;
+            _this.Post.retrievePostsByUserId(userId, res);
         });
         router.get('/onePost', function (req, res) {
             console.log("Here is your post");

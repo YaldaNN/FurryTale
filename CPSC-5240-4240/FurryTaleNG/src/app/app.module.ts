@@ -7,8 +7,14 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
 import { OpportunitiesComponent } from './opportunities/opportunities.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+<<<<<<< Updated upstream
 import {HomeService} from './home.service';
 import { HttpClientModule } from '@angular/common/http';
+=======
+import { ProfileService } from './profile.service';
+import {HttpClientModule} from '@angular/common/http';
+
+>>>>>>> Stashed changes
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,9 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
+<<<<<<< Updated upstream
     
   ],
   providers: [HomeService],
+=======
+  ],
+  providers: [ProfileService],
+>>>>>>> Stashed changes
   bootstrap: [AppComponent]
 })
 export class AppModule { }

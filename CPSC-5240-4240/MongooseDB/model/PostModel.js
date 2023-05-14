@@ -98,6 +98,19 @@ var PostModel = /** @class */ (function () {
             response.json(numOfPosts);
         });
     };
+    PostModel.prototype.retrievePostsByUserId = function (userId, response) {
+        console.log("retrieving a post by user Id");
+        var query = this.model.find({ userId: userId });
+        query.exec(function (err, item) {
+            if (err) {
+                console.log("error while retrieving user");
+                response.send("error");
+            }
+            else {
+                response.send(item);
+            }
+        });
+    };
     return PostModel;
 }());
 exports.PostModel = PostModel;

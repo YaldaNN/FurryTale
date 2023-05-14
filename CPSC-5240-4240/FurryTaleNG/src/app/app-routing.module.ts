@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'createProfile', component: CreateProfileComponent},
   { path: 'opportunities', component: OpportunitiesComponent},
   { path: 'home', component: HomeComponent},
-  {path: 'profile', component: ProfileComponent }
+  {path: 'profile', component: ProfileComponent },
+  { path: 'posts/:userId', component: ProfileComponent }
 ]
 
 

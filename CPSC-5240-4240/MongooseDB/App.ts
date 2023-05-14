@@ -235,11 +235,11 @@ class App {
   
     });
 
-  router.get('/posts/', (req, res) => {
-    console.log("Here are your posts");
-    this.Post.retrieveAllPosts(res);
-  
-  });
+     router.get('/posts/:userId', (req, res) =>{
+      console.log("Here are user posts");
+      var userId = req.params.userId;
+      this.Post.retrievePostsByUserId(userId, res);
+  })
 
   router.get('/onePost', (req, res) => {
     console.log("Here is your post");
