@@ -4,17 +4,10 @@
     <mat-tab label="JOBS">
       <table class="table">
         <tbody>
-          <!-- <thead>
-            <tr>
-              <th>Image</th>
-              <th>Description</th>
-              <th>Details</th>
-            </tr>
-          </thead> -->
           <tr *ngFor="let post of posts">
             <ng-container *ngIf="post.postType === 1">
               <td class="thumbnail">
-                <img src="{{post.image}}" alt="{{post.caption}}" class="thumbnail-img">
+                <img src="{{post.image}}" class="thumbnail-img">
               </td>
               <td>{{post.caption}}</td>
               <td>
@@ -25,17 +18,17 @@
         </tbody>
       </table>
     </mat-tab>
-    <mat-tab label="TRAINING">
+    <mat-tab label="TRAININGS">
       <table class="table">
         <tbody>
           <tr *ngFor="let post of posts">
             <ng-container *ngIf="post.postType === 2">
               <td class="thumbnail">
-                <img src="{{post.image}}" alt="{{post.caption}}" class="thumbnail-img">
+                <img src="{{post.image}}" class="thumbnail-img">
               </td>
               <td>{{post.caption}}</td>
               <td>
-                <a href="#" class="btn btn-primary">Details</a>
+                <a href="#" class="button btn">Details</a>
               </td>
             </ng-container>
           </tr>
@@ -52,7 +45,7 @@
               </td>
               <td>{{post.caption}}</td>
               <td>
-                <a href="#" class="btn btn-primary">Details</a>
+                <a href="#" class="button btn">Details</a>
               </td>
             </ng-container>
           </tr>
@@ -69,7 +62,7 @@
               </td>
               <td>{{post.caption}}</td>
               <td>
-                <a href="#" class="btn btn-primary">Details</a>
+                <a href="#" class="button btn">Details</a>
               </td>
             </ng-container>
           </tr>
