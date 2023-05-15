@@ -139,6 +139,7 @@ class App {
       this.User.retireveOneUser(req.query.userId.toString(), res);
     
     });
+    
     // COMMENT
     router.get('/comment/', (req, res) => {
       console.log("Your stupid comments!");
@@ -240,10 +241,10 @@ class App {
   
     });
 
-     router.get('/oneUsersPosts', (req, res) =>{
-      console.log("Here is one user posts");
-      var userId = req.query.userId.toString();
-      this.Post.retrievePostsByUserId(userId, res);
+  router.get('/oneUsersPosts', (req, res) =>{
+    console.log("Here is one user posts");    
+  var userId = req.query.userId.toString();    
+  this.Post.retrievePostsByUserId(userId, res);    
   })
 
   router.get('/onePost', (req, res) => {

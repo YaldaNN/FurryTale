@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'opportunities', component: OpportunitiesComponent},
   { path: 'home', component: HomeComponent},
   {path: 'profile', component: ProfileComponent },
-  { path: 'posts/:userId', component: ProfileComponent }
+  { path: 'posts/:userId', component: ProfileComponent },
+  { path: 'oneUsersPosts?', component: ProfileComponent },
+  { path: 'oneUser?', component: ProfileComponent }
 ]
 
 

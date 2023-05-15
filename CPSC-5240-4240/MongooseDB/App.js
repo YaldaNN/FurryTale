@@ -189,7 +189,7 @@ var App = /** @class */ (function () {
         router.get('/posts/', function (req, res) {
             console.log("Here are your posts");
             _this.Post.retrieveAllPosts(res);
-        });
+        });       
         router.get('/oneUsersPosts', function (req, res) {
             console.log("Here is one user posts");
             var userId = req.query.userId.toString();
