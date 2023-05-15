@@ -16,6 +16,7 @@ usersCollection.insertOne({
         verified: false,
         verificationBadgeId: "",
         profilePic : "https://wallpaper.dog/large/5439024.jpg",
+<<<<<<< Updated upstream
         email : "Oreo@pet.com"
 })
 
@@ -47,4 +48,26 @@ usersCollection.insertOne({
         verificationBadgeId: "123",
         profilePic : "https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/39343/1/?bust=1613869306",
         email : "seattleAnimalShelter@pet.com"
+=======
+        email : "meow@pet.com"
+    
+})
+
+usersCollection.insertOne({
+    
+     
+        userId: "2c78a513a28f2bf1c680b505955a8mad",
+        userName: "Piu",
+        userPassword: "password",
+        accountId: "d23e32beea6efc9d43205fa91e732542",
+        tailers: [],
+        tailee: [],
+        about: "I have a brother named Doreo",
+        openToWork: false,
+        verified: false,
+        verificationBadgeId: "",
+        profilePic : "https://wallpaper.dog/large/5439024.jpg",
+        email : "meow@pet.com"
+    
+>>>>>>> Stashed changes
 })

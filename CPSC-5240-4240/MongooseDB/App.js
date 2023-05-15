@@ -190,9 +190,9 @@ var App = /** @class */ (function () {
             console.log("Here are your posts");
             _this.Post.retrieveAllPosts(res);
         });
-        router.get('/posts/:userId', function (req, res) {
-            console.log("Here are user posts");
-            var userId = req.params.userId;
+        router.get('/oneUsersPosts', function (req, res) {
+            console.log("Here is one user posts");
+            var userId = req.query.userId.toString();
             _this.Post.retrievePostsByUserId(userId, res);
         });
         router.get('/onePost', function (req, res) {

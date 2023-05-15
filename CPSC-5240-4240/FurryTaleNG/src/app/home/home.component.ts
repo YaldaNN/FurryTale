@@ -10,19 +10,35 @@ import { HomeService } from '../home.service';
 })
 export class HomeComponent implements OnInit{
   posts: any;
-  constructor(private route: ActivatedRoute, private homeService: HomeService) { }
-  ngOnInit(): void {
+  userInfo: any;
+  constructor(private route: ActivatedRoute, private homeService: HomeService) 
+  {
     
+   }
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) =>{
+      console.log("printing params")
+      const userId = params['userId'];
+      console.log(userId)
+      this.setUserInfo(userId)
+    })
     this.homeService.getPosts().subscribe((result: any) => 
     {
       
-      console.log('result' + JSON.stringify(result[0]));
+      //console.log('result' + JSON.stringify(result[0]));
       this.posts = result;
       
     });
 
   }
 
+  setUserInfo(userId : String) : void{
+      this.homeService.getUser(userId).subscribe((res : any) => {
+        console.log("printing user info");
+        this.userInfo = res;
+        console.log(this.userInfo.profilePic)
+      })
+  }
   pawHandleClick(postId: String) : void {
     console.log("clicked paw");
     const pawObj : any = 
@@ -35,7 +51,7 @@ export class HomeComponent implements OnInit{
         this.homeService.getPosts().subscribe((result: any) => 
     {
       
-      console.log('result' + JSON.stringify(result[0]));
+     // console.log('result' + JSON.stringify(result[0]));
       this.posts = result;
       
     });

@@ -240,9 +240,9 @@ class App {
   
     });
 
-     router.get('/posts/:userId', (req, res) =>{
-      console.log("Here are user posts");
-      var userId = req.params.userId;
+     router.get('/oneUsersPosts', (req, res) =>{
+      console.log("Here is one user posts");
+      var userId = req.query.userId.toString();
       this.Post.retrievePostsByUserId(userId, res);
   })
 
