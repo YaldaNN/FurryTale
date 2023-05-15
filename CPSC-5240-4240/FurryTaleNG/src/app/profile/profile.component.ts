@@ -14,12 +14,15 @@ export class ProfileComponent implements OnInit {
  ngOnInit(): void {
   this.route.params.subscribe((params: Params) => {
   const userId = params['userId'];
+//  const userId="2c78a513a28f2bf1c680b505955a7bad";
   console.log(params);
+
     this.profileService.getMyPosts(userId).subscribe((result: any) =>  
   {  
-    console.log('result' + JSON.stringify(result));  
+    console.log("MyUserData "+'result' + JSON.stringify(result));  
     this.profileResult = result;
   }); 
+
 });
 }
 }

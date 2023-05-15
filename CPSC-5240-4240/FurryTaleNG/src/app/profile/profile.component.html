@@ -1,1 +1,173 @@
-<p>profile works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FurryTale</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Center the search bar and posts */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .thumbnail {
+            width: 50px !important;
+            height: 50px !important;
+        }
+
+        .camera {
+            width: 20px;
+            height: 20px;
+        }
+
+        .thumbnail-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .rounded-circle {
+            width: 5%;
+            /* set the width to 50% of the containing element */
+            height: auto;
+            /* set the height to auto to maintain the aspect ratio */
+        }
+
+        .card-link {
+            width: 5%;
+            /* set the width to 50% of the containing element */
+            height: auto;
+            /* set the height to auto to maintain the aspect ratio */
+        }
+
+        form.form-inline {
+            width: 30%;
+            text-align: center;
+        }
+
+        div.col-md-3 h2 {
+            color: #E6A439;
+            font-family: 'Coiny', cursive;
+            font-style: bold;
+            font-size: 3em;
+            line-height: 1.5;
+            width: 103px;
+            height: 74px;
+            left: 161px;
+            top: 16px;
+        }
+
+        p {
+            color: gray;
+            font-family: 'Concert One', cursive;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="container-fluid bg-light mb-3">
+            <div class="row">
+                <div class="row col-md-12">
+                <div class="col-md-10 py-3">
+                    <div class="profile-info">
+                        <ul *ngFor="let profile of profileResult">
+                            <img class="thumbnail thumbnail-img" src="{{profile.userAndPost[0].profilePic}}"
+                                alt="{{profile.caption}}'s profile picture'">
+                                <div class="user-details">
+                                    {{ profile.userAndPost[0].userName }}
+                                    <h6>JaneDoe@gmail.com</h6>
+                                </div>
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="col-md-2 py-3">
+                    <div class="text-right">
+                        <div class="camera">
+                            <img class="camera" src=".\\src\\assets\\Images\\camera.png" alt="Camera picture">
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 offset-md-2">
+                        <div class="card mb-4">
+                            <div class="form-group">
+                                <h5 class="py-3">About</h5>
+                                <span type="text" id="about"></span>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="form-group">
+                                <h5 class="py-3">Achievements</h5>
+                                <span type="text" id="myPost"></span>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="form-group">
+                                <h5 class="py-3">My Posts</h5>
+                                <span>
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <ul *ngFor="let profile of profileResult">
+                                                        <img class="thumbnail thumbnail-img mr-2"
+                                                            src="{{profile.userAndPost[0].profilePic}}"
+                                                            alt="{{profile.caption}}'s profile picture'">
+                                                        {{ profile.userAndPost[0].userName }}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <ul *ngFor="let profile of profileResult">
+                                                    <img class="card-img-top" src="{{profile.image}}"
+                                                        alt="{{profile.caption}}'s post image'">
+                                                        <div class="caption">
+                                                            <h6 class="py-3">{{ profile.caption}} </h6>                                                        
+                                                        </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- <div class="card mb-4">
+                            <div class="form-group">
+                                <div *ngIf="profileResult">
+                                    <h1>{{ profileResult.image }}</h1>
+                                    <p>{{ profileResult.content }}</p>
+                                </div>
+                                <div class="Post">
+                                    <ul *ngFor="let profile of profileResult">
+                                        <img class="thumbnail thumbnail-img" src="{{profile.userAndPost[0].profilePic}}"
+                                            alt="{{profile.caption}}'s profile picture'">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- jQuery and Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+            </div>
+        </div>
+    </div>

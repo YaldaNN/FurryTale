@@ -9,6 +9,7 @@ import { IProfile } from './profile';
 export class ProfileService {
   hostUrl:string = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
+  
   getMyPosts(userId: string){
      return this.http.get<IProfile[]>(this.hostUrl + 'posts?userId=' + userId);
   }
