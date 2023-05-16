@@ -19,7 +19,22 @@ accountsCollection.insertOne(
 	payment: 0.0,
 }
 )
-
+accountsCollection.insertOne(
+	{
+		accountId: "d23e32beea6efc9d43205fa91e732543",
+		userId:  "3c78a513a28f2bf1c680b505955a7bad",
+		accountType: 1,
+		payment: 0.0,
+	}
+)
+accountsCollection.insertOne(
+	{
+		accountId: "d23e32beea6efc9d43205fa91e732544",
+		userId:  "4c78a513a28f2bf1c680b505955a7bad",
+		accountType: 1,
+		payment: 0.0,
+	}
+)
 // Creating Collection for ACHIEVEMENTS
 //db.createCollection('achievements')
 achievementsCollection = db.getCollection("achievements")
