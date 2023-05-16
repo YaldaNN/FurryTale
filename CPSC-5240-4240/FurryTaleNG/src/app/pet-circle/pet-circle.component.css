@@ -1,6 +1,14 @@
-.mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
-   font-weight: bold;
+::ng-deep .mat-mdc-tab-labels .mdc-tab__text-label {
+  font-family: 'Concert One', cursive;
+  font-size: large;
+}
+
+::ng-deep .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+   font-weight: bolder;
+   font-family: 'Concert One', cursive;
+   font-size: larger;
  }
+
  .table {
    border-collapse: collapse;
    width: 90%;

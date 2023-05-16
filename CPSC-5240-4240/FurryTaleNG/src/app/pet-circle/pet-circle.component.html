@@ -11,8 +11,8 @@
      <mat-tab label="TAILERS">
        <table class="table">
          <tbody>
-           <tr *ngFor="let user of users">
-             <ng-container *ngIf="user">
+           <ng-container *ngFor="let user of users">
+             <tr *ngIf="user">
                <td class="thumbnail">
                  <img src="{{user.profilePic}}" class="thumbnail-img">
                </td>
@@ -20,16 +20,16 @@
                <td>
                  <a href="#" class="button btn">Tailing?</a>
                </td>
-             </ng-container>
-           </tr>
+            </tr>
+           </ng-container>
          </tbody>
        </table>
      </mat-tab>
      <mat-tab label="TAILEES">
        <table class="table">
          <tbody>
-           <tr *ngFor="let user of users">
-             <ng-container *ngIf="user">
+           <ng-container *ngFor="let user of users">
+             <tr *ngIf="user">
                <td class="thumbnail">
                  <img src="{{user.profilePic}}" class="thumbnail-img">
                </td>
@@ -37,8 +37,8 @@
                <td>
                  <a href="#" class="button btn">UnTail?</a>
                </td>
-             </ng-container>
-           </tr>
+            </tr>
+           </ng-container>
          </tbody>
        </table>
      </mat-tab>

@@ -5,8 +5,9 @@ import { PetCircleService } from '../pet-circle.service';
 @Component({
   selector: 'app-pet-circle',
   templateUrl: './pet-circle.component.html',
-  styleUrls: ['./pet-circle.component.css']
+  styleUrls: ['./pet-circle.component.css'],
 })
+
 export class PetCircleComponent implements OnInit{
   currUser : any;
   users: any;

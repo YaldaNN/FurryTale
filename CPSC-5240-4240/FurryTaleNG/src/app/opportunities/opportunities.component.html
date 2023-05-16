@@ -4,8 +4,8 @@
     <mat-tab label="JOBS">
       <table class="table">
         <tbody>
-          <tr *ngFor="let post of posts">
-            <ng-container *ngIf="post.postType === 1">
+          <ng-container *ngFor="let post of posts">
+            <tr *ngIf="post.postType === 1">
               <td class="thumbnail">
                 <img src="{{post.image}}" class="thumbnail-img">
               </td>
@@ -13,59 +13,59 @@
               <td>
                 <a href="#" class="button btn">Details</a>
               </td>
-            </ng-container>
-          </tr>
-        </tbody>
-      </table>
-    </mat-tab>
-    <mat-tab label="TRAININGS">
-      <table class="table">
-        <tbody>
-          <tr *ngFor="let post of posts">
-            <ng-container *ngIf="post.postType === 2">
-              <td class="thumbnail">
-                <img src="{{post.image}}" class="thumbnail-img">
-              </td>
-              <td>{{post.caption}}</td>
-              <td>
-                <a href="#" class="button btn">Details</a>
-              </td>
-            </ng-container>
-          </tr>
-        </tbody>
-      </table>
-    </mat-tab>
-    <mat-tab label="COMPETITIONS">
-      <table class="table">
-        <tbody>
-          <tr *ngFor="let post of posts">
-            <ng-container *ngIf="post.postType === 3">
-              <td class="thumbnail">
-                <img src="{{post.image}}" alt="{{post.caption}}" class="thumbnail-img">
-              </td>
-              <td>{{post.caption}}</td>
-              <td>
-                <a href="#" class="button btn">Details</a>
-              </td>
-            </ng-container>
-          </tr>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </mat-tab>
     <mat-tab label="ADOPTIONS">
       <table class="table">
         <tbody>
-          <tr *ngFor="let post of posts">
-            <ng-container *ngIf="post.postType === 4">
+          <ng-container *ngFor="let post of posts">
+            <tr *ngIf="post.postType === 2">
               <td class="thumbnail">
-                <img src="{{post.image}}" alt="{{post.caption}}" class="thumbnail-img">
+                <img src="{{post.image}}" class="thumbnail-img">
               </td>
               <td>{{post.caption}}</td>
               <td>
                 <a href="#" class="button btn">Details</a>
               </td>
-            </ng-container>
-          </tr>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="TRAININGS">
+      <table class="table">
+        <tbody>
+          <ng-container *ngFor="let post of posts">
+            <tr *ngIf="post.postType === 3">
+              <td class="thumbnail">
+                <img src="{{post.image}}" class="thumbnail-img">
+              </td>
+              <td>{{post.caption}}</td>
+              <td>
+                <a href="#" class="button btn">Details</a>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="COMPETITIONS">
+      <table class="table">
+        <tbody>
+          <ng-container *ngFor="let post of posts">
+            <tr *ngIf="post.postType === 4">
+              <td class="thumbnail">
+                <img src="{{post.image}}" class="thumbnail-img">
+              </td>
+              <td>{{post.caption}}</td>
+              <td>
+                <a href="#" class="button btn">Details</a>
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </mat-tab>
