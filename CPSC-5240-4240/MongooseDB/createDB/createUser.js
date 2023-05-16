@@ -9,20 +9,19 @@ usersCollection.insertOne({
         userName: "Oreo",
         userPassword: "password",
         accountId: "d23e32beea6efc9d43205fa91e732031",
-        tailers: [],
-        tailee: [],
+        tailers: ["3c78a513a28f2bf1c680b505955a7bad", "4c78a513a28f2bf1c680b505955a7bad"],
+        tailee: ["4c78a513a28f2bf1c680b505955a7bad"],
         about: "I have a brother named Doreo",
         openToWork: false,
         verified: false,
         verificationBadgeId: "",
         profilePic : "https://wallpaper.dog/large/5439024.jpg",
-<<<<<<< Updated upstream
         email : "Oreo@pet.com"
 })
 
 usersCollection.insertOne({   
         userId: "3c78a513a28f2bf1c680b505955a7bad",
-        userName: "Coco",
+        userName: "Choco",
         userPassword: "password",
         accountId: "d33e32beea6efc9d43205fa91e732031",
         tailers: [],
@@ -47,15 +46,13 @@ usersCollection.insertOne({
         verified: true,
         verificationBadgeId: "123",
         profilePic : "https://dl5zpyw5k3jeb.cloudfront.net/organization-photos/39343/1/?bust=1613869306",
-        email : "seattleAnimalShelter@pet.com"
-=======
+        email : "seattleAnimalShelter@pet.com",
         email : "meow@pet.com"
     
 })
 
 usersCollection.insertOne({
     
-     
         userId: "2c78a513a28f2bf1c680b505955a8mad",
         userName: "Piu",
         userPassword: "password",
@@ -69,5 +66,4 @@ usersCollection.insertOne({
         profilePic : "https://wallpaper.dog/large/5439024.jpg",
         email : "meow@pet.com"
     
->>>>>>> Stashed changes
 })
