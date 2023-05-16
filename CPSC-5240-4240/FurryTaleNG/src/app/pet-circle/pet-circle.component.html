@@ -1,0 +1,46 @@
+
+
+<div class="col-md-6 offset-md-3" *ngIf="currUser">
+
+   <!-- <div *ngFor="let tailer of currUser.tailers">
+      {{tailer}}
+      {{ users.find(user => user.userId === tailer)?.userName }}
+   </div> -->
+
+   <mat-tab-group>
+     <mat-tab label="TAILERS">
+       <table class="table">
+         <tbody>
+           <tr *ngFor="let user of users">
+             <ng-container *ngIf="user">
+               <td class="thumbnail">
+                 <img src="{{user.profilePic}}" class="thumbnail-img">
+               </td>
+               <td>{{user.userName}}</td>
+               <td>
+                 <a href="#" class="button btn">Tailing?</a>
+               </td>
+             </ng-container>
+           </tr>
+         </tbody>
+       </table>
+     </mat-tab>
+     <mat-tab label="TAILEES">
+       <table class="table">
+         <tbody>
+           <tr *ngFor="let user of users">
+             <ng-container *ngIf="user">
+               <td class="thumbnail">
+                 <img src="{{user.profilePic}}" class="thumbnail-img">
+               </td>
+               <td>{{user.userName}}</td>
+               <td>
+                 <a href="#" class="button btn">UnTail?</a>
+               </td>
+             </ng-container>
+           </tr>
+         </tbody>
+       </table>
+     </mat-tab>
+   </mat-tab-group>
+ </div>

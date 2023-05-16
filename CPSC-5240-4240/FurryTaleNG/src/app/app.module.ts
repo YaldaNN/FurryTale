@@ -14,12 +14,15 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
 import { OpportunitiesComponent } from './opportunities/opportunities.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PetCircleComponent } from './pet-circle/pet-circle.component';
 
 //Services
 import { HomeService } from './home.service';
 import { ProfileService } from './profile.service';
 import { CreateProfileService } from './create-profile.service';
 import { OpportunitiesService } from './opportunities.service';
+import { PetCircleService } from './pet-circle.service';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { OpportunitiesService } from './opportunities.service';
     OpportunitiesComponent,
     HomeComponent,
     ProfileComponent,
+    PetCircleComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import { OpportunitiesService } from './opportunities.service';
     ProfileService, 
     HomeService, 
     CreateProfileService,
-    OpportunitiesService
+    OpportunitiesService,
+    PetCircleService
   ],
 
   bootstrap: [AppComponent]
