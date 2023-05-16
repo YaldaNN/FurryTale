@@ -9,18 +9,19 @@
 <div class="container">
     <div class="container-fluid bg-light mb-3">
         <div class="row">
-              <!-- User Intro -->
-            <div class="Intro row col-md-12">
-                <div class="col-md-10 py-3">
+            <!-- User Intro -->
+            <div class="Intro row col-md-8 offset-md-2 py-3 mb-3">
+                <div class="col-md-11 py-3">
                     <div class="profile-info">
-                        <img class="thumbnail thumbnail-img" src="{{profileUserInfo?.profilePic}}" alt="profile picture">
+                        <img class="thumbnailProfile thumbnail-img" src="{{profileUserInfo?.profilePic}}"
+                            alt="profile picture">
                         <div class="user-details py-2">
-                            <h6>{{ profileUserInfo?.userName }} </h6>
+                            <h5>{{ profileUserInfo?.userName }} </h5>
                             <h6>{{ profileUserInfo?.email}} </h6>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 py-3">
+                <div class="col-md-1 py-3">
                     <div class="text-right">
                         <div class="camera">
                             <a href="#" class="camera-link">
@@ -33,36 +34,42 @@
 
             <div class="col-md-12">
                 <div class="col-md-8 offset-md-2">
-                      <!-- About -->
+                    <!-- About -->
                     <div class="card mb-4">
-                        <div class="form-group">
-                            <h5 class="py-3">About</h5>
-                            <span type="text" id="about">
-                                {{profileUserInfo?.about}}
-                            </span>
-                        </div>
-                        <div class="edit">
-                            <a href="#" class="About Edit-link">
-                                <img class="edit" src=".\\src\\assets\\Images\\edit.png" alt="Edit About">
-                            </a>
+                        <div class="form-group row m-1">
+                            <div class="col-md-6">
+                                <h5 class="py-3">About</h5>
+                                <span type="text" id="about">
+                                    {{profileUserInfo?.about}}
+                                </span>
+                            </div>
+
+                            <div class="col-md-6 text-right">
+                                <a href="#" class="About Edit-link">
+                                    <img class="edit" src=".\\src\\assets\\Images\\edit.png" alt="Edit About">
+                                </a>
+                            </div>
                         </div>
                     </div>
-                      <!-- Achievements -->
+                    <!-- Achievements -->
                     <div class="card mb-4">
-                        <div class="form-group">
-                            <h5 class="py-3">Achievements</h5>
-                            <span type="text" id="achievements"></span>
-                        </div>
-                        
-                        <div class="edit">
-                            <a href="#" class="Achievements Edit-link">
-                                <img class="edit" src=".\\src\\assets\\Images\\edit.png" alt="Edit Achievements">
-                            </a>
+                        <div class="form-group row m-1">
+                            <div class="col-md-6">
+                                <h5 class="py-3">Achievements</h5>
+                                <span type="text" id="achievements">
+                                </span>
+                            </div>
+
+                            <div class="col-md-6 text-right">
+                                <a href="#" class="Achievements Edit-link">
+                                    <img class="edit" src=".\\src\\assets\\Images\\edit.png" alt="Edit Achievements">
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="card mb-4">
                         <div class="form-group">
-                            <h5 class="py-3">My Posts</h5>
+                            <h5 class="m-4">My Posts</h5>
                             <span>
                                 <div class="row">
                                     <div class="col-md-6 offset-md-3">
@@ -80,7 +87,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                              <!-- Post- User Posts -->
+                                            <!-- Post- User Posts -->
                                             <img src="{{profile.image}}" class="card-img-top" alt="user post"
                                                 width="400" height="300">
                                             <div class="card-body">

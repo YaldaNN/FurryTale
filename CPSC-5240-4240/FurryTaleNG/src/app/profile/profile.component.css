@@ -9,6 +9,10 @@
     width: 50px !important;
     height: 50px !important;
 }
+.thumbnailProfile {
+    width: 100px !important;
+    height: 100px !important;
+}
 
 .camera {
     width: 20px;
