@@ -98,7 +98,7 @@ class App {
           console.log('object creation failed');
       }
       })
-      res.send(JSON.stringify(userJsonObj));
+      res.send(userJsonObj);
     });
 
     router.put('/updateAccountType', (req, res) => {

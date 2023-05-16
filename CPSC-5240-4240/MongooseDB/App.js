@@ -80,7 +80,7 @@ var App = /** @class */ (function () {
                     console.log('object creation failed');
                 }
             });
-            res.send(JSON.stringify(userJsonObj));
+            res.send(userJsonObj);
         });
         router.put('/updateAccountType', function (req, res) {
             var jsonObj = req.body;
@@ -189,7 +189,7 @@ var App = /** @class */ (function () {
         router.get('/posts/', function (req, res) {
             console.log("Here are your posts");
             _this.Post.retrieveAllPosts(res);
-        });       
+        });
         router.get('/oneUsersPosts', function (req, res) {
             console.log("Here is one user posts");
             var userId = req.query.userId.toString();

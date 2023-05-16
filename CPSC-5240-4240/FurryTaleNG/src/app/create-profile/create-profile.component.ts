@@ -32,6 +32,7 @@ export class CreateProfileComponent {
     verified : false,
     verificationBadgeId : "String",
   };
+  
   submitted = false;
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private createprofileService: CreateProfileService, private router: Router) { }
@@ -42,8 +43,9 @@ export class CreateProfileComponent {
     if (form.valid) {
       console.log(this.profile);
       this.createprofileService.createNewProfile(this.profile).subscribe((result : any) => {
+        this.router.navigateByUrl('/home?userId='+result.userId);
       })
-      this.router.navigateByUrl('/');
+      
     }
   }
 }
