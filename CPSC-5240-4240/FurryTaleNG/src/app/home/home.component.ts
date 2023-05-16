@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from '../home.service';
+import { Router } from '@angular/router';
 import { NgForm, FormsModule } from '@angular/forms';
 import {Comment} from '../comment'
 
@@ -13,29 +14,26 @@ export class HomeComponent implements OnInit{
   posts: any;
   userInfo: any;
   submitted = false;
-  newComment : Comment = {
-    commentId : "",
-    postId: "",
-    commenterId: "",
-    comment: "",
-    dateTime: "bla bla"
-  }
-  constructor(private route: ActivatedRoute, private homeService: HomeService) 
+  newComment : any;
+  userId : any;
+  constructor(private route: ActivatedRoute, private homeService: HomeService, private router: Router) 
   {
     
    }
   ngOnInit(): void {
+    this.resetComment()
+    console.log("help me")
     this.route.queryParams.subscribe((params) =>{
-      console.log("printing params")
-      const userId = params['userId'];
-      console.log(userId)
-      this.setUserInfo(userId)
-      this.newComment.commenterId = userId
+      
+      this.userId = params['userId'];
+      console.log(this.userId)
+      this.setUserInfo(this.userId)
+      this.newComment.commenterId = this.userId
     })
     this.homeService.getPosts().subscribe((result: any) => 
     {
-      
-      //console.log('result' + JSON.stringify(result[0]));
+      this.assignCommenterUsernameToComment(result)
+      console.log("trying");
       this.posts = result;
       
     });
@@ -46,7 +44,7 @@ export class HomeComponent implements OnInit{
       this.homeService.getUser(userId).subscribe((res : any) => {
         console.log("printing user info");
         this.userInfo = res;
-        console.log(this.userInfo.profilePic)
+      
       })
   }
   pawHandleClick(postId: String) : void {
@@ -59,12 +57,12 @@ export class HomeComponent implements OnInit{
     this.homeService.addPaw(pawObj).subscribe((res : any) => {
         console.log("yayyy");
         this.homeService.getPosts().subscribe((result: any) => 
-    {
+        {
       
-     // console.log('result' + JSON.stringify(result[0]));
-      this.posts = result;
-      
-    });
+          // console.log('result' + JSON.stringify(result[0]));
+          this.posts = result;
+          this.ngOnInit()
+        });
     })
   }
 
@@ -78,7 +76,33 @@ export class HomeComponent implements OnInit{
       this.homeService.adComment(this.newComment).subscribe((res : any) => {
           console.log(res);
       })
-      
+     
+      this.ngOnInit();
     }
   }
+
+  assignCommenterUsernameToComment(jsonObj : any){
+    console.log(jsonObj[0].postAndComment.length)
+    for(let i=0; i<jsonObj.length; i++){
+      for(let j=0; j<jsonObj[i].postAndComment.length; j++){
+        console.log("came inside loop")
+        jsonObj[i].postAndComment[j].commenterName = jsonObj[i].commentAndUser[j].userName;
+        jsonObj[i].postAndComment[j].profilePic = jsonObj[i].commentAndUser[j].profilePic
+
+      }
+  }
+  for(let i=0; i<jsonObj.length; i++){
+    console.log(jsonObj[i].postAndComment)
+  }
+}
+
+resetComment(){
+  this.newComment = {
+    commentId : "",
+    postId: "",
+    commenterId: "",
+    comment: "",
+    dateTime: "bla bla"
+  }
+}
 }
