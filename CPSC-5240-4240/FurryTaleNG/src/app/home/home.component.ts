@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HomeService } from '../home.service';
-
+import { NgForm, FormsModule } from '@angular/forms';
+import {Comment} from '../comment'
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,14 @@ import { HomeService } from '../home.service';
 export class HomeComponent implements OnInit{
   posts: any;
   userInfo: any;
+  submitted = false;
+  newComment : Comment = {
+    commentId : "",
+    postId: "",
+    commenterId: "",
+    comment: "",
+    dateTime: "bla bla"
+  }
   constructor(private route: ActivatedRoute, private homeService: HomeService) 
   {
     
@@ -21,6 +30,7 @@ export class HomeComponent implements OnInit{
       const userId = params['userId'];
       console.log(userId)
       this.setUserInfo(userId)
+      this.newComment.commenterId = userId
     })
     this.homeService.getPosts().subscribe((result: any) => 
     {
@@ -56,5 +66,19 @@ export class HomeComponent implements OnInit{
       
     });
     })
+  }
+
+  onSubmit(form: NgForm, postId : String) {
+    console.log("came to onSubmit");
+    console.log(postId)
+    this.newComment.postId = postId;
+    console.log(this.newComment)
+    this.submitted = true;
+    if (form.valid) {
+      this.homeService.adComment(this.newComment).subscribe((res : any) => {
+          console.log(res);
+      })
+      
+    }
   }
 }

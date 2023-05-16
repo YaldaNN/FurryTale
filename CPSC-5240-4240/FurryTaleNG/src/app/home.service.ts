@@ -3,6 +3,7 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 
 import { Post } from './posts';
 import {IUser} from './user';
+import {Comment} from './comment'
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class HomeService {
 
   getUser(userId : String){
     return this.http.get<IUser>(this.hostUrl+"oneUser?userId="+userId)
+  }
+
+  adComment(comment : Comment){
+    return this.http.post(this.hostUrl+"comment/", comment);
   }
 }
