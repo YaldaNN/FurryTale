@@ -16,35 +16,41 @@ export class HomeComponent implements OnInit{
   submitted = false;
   newComment : any;
   userId : any;
+  placeholderText : any;
   constructor(private route: ActivatedRoute, private homeService: HomeService, private router: Router) 
   {
     
    }
   ngOnInit(): void {
     this.resetComment()
-    console.log("help me")
+    
+   
     this.route.queryParams.subscribe((params) =>{
       
       this.userId = params['userId'];
       console.log(this.userId)
       this.setUserInfo(this.userId)
+      
+      
       this.newComment.commenterId = this.userId
     })
+
+    
     this.homeService.getPosts().subscribe((result: any) => 
     {
       this.assignCommenterUsernameToComment(result)
-      console.log("trying");
       this.posts = result;
       
     });
-
+    
   }
 
   setUserInfo(userId : String) : void{
       this.homeService.getUser(userId).subscribe((res : any) => {
-        console.log("printing user info");
         this.userInfo = res;
-      
+        this.placeholderText = "start a new post, "+this.userInfo.userName+"!"
+
+        console.log(this.userInfo)
       })
   }
   pawHandleClick(postId: String) : void {
@@ -82,18 +88,16 @@ export class HomeComponent implements OnInit{
   }
 
   assignCommenterUsernameToComment(jsonObj : any){
-    console.log(jsonObj[0].postAndComment.length)
+    
     for(let i=0; i<jsonObj.length; i++){
       for(let j=0; j<jsonObj[i].postAndComment.length; j++){
-        console.log("came inside loop")
+       
         jsonObj[i].postAndComment[j].commenterName = jsonObj[i].commentAndUser[j].userName;
         jsonObj[i].postAndComment[j].profilePic = jsonObj[i].commentAndUser[j].profilePic
 
       }
   }
-  for(let i=0; i<jsonObj.length; i++){
-    console.log(jsonObj[i].postAndComment)
-  }
+ 
 }
 
 resetComment(){
