@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { IProfile } from './profile';
-import { IUser } from './user';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,6 @@ export class ProfileService {
   }
 
   getMyUser(userId: string){
-    return this.http.get<IUser[]>(this.hostUrl + 'oneUser?userId=' + userId);
+    return this.http.get<User[]>(this.hostUrl + 'oneUser?userId=' + userId);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 
 import { Post } from './posts';
-import {IUser} from './user';
+import {User} from './user';
 import {Comment} from './comment'
 
 @Injectable({
@@ -23,7 +23,7 @@ export class HomeService {
   }
 
   getUser(userId : String){
-    return this.http.get<IUser>(this.hostUrl+"oneUser?userId="+userId)
+    return this.http.get<User>(this.hostUrl+"oneUser?userId="+userId)
   }
 
   adComment(comment : Comment){

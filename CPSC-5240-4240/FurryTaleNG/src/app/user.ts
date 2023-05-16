@@ -1,4 +1,4 @@
-export interface IUser {
+export interface User {
     userId : String,
     userName : String,
     userPassword : String,
