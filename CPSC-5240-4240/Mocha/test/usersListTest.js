@@ -21,8 +21,9 @@ describe('Test To Do lists result', function () {
 			.end(function (err, res) {
 				requestResult = res.body;
 				response = res;
+				console.log(res);
                 expect(err).to.be.null;
-                expect(res).to.have.status(200);
+               
 				done();
 			});
         });
@@ -30,6 +31,7 @@ describe('Test To Do lists result', function () {
 
 
     
+		
     it('Should return an array object with more than 1 object', function (){
 		expect(response).to.have.status(200);
 //        expect(response.body).to.be.an.object;
@@ -57,6 +59,5 @@ describe('Test To Do lists result', function () {
 				return true;
 			});
 	});	
-
 	
 });
