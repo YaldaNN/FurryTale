@@ -177,6 +177,14 @@ class App {
   
     });
 
+    router.get('/oneUserAchievement', (req, res) => {
+     console.log("Here is one user achievement");      
+    var userId = req.query.userId.toString();      
+     this.Achievement.retrieveAchievementByUserId(userId, res);      
+    })
+
+    
+
     router.post('/achievement/', (req, res) => {
       const achievementId = crypto.randomBytes(16).toString("hex");
       var jsonObj = req.body;

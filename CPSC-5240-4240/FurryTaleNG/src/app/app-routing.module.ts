@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'posts/:userId', component: ProfileComponent },
   { path: 'oneUsersPosts?', component: ProfileComponent },
   { path: 'oneUser?', component: ProfileComponent },
+  { path: 'oneUserAchievement?', component: ProfileComponent },
   { path: 'petCircle/:userId', component: PetCircleComponent}
 ]
 

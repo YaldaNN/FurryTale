@@ -46,6 +46,20 @@ class AchievementModel {
             response.json(numOfAchievement) ;
         });
     }
+    
+    public retrieveAchievementByUserId(userId : String, response : any) : any{
+        console.log("retrieving a achievement by user Id");
+        var query = this.model.find({userId : userId});
+        query.exec((err, item) => {
+            if(err){
+                console.log("error while retrieving user");
+                response.send("error");
+            }
+            else{
+                response.send(item);
+            }            
+        })
+    }    
 
 }
 export {AchievementModel};

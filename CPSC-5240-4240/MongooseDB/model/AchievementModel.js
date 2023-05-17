@@ -36,6 +36,19 @@ var AchievementModel = /** @class */ (function () {
             response.json(numOfAchievement);
         });
     };
+    AchievementModel.prototype.retrieveAchievementByUserId = function (userId, response) {
+        console.log("retrieving a achievement by user Id");
+        var query = this.model.find({ userId: userId });
+        query.exec(function (err, item) {
+            if (err) {
+                console.log("error while retrieving user");
+                response.send("error");
+            }
+            else {
+                response.send(item);
+            }
+        });
+    };
     return AchievementModel;
 }());
 exports.AchievementModel = AchievementModel;

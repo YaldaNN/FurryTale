@@ -17,10 +17,12 @@
 .camera {
     width: 20px;
     height: 20px;
+    display: none;
 }
 .edit {
     width: 20px;
     height: 20px;
+    display: none;
 }
 
 .thumbnail-img {
@@ -72,5 +74,38 @@ a.camera-link {
 }
 
 .Intro{
-    background-color: #FFFACD;
+    background-color: #E6A43936;
 }
+
+.profile-picture-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-picture-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 4px solid green; /* Adjust the color and size of the border as desired */
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.profile-picture-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover; /* Adjust as needed */
+  z-index: 1;
+}
+
+.open-to-work-text {
+    position: absolute;
+    font-size: 20px;    
+    font-weight: bold;
+    color: green;
+  }

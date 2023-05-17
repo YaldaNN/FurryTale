@@ -10,6 +10,7 @@ import { ProfileService} from '../profile.service';
 export class ProfileComponent implements OnInit {
  profileResult: any;
  profileUserInfo: any;
+ achievementDetails : any;
  constructor(private route: ActivatedRoute, private profileService: ProfileService) {}
 
  ngOnInit(): void {
@@ -29,6 +30,12 @@ export class ProfileComponent implements OnInit {
     console.log("MyUserData "+'result' + JSON.stringify(result));  
     this.profileUserInfo = result;
   }); 
+
+  this.profileService.getAchievement(userId).subscribe((result: any) =>  
+  {  
+    console.log("MyAchievement "+'result' + JSON.stringify(result));  
+    this.achievementDetails = result;
+  });   
 
 });
 }

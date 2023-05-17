@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { IProfile } from './profile';
 import { User } from './user';
+import { achievement } from './achievement';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,9 @@ export class ProfileService {
 
   getMyUser(userId: string){
     return this.http.get<User[]>(this.hostUrl + 'oneUser?userId=' + userId);
+  }
+
+  getAchievement(userId: string){
+    return this.http.get<User[]>(this.hostUrl + 'oneUserAchievement?userId=' + userId);
   }
 }
