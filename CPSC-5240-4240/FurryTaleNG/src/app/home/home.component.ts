@@ -28,9 +28,9 @@ export class HomeComponent implements OnInit{
     this.route.queryParams.subscribe((params) =>{
       console.log(params)
       this.userId = params['userId'];
-      console.log(this.userId)
-      this.setUserInfo(this.userId)
       
+      this.setUserInfo(this.userId)
+      console.log("MEOW")
       
       this.newComment.commenterId = this.userId
     })
@@ -46,12 +46,14 @@ export class HomeComponent implements OnInit{
   }
 
   setUserInfo(userId : String) : void{
+    
       this.homeService.getUser(userId).subscribe((res : any) => {
         this.userInfo = res;
         this.placeholderText = "start a new post, "+this.userInfo.userName+"!"
-
-        console.log(this.userInfo)
+        console.log("seriously kill me")
+        
       })
+      
   }
   pawHandleClick(postId: String) : void {
     console.log("clicked paw");
@@ -90,9 +92,12 @@ export class HomeComponent implements OnInit{
   assignCommenterUsernameToComment(jsonObj : any){
     
     for(let i=0; i<jsonObj.length; i++){
-      for(let j=0; j<jsonObj[i].postAndComment.length; j++){
-       
-        jsonObj[i].postAndComment[j].commenterName = jsonObj[i].commentAndUser[j].userName;
+     
+      for(let j=0; j<jsonObj[i].commentAndUser.length; j++){
+        console.log("start")
+        console.log(jsonObj[i].postAndComment)
+        console.log(jsonObj[i].commentAndUser)
+        jsonObj[i].postAndComment[j].commenterName = jsonObj[i].commentAndUser[j].commenterName;
         jsonObj[i].postAndComment[j].profilePic = jsonObj[i].commentAndUser[j].profilePic
 
       }

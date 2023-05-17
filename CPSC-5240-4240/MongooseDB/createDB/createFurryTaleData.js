@@ -197,7 +197,7 @@ postsCollection.insertOne( {
 
 postsCollection.insertOne( {
 
-	postId: "24ab0322f899e7a6389f0857c43b5b1f",
+	postId: "24ab0322f899e7a6389f0857c43b5b18",
 	userId: "3c78a513a28f2bf1c680b505955a7bad",
 	postType: 2,
 	image: "https://www.sdhumane.org/assets/images/standard/adopt-me.jpg",
@@ -224,7 +224,7 @@ commentsCollection.insertOne(
 {
     commentId : "iwefknkajmnvjkahgnkvkearf",
     postId: "24ab0322f899e7a6389f0857c43b5b1f",
-    commenterId: "2c78a513a28f2bf1c680b505955a8mad",
+    commenterId: "4c78a513a28f2bf1c680b505955a7bad",
     comment: "awwwwwww",
     dateTime: "04.25.2023"
 }
