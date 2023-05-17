@@ -34,8 +34,8 @@ describe('Test To Do lists result', function () {
 		
     it('Should return an array object with more than 1 object', function (){
 		expect(response).to.have.status(200);
-//        expect(response.body).to.be.an.object;
-		expect(response.body).to.have.length.above(0);
+	// expect(response.body).to.be.an.object;
+		expect(response.body).to.have.length.above(2);
 		expect(response).to.have.headers;
     });
    
