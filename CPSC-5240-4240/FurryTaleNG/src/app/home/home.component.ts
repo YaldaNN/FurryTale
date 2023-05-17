@@ -26,11 +26,12 @@ export class HomeComponent implements OnInit{
     
    
     this.route.queryParams.subscribe((params) =>{
-      console.log(params)
-      if(params['userId'].length !== 0){
-          this.userId = params['userId'];
-      }
       
+      if (Object.keys(params).length !== 0){
+        this.userId = params['userId'];
+
+      }
+
       this.setUserInfo(this.userId)
      
       
@@ -48,11 +49,12 @@ export class HomeComponent implements OnInit{
   }
 
   setUserInfo(userId : String) : void{
-    
+    console.log(userId)
       this.homeService.getUser(userId).subscribe((res : any) => {
+        
         this.userInfo = res;
         this.placeholderText = "start a new post, "+this.userInfo.userName+"!"
-        console.log("seriously kill me")
+        
         
       })
       
