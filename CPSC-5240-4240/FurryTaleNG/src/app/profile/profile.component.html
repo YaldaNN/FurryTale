@@ -58,14 +58,15 @@
                 <!-- Achievements -->
                 <div class="card mb-4">
                     <div class="form-group row m-1">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <h5 class="py-2">Achievements</h5>
-                            <span type="text" id="achievements">
-                                {{achievementDetails[0].achievementDetail}}
-                            </span>
+                            <span type="text" id="achievements" *ngFor="let achievementDetail of achievementDetails; let i = index">
+                                {{achievementDetail.achievementDetail}}
+                                <ng-container *ngIf="i < achievementDetails.length - 1">, </ng-container>
+                              </span>
                         </div>
 
-                        <div class="col-md-6 text-right">
+                        <div class="col-md-12 text-right">
                             <a href="#" class="Achievements Edit-link">
                                 <img class="edit" src=".\\src\\assets\\Images\\edit.png" alt="Edit Achievements">
                             </a>

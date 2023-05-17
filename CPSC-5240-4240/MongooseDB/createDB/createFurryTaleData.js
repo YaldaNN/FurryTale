@@ -42,7 +42,7 @@ achievementsCollection.remove({})
 achievementsCollection.insert(
 {
 	acheivementId: "1",
-	userId: "1",
+	userId: "2c78a513a28f2bf1c680b505955a7bad",
 	achievementType: 2,
 	achievementDetail: "WON 1st PLACE",
 }
@@ -50,7 +50,7 @@ achievementsCollection.insert(
 achievementsCollection.insert(
 	{
 		acheivementId: "2",
-		userId: "1",
+		userId: "2c78a513a28f2bf1c680b505955a7bad",
 		achievementType: 1,
 		achievementDetail: "Went to furry competition",
 	}
