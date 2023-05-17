@@ -26,11 +26,10 @@ export class HomeComponent implements OnInit{
     
    
     this.route.queryParams.subscribe((params) =>{
-      console.log(params)
       this.userId = params['userId'];
       
       this.setUserInfo(this.userId)
-      console.log("MEOW")
+     
       
       this.newComment.commenterId = this.userId
     })
@@ -38,7 +37,7 @@ export class HomeComponent implements OnInit{
     
     this.homeService.getPosts().subscribe((result: any) => 
     {
-      this.assignCommenterUsernameToComment(result)
+      //this.assignCommenterUsernameToComment(result)
       this.posts = result;
       
     });

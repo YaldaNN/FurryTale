@@ -41,6 +41,23 @@ class CommentModel {
         });
     }
 
+    
+    public retrieveAllCommentsWithUserInfo() : any {
+        console.log("retrieving user info with comments");
+        var query = this.model.aggregate([{
+            $lookup: {
+                from: 'users',
+                localField: 'commenterId',
+                foreignField: 'userId',
+                as: 'commentAndUser'
+            }
+            }
+        ])
+        query.exec( (err, itemArray) => {
+            return itemArray ;
+        });
+    }
+
     public updateComment(commentInfo:any, response:any){
         console.log("updating comment");
         const commentId = commentInfo.commenterId;

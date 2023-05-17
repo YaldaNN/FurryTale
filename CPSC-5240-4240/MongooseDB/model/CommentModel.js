@@ -29,6 +29,21 @@ var CommentModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    CommentModel.prototype.retrieveAllCommentsWithUserInfo = function () {
+        console.log("retrieving user info with comments");
+        var query = this.model.aggregate([{
+                $lookup: {
+                    from: 'users',
+                    localField: 'commenterId',
+                    foreignField: 'userId',
+                    as: 'commentAndUser'
+                }
+            }
+        ]);
+        query.exec(function (err, itemArray) {
+            return itemArray;
+        });
+    };
     CommentModel.prototype.updateComment = function (commentInfo, response) {
         console.log("updating comment");
         var commentId = commentInfo.commenterId;

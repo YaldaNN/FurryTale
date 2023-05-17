@@ -74,7 +74,7 @@
             
           </form>
           <div class="media mb-3" *ngFor="let comment of post.postAndComment">
-            <img class="thumbnail thumbnail-img mr-3" src={{comment.profilePic}} alt="Profile picture">
+            <img class="thumbnail thumbnail-img mr-3" src={{comment.commentAndUser.profilePic}} alt="Profile picture">
             <div class="media-body">
               <h6 class="mb-0">{{comment.commenterName}}</h6>
                 {{comment.comment}}

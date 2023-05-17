@@ -5,6 +5,8 @@ import {IPostModel} from '../interfaces/IPostModel';
 import { CommentModel } from "./CommentModel";
 
 import { type } from "os";
+import { ICommentModel } from "../interfaces/ICommentModel";
+
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
@@ -12,10 +14,13 @@ let mongooseObj = DataAccess.mongooseInstance;
 class PostModel {
     public schema:any;
     public model:any;
-    
+   public commentModel : any;
     public constructor() {
+        
         this.createSchema();
         this.createPostModel();
+        this.createCommentsModel();
+       
     }
 
     public createSchema(): void {
@@ -35,8 +40,12 @@ class PostModel {
         this.model = mongooseConnection.model<IPostModel>("posts", this.schema);
     }
 
+    public createCommentsModel():void{
+        this.commentModel = mongooseConnection.model<ICommentModel>("comments");
+    }
     public retrieveAllPosts(response:any): any {
         console.log("retrieve all Posts ...");
+        
        
         var query = this.model.aggregate([
             {
@@ -55,23 +64,56 @@ class PostModel {
                   foreignField: 'postId', 
                   as: 'postAndComment' 
                 }
-            },
-            
-            {
-                $lookup: {
-                  from: 'users', 
-                  localField: 'postAndComment.commenterId', 
-                  foreignField: 'userId', 
-                  as: 'commentAndUser' 
-                }
             }
           ]);
         query.exec( (err, itemArray) => {
             console.log(itemArray);
+            var commentQuery = this.commentModel.aggregate([
+                {
+                $lookup: {
+                    from: 'users',
+                    localField: 'commenterId',
+                    foreignField: 'userId',
+                    as: 'commentAndUser'
+                }
+            }
+            ]);
+
+            commentQuery.exec((err, commentUserInfoArray) => {
+                //console.log(err);
+                //console.log(commentUserInfoArray);
+                console.log(itemArray.length)
+                for(var j =0; j<itemArray.length; j++){
+                    var assignedComment = commentUserInfoArray.filter(this.matchCommentWithPost, itemArray[j].postId)
+                    //var commentAndUser = [];
+                    if(assignedComment.length > 0){
+                       
+                        for(var i=0; i<assignedComment.length; i++){
+                            //commentAndUser.push(assignedComment[i]);
+                            itemArray[j].postAndComment[i].commentAndUser = assignedComment[i].commentAndUser[0]
+                            //console.log(assignedComment[i].commentAndUser)
+                        }
+                        
+                    }
+                    
+                    //itemArray[j].postAndComment.commentAndUser = commentAndUser;
+                    
+                }
+                
+                response.json(itemArray);
+            })
             
-            response.json(itemArray) ;
-        });
     }
+        );
+
+
+    }
+
+    public matchCommentWithPost(comment){
+            return comment.postId == this;
+    }
+
+
 
     public updatePost(postId: String, post:any, response:any): any {
         console.log("Updating your Posts ...");

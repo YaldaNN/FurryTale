@@ -9,6 +9,7 @@ var PostModel = /** @class */ (function () {
     function PostModel() {
         this.createSchema();
         this.createPostModel();
+        this.createCommentsModel();
     }
     PostModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
@@ -23,7 +24,11 @@ var PostModel = /** @class */ (function () {
     PostModel.prototype.createPostModel = function () {
         this.model = mongooseConnection.model("posts", this.schema);
     };
+    PostModel.prototype.createCommentsModel = function () {
+        this.commentModel = mongooseConnection.model("comments");
+    };
     PostModel.prototype.retrieveAllPosts = function (response) {
+        var _this = this;
         console.log("retrieve all Posts ...");
         var query = this.model.aggregate([
             {
@@ -41,20 +46,42 @@ var PostModel = /** @class */ (function () {
                     foreignField: 'postId',
                     as: 'postAndComment'
                 }
-            },
-            {
-                $lookup: {
-                    from: 'users',
-                    localField: 'postAndComment.commenterId',
-                    foreignField: 'userId',
-                    as: 'commentAndUser'
-                }
             }
         ]);
         query.exec(function (err, itemArray) {
             console.log(itemArray);
-            response.json(itemArray);
+            var commentQuery = _this.commentModel.aggregate([
+                {
+                    $lookup: {
+                        from: 'users',
+                        localField: 'commenterId',
+                        foreignField: 'userId',
+                        as: 'commentAndUser'
+                    }
+                }
+            ]);
+            commentQuery.exec(function (err, commentUserInfoArray) {
+                //console.log(err);
+                //console.log(commentUserInfoArray);
+                console.log(itemArray.length);
+                for (var j = 0; j < itemArray.length; j++) {
+                    var assignedComment = commentUserInfoArray.filter(_this.matchCommentWithPost, itemArray[j].postId);
+                    //var commentAndUser = [];
+                    if (assignedComment.length > 0) {
+                        for (var i = 0; i < assignedComment.length; i++) {
+                            //commentAndUser.push(assignedComment[i]);
+                            itemArray[j].postAndComment[i].commentAndUser = assignedComment[i].commentAndUser[0];
+                            //console.log(assignedComment[i].commentAndUser)
+                        }
+                    }
+                    //itemArray[j].postAndComment.commentAndUser = commentAndUser;
+                }
+                response.json(itemArray);
+            });
         });
+    };
+    PostModel.prototype.matchCommentWithPost = function (comment) {
+        return comment.postId == this;
     };
     PostModel.prototype.updatePost = function (postId, post, response) {
         console.log("Updating your Posts ...");
