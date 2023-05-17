@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit{
   userInfo: any;
   submitted = false;
   newComment : any;
-  userId : any;
+  userId = "2c78a513a28f2bf1c680b505955a7bad";
   placeholderText : any;
   constructor(private route: ActivatedRoute, private homeService: HomeService, private router: Router) 
   {
@@ -26,7 +26,10 @@ export class HomeComponent implements OnInit{
     
    
     this.route.queryParams.subscribe((params) =>{
-      this.userId = params['userId'];
+      console.log(params)
+      if(params['userId'].length !== 0){
+          this.userId = params['userId'];
+      }
       
       this.setUserInfo(this.userId)
      
@@ -38,7 +41,7 @@ export class HomeComponent implements OnInit{
     this.homeService.getPosts().subscribe((result: any) => 
     {
       //this.assignCommenterUsernameToComment(result)
-      this.posts = result;
+      this.posts = result.reverse();
       
     });
     
@@ -112,5 +115,9 @@ resetComment(){
     comment: "",
     dateTime: "bla bla"
   }
+}
+
+createNewPostClickHandler(){
+  this.router.navigateByUrl('/createPost?userId='+this.userId);
 }
 }

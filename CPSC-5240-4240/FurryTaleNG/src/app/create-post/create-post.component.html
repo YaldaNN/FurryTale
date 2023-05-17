@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create Post</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="create-post.component.css">
+  </head>
+  <body>
+    <div class="container">
+      <h3>Create Post</h3>
+      <form (ngSubmit)="onSubmit(postForm)" #postForm="ngForm">
+        <div class="form-group">
+            <label for="postType">Post Type:</label>
+            <select id="postType" name="accountType" [(ngModel)]="selectedOption" required>
+              <option value="-1">--Select--</option>
+              <option value=0>Fun</option>
+              <option value=1>Job</option>
+              <option value=2>Adoption</option>
+              <option value=3>Training</option>
+              <option value=4>Competitions</option>
+            </select>
+          </div>
+        <div class="form-group">
+          <label for="caption">Caption</label>
+          <input type="text" id="caption" name="caption" [(ngModel)]="post.caption" required>
+        </div>
+        <div class="form-group">
+          <label for="image">Add an Image!:</label>
+          <input type="email" id="image" name="email" [(ngModel)]="post.image" required>
+        </div>
+        
+        <button type="submit" [disabled]="!postForm.valid">Submit</button>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

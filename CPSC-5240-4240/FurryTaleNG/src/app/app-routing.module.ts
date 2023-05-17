@@ -5,7 +5,7 @@ import { OpportunitiesComponent } from './opportunities/opportunities.component'
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PetCircleComponent } from './pet-circle/pet-circle.component';
-
+import {CreatePostComponent} from './create-post/create-post.component'
 const routes: Routes = [
   { path: 'createProfile', component: CreateProfileComponent},
   { path: 'opportunities', component: OpportunitiesComponent},
@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'oneUsersPosts?', component: ProfileComponent },
   { path: 'oneUser?', component: ProfileComponent },
   { path: 'oneUserAchievement?', component: ProfileComponent },
-  { path: 'petCircle/:userId', component: PetCircleComponent}
+  { path: 'petCircle/:userId', component: PetCircleComponent},
+  {path: 'createPost', component: CreatePostComponent}
 ]
 
 @NgModule({

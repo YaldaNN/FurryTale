@@ -4,5 +4,5 @@ export interface Post {
    postType : Number,
    image : String,
    caption: String,
-   paws : [String]
+   paws : String[]
 }

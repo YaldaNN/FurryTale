@@ -22,7 +22,8 @@ import { ProfileService } from './profile.service';
 import { CreateProfileService } from './create-profile.service';
 import { OpportunitiesService } from './opportunities.service';
 import { PetCircleService } from './pet-circle.service';
-
+import { CreatePostComponent } from './create-post/create-post.component';
+import { CreatePostService } from './create-post.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PetCircleService } from './pet-circle.service';
     HomeComponent,
     ProfileComponent,
     PetCircleComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { PetCircleService } from './pet-circle.service';
     HomeService, 
     CreateProfileService,
     OpportunitiesService,
-    PetCircleService
+    PetCircleService,
+    CreatePostService
   ],
 
   bootstrap: [AppComponent]
