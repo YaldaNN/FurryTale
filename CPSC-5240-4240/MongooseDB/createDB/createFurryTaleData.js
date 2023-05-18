@@ -70,7 +70,7 @@ usersCollection.insertOne({
 	tailers: ["3c78a513a28f2bf1c680b505955a7bad", "4c78a513a28f2bf1c680b505955a7bad"],
 	tailee: ["4c78a513a28f2bf1c680b505955a7bad"],
 	about: "I have a brother named Doreo",
-	openToWork: false,
+	openToWork: true,
 	verified: false,
 	verificationBadgeId: "",
 	profilePic : "https://wallpaper.dog/large/5439024.jpg",
