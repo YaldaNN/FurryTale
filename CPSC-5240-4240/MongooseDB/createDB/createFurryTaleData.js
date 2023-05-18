@@ -119,8 +119,8 @@ usersCollection.insertOne({
 	openToWork: false,
 	verified: false,
 	verificationBadgeId: "",
-	profilePic : "https://wallpaper.dog/large/5439024.jpg",
-	email : "meow@pet.com"
+	profilePic : "https://d1hjkbq40fs2x4.cloudfront.net/2016-07-16/files/cat-sample_1313-5.jpg",
+	email : "piu@pet.com"
 
 })
 
@@ -132,7 +132,7 @@ postsCollection.remove({})
 postsCollection.insertOne( {
 
 	postId: "24ab0322f899e7a6389f0857c43b5b1e",
-	userId: "2c78a513a28f2bf1c680b505955a7bad",
+	userId: "2c78a513a28f2bf1c680b505955a8mad",
 	postType: 0,
 	image: "https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg",
 	caption: "Meow meow meow",
@@ -145,8 +145,8 @@ postsCollection.insertOne( {
 	postId: "24ab0322f899e7a6389f0857c43b5b1e",
 	userId: "2c78a513a28f2bf1c680b505955a7bad",
 	postType: 1,
-	image: "https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg",
-	caption: "Looking for a cute cat model!",
+	image: "https://media.istockphoto.com/id/1310076912/photo/white-cheerful-cat-looks-through-clapperboard-on-a-yellow-background.jpg?s=612x612&w=0&k=20&c=OJjtlzTQsms-4kmTlMKlKWytdGfBNUvqGB2cZEu4wCo=",
+	caption: "Become a movie cat! We are in search of a cat to star in an upcoming movie!",
 	paws: []
 
 })
@@ -165,7 +165,7 @@ postsCollection.insertOne( {
 postsCollection.insertOne( {
 
 	postId: "24ab0322f899e7a6389f0857c43b5b2b",
-	userId: "2c78a513a28f2bf1c680b505955a7bad",
+	userId: "3c78a513a28f2bf1c680b505955a7bad",
 	postType: 3,
 	image: "https://www.cesarsway.com/wp-content/uploads/2015/06/benefits-of-dog-agility-training-cesars-way.jpg",
 	caption: "Come and join!",
@@ -179,7 +179,7 @@ postsCollection.insertOne( {
 	userId: "3c78a513a28f2bf1c680b505955a7bad",
 	postType: 1,
 	image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSiNCpSJILEud45hOx0Eal7bkEiYWevWRY_K4l1pXEvQ&usqp=CAU&ec=48665701",
-	caption: "Looking for a model for a dog magazine cover!",
+	caption: "We're on the lookout for a dog to grace the cover of a magazine!",
 	paws: []
 
 })
@@ -190,7 +190,7 @@ postsCollection.insertOne( {
 	userId: "3c78a513a28f2bf1c680b505955a7bad",
 	postType: 4,
 	image: "https://alexandrialivingmagazine.com/downloads/7486/download/The%2BDog%2BGames.jpeg?cb=b40c340fd8d6b2766f13e8fec6c51ff7&w=1500",
-	caption: "competition",
+	caption: "Apply Now! and Join the competition!",
 	paws: []
 
 })
@@ -198,7 +198,7 @@ postsCollection.insertOne( {
 postsCollection.insertOne( {
 
 	postId: "24ab0322f899e7a6389f0857c43b5b18",
-	userId: "3c78a513a28f2bf1c680b505955a7bad",
+	userId: "4c78a513a28f2bf1c680b505955a7bad",
 	postType: 2,
 	image: "https://www.sdhumane.org/assets/images/standard/adopt-me.jpg",
 	caption: "Adopt this cute dog!",
