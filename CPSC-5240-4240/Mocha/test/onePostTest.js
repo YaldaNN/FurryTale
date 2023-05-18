@@ -9,7 +9,7 @@ var http = require('http');
 chai.use(chaiHttp);
 
 describe('Test retriving one post from a user result', function () {
-//	this.timeout(15000);
+
 
 	var requestResult;
 	var response;
