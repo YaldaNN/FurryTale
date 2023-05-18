@@ -25,6 +25,7 @@
  
  td:last-child, th:last-child {
   text-align: right; /* align the Details button to the right */
+  width: 15%;
  }
  
  .thumbnail {
