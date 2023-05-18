@@ -9,7 +9,7 @@ var should = chai.should();
 var http = require('http');
 chai.use(chaiHttp);
 
-describe('Test To Do lists result', function () {
+describe('Test retriving all users result', function () {
 //	this.timeout(15000);
 
 	var requestResult;
@@ -27,10 +27,6 @@ describe('Test To Do lists result', function () {
 				done();
 			});
         });
-
-
-
-    
 		
     it('Should return an array object with more than 1 object', function (){
 		expect(response).to.have.status(200);
