@@ -46,11 +46,11 @@ describe('Test retriving all users result', function () {
 		expect(response.body).to.satisfy(
 			function (body) {
 				for (var i = 0; i < body.length; i++) {
-					expect(body[i]).to.have.property('about');
+					expect(body[i]).to.have.property('userId');
 					expect(body[i]).to.have.property('userName');
 					expect(body[i]).to.have.property('_id');
 					//expect(body[i]).to.have.property('email').to.have.length(1);
-					expect(body[i]).to.have.property('profilePic').that.is.a('string');
+					expect(body[i]).to.have.property('accountId').that.is.a('string');
 				}
 				return true;
 			});
