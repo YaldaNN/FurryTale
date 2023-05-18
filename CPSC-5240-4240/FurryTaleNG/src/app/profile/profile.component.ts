@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getMyPosts(userId).subscribe((result: any) =>  
   {  
     console.log("MyUserPostData "+'result' + JSON.stringify(result));  
-    this.profileResult = result;
+    this.profileResult = result.reverse();
   }); 
 
   this.profileService.getMyUser(userId).subscribe((result: any) =>  
