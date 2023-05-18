@@ -206,6 +206,16 @@ postsCollection.insertOne( {
 
 })
 
+postsCollection.insertOne( {
+
+	postId: "39ab0322f899e7a6389f0857c43b5b18",
+	userId: "2c78a513a28f2bf1c680b505955a8mad",
+	postType: 0,
+	image: "https://media.istockphoto.com/id/1224578259/photo/closeup-portrait-of-funny-ginger-cat-wearing-sunglasses-isolated-on-light-cyan-copyspace.jpg?s=612x612&w=0&k=20&c=meBqzSpKhBPrfQxZFblSM-OidLlfFfG4gxyiJL3h790=",
+	caption: "Got new glasses",
+	paws: []
+
+})
 
 // CREATE COMMENT DATA
 //db.createCollection('comments')
