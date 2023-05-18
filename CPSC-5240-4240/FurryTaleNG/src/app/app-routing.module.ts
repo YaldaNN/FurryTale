@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'oneUsersPosts?', component: ProfileComponent },
   { path: 'oneUser?', component: ProfileComponent },
   { path: 'oneUserAchievement?', component: ProfileComponent },
-  { path: 'petCircle/:userId', component: PetCircleComponent},
+  { path: 'petCircle', component: PetCircleComponent},
   {path: 'createPost', component: CreatePostComponent}
 ]
 
