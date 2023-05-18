@@ -4,7 +4,7 @@
     <title>Create Profile</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="create-profile.component.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
@@ -12,26 +12,25 @@
       <form (ngSubmit)="onSubmit(profileForm)" #profileForm="ngForm">
         <div class="form-group">
           <label for="userName">User Name:</label>
-          <input type="text" id="userName" name="userName" [(ngModel)]="profile.userName" required>
+          <input type="text" id="userName" name="userName" [(ngModel)]="profile.userName" required class="form-control">
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" id="email" name="email" [(ngModel)]="profile.email" required>
+          <input type="email" id="email" name="email" [(ngModel)]="profile.email" required class="form-control">
         </div>
         <div class="form-group">
           <label for="about">About:</label>
-          <textarea id="about" name="about" [(ngModel)]="profile.about"></textarea>
+          <textarea id="about" name="about" [(ngModel)]="profile.about" class="form-control"></textarea>
         </div>
         <div class="form-group">
-            <input class="form-check-input" type="checkbox" id="openToWork" name="openToWork" [(ngModel)]="profile.openToWork">
-            <span class="checkmark"></span>
-            <label class="form-check-label" for="openToWork">Open to Work:</label>
+          <label for="openToWork">Open to Work:</label>
+          <input type="checkbox" id="openToWork" name="openToWork" [(ngModel)]="profile.openToWork">
         </div>
         <div class="form-group">
           <label for="profilePicture">Profile Picture:</label>
-          <input type="text" id="profilePicture" name="profilePicture" [(ngModel)]="profile.profilePic">
+          <input type="text" id="profilePicture" name="profilePicture" [(ngModel)]="profile.profilePic" class="form-control">
         </div>
-        <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+        <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary">Submit</button>
       </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
