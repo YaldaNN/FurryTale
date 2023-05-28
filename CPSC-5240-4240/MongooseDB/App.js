@@ -86,6 +86,7 @@ var App = /** @class */ (function () {
             var jsonObj = req.body;
             _this.Account.updateAccountType(jsonObj, res);
         });
+        this.expressApp.use('/', express.static(__dirname + '/dist/furry-tale-ng'));
         //USER
         router.get('/users/', function (req, res) {
             console.log("Here are users");
@@ -228,10 +229,13 @@ var App = /** @class */ (function () {
             var pawerUserId = jsonObj.pawerUserId;
             _this.Post.updatePostPaw(postId, pawerUserId, res);
         });
+        router.get('/*', function (req, res) {
+            res.sendFile(__dirname +
+                '/dist/furry-tale-ng/index.html');
+        });
         this.expressApp.use('/', router);
         //this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/pages/Images'));
-        this.expressApp.use('/', express.static(__dirname + '/pages'));
     };
     return App;
 }());
