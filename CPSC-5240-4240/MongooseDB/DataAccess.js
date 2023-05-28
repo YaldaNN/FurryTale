@@ -16,7 +16,7 @@ var DataAccess = /** @class */ (function () {
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
         return this.mongooseInstance;
     };
-    DataAccess.DB_CONNECTION_STRING = 'mongodb://dbAdmin:test@127.0.0.1:3000/FurryTale?authSource=admin';
+    DataAccess.DB_CONNECTION_STRING = 'mongodb+srv://admin:1234@furrytalecluster.2a4p44w.mongodb.net/FurryTale?retryWrites=true&w=majority';
     return DataAccess;
 }());
 exports.DataAccess = DataAccess;
