@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ${{ github.workspace }}/CPSC-5240-4240/MongooseDB
+          path: ${{ github.workspace }}/MongooseDB
 
   deploy:
     runs-on: ubuntu-latest
