@@ -1,3 +1,15 @@
-**/db/
-**/.DS_Store
-**/ CPSC-5240-4240/Mocha/node_modules/
+db/
+.DS_Store
+/MongooseDB/node_modules/*
+/MongooseDB/package-lock.json
+*.js
+!/MongooseDB/createDB/*
+!/Mocha/*
+curlCommands/
+dbCommands/
+e2e/
+docs/
+/FurryTaleNG/node_modules/*
+/FurryTaleNG/package-lock.json
+/FurryTaleNG/.angular
+.env

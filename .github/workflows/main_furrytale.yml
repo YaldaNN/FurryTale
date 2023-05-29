@@ -23,6 +23,8 @@ jobs:
 
       - name: npm install, build, and test
         run: |
+          cd CPSC-5240-4240
+          cd MongooseDB
           npm install
           npm run build --if-present
           npm run test --if-present

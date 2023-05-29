@@ -1,8 +1,0 @@
-db/
-.DS_Store
-node_modules/
-createDB/
-curlCommands/
-dbCommands/
-e2e/
-docs/
