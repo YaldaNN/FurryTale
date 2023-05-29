@@ -23,7 +23,6 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          cd MongooseDB
           npm install
           npm run build --if-present
           npm run test --if-present
@@ -32,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ${{ github.workspace }}/MongooseDB
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,5 +52,5 @@ jobs:
         with:
           app-name: 'Furrytale'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F3CA539BB9564B8D85C9D84008D79176 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_34AF88D01FDC4A1691E56FC83D938CAE }}
           package: .
