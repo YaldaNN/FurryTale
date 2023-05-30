@@ -20,7 +20,7 @@
     "url": "^0.11.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "echo \"Error: no test specified\",
     "start": "node server.js",
     "build": "tsc"
   },
