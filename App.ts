@@ -87,6 +87,8 @@ class App {
         "email" : jsonObj.email,
         "profilePic" : jsonObj.profilePic
     }
+
+    
       this.Account.model.create([accountJsonObj], (err) => {
           if (err) {
               console.log('object creation failed');
