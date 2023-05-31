@@ -49,7 +49,9 @@ var App = /** @class */ (function () {
             res.append('Access-Control-Allow-Headers', 'Content-Type');
             next();
         });
-        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }), function (req, res) {
+            console.log("successfully reached authentication ");
+        });
         router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
             console.log(req['user']);
