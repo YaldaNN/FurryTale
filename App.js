@@ -38,6 +38,14 @@ var App = /** @class */ (function () {
         this.expressApp.use(passport.initialize());
         this.expressApp.use(passport.session());
     };
+    App.prototype.validateAuth = function (req, res, next) {
+        if (req.isAuthenticated()) {
+            console.log("user is authenticated");
+            return next();
+        }
+        console.log("user is not authenticated");
+        res.redirect('/');
+    };
     // Configure API endpoints.
     // ACCOUNT
     App.prototype.routes = function () {
@@ -53,9 +61,10 @@ var App = /** @class */ (function () {
             console.log("successfully reached authentication ");
         });
         router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
-            console.log("successfully authenticated user and returned to callback page.");
-            console.log(req['user']);
-            res.send("userId is " + req['user'].id + " and name is " + req['user'].displayName);
+            //console.log("successfully authenticated user and returned to callback page.");
+            //console.log(req['user']);
+            //res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
+            res.redirect('/home');
         });
         router.get('/account/', function (req, res) {
             console.log("why?");
@@ -208,8 +217,9 @@ var App = /** @class */ (function () {
             res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
         });
         //POST
-        router.get('/posts/', function (req, res) {
+        router.get('/posts/', this.validateAuth, function (req, res) {
             console.log("Here are your posts");
+            console.log("userId is " + req['user'].id + " and name is " + req['user'].displayName);
             _this.Post.retrieveAllPosts(res);
         });
         router.get('/oneUsersPosts', function (req, res) {

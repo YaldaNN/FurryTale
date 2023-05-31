@@ -49,6 +49,12 @@ class App {
   }
 
 
+  private validateAuth(req, res, next):void {
+    if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
+    console.log("user is not authenticated");
+    res.redirect('/');
+  }
+
   // Configure API endpoints.
   // ACCOUNT
   private routes(): void {
@@ -72,9 +78,10 @@ class App {
 
   router.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
-    console.log("successfully authenticated user and returned to callback page.");
-    console.log(req['user']);
-    res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
+    //console.log("successfully authenticated user and returned to callback page.");
+    //console.log(req['user']);
+    //res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
+    res.redirect('/home')
     
     } 
   );
@@ -273,8 +280,9 @@ class App {
     });
 
     //POST
-    router.get('/posts/', (req, res) => {
+    router.get('/posts/', this.validateAuth, (req, res) => {
       console.log("Here are your posts");
+      console.log("userId is "+req['user'].id+" and name is "+req['user'].displayName)
       this.Post.retrieveAllPosts(res);
   
     });
