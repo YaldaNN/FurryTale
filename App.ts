@@ -7,6 +7,10 @@ import {CommentModel} from './model/CommentModel';
 import {AchievementModel} from './model/AchievementModel';
 import {VerificationBadgeModel} from './model/VerificationBadgeModel';
 import { UserModel } from './model/UserModel';
+import GooglePassportObj from './GooglePassport';
+import * as passport from 'passport';
+import * as session from 'express-session';
+import * as cookieParser from 'cookie-parser';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -19,7 +23,7 @@ class App {
   public VerificationBadge:VerificationBadgeModel;
   public Post:PostModel;
   public User:UserModel;
-
+  public googlePassportObj:GooglePassportObj;
   //Run configuration methods on the Express instance.
   constructor() {
     this.expressApp = express();
@@ -31,12 +35,17 @@ class App {
     this.VerificationBadge = new VerificationBadgeModel();
     this.Post = new PostModel();
     this.User = new UserModel();
+    this.googlePassportObj = new GooglePassportObj();
   }
 
   // Configure Express middleware.
   private middleware(): void {
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+    this.expressApp.use(session({ secret: 'keyboard cat' }));
+    this.expressApp.use(cookieParser());
+    this.expressApp.use(passport.initialize());
+    this.expressApp.use(passport.session());
   }
 
 
@@ -52,6 +61,18 @@ class App {
       next();
   });
 
+
+    router.get('/auth/google', passport.authenticate('google', {scope: ['profile']}));
+
+
+  router.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
+    console.log("successfully authenticated user and returned to callback page.");
+    console.log(req['user']);
+    res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
+    
+    } 
+  );
     router.get('/account/', (req, res) => {
       console.log("why?");
       this.Account.retrieveAllAccounts(res);
@@ -88,7 +109,7 @@ class App {
         "profilePic" : jsonObj.profilePic
     }
 
-    
+
       this.Account.model.create([accountJsonObj], (err) => {
           if (err) {
               console.log('object creation failed');

@@ -10,6 +10,10 @@ var CommentModel_1 = require("./model/CommentModel");
 var AchievementModel_1 = require("./model/AchievementModel");
 var VerificationBadgeModel_1 = require("./model/VerificationBadgeModel");
 var UserModel_1 = require("./model/UserModel");
+var GooglePassport_1 = require("./GooglePassport");
+var passport = require("passport");
+var session = require("express-session");
+var cookieParser = require("cookie-parser");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -23,11 +27,16 @@ var App = /** @class */ (function () {
         this.VerificationBadge = new VerificationBadgeModel_1.VerificationBadgeModel();
         this.Post = new PostModel_1.PostModel();
         this.User = new UserModel_1.UserModel();
+        this.googlePassportObj = new GooglePassport_1.default();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
         this.expressApp.use(bodyParser.json());
         this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+        this.expressApp.use(session({ secret: 'keyboard cat' }));
+        this.expressApp.use(cookieParser());
+        this.expressApp.use(passport.initialize());
+        this.expressApp.use(passport.session());
     };
     // Configure API endpoints.
     // ACCOUNT
@@ -39,6 +48,12 @@ var App = /** @class */ (function () {
             res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
             res.append('Access-Control-Allow-Headers', 'Content-Type');
             next();
+        });
+        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
+            console.log("successfully authenticated user and returned to callback page.");
+            console.log(req['user']);
+            res.send("userId is " + req['user'].id + " and name is " + req['user'].displayName);
         });
         router.get('/account/', function (req, res) {
             console.log("why?");
