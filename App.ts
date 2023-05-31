@@ -79,14 +79,6 @@ class App {
     } 
   );
 
-  router.get('/.auth/login/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
-    console.log("successfully authenticated azure and returned to callback page.");
-    console.log(req['user']);
-    res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
-    
-    } 
-  );
 
     router.get('/account/', (req, res) => {
       console.log("why?");
