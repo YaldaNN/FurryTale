@@ -44,7 +44,7 @@ var App = /** @class */ (function () {
             return next();
         }
         console.log("user is not authenticated");
-        res.redirect('/');
+        res.json({ "authentication": "failed" });
     };
     // Configure API endpoints.
     // ACCOUNT
@@ -61,7 +61,7 @@ var App = /** @class */ (function () {
             console.log("successfully reached authentication ");
         });
         router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
-            //console.log("successfully authenticated user and returned to callback page.");
+            console.log("successfully authenticated user and returned to callback page.");
             //console.log(req['user']);
             //res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
             res.redirect('/home');

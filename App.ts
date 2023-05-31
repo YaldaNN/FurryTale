@@ -52,7 +52,7 @@ class App {
   private validateAuth(req, res, next):void {
     if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
     console.log("user is not authenticated");
-    res.redirect('/');
+    res.json({"authentication" : "failed"});
   }
 
   // Configure API endpoints.
@@ -78,7 +78,7 @@ class App {
 
   router.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
-    //console.log("successfully authenticated user and returned to callback page.");
+    console.log("successfully authenticated user and returned to callback page.");
     //console.log(req['user']);
     //res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
     res.redirect('/home')
