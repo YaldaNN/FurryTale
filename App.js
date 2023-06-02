@@ -41,6 +41,12 @@ var App = /** @class */ (function () {
     App.prototype.validateAuth = function (req, res, next) {
         if (req.isAuthenticated()) {
             console.log("user is authenticated");
+            //console.log(req.user.id);
+            //console.log(req.user.displayName)
+            //console.log(req.user.emails[0].value)
+            session.userOpenId = req.user.id;
+            session.userName = req.user.displayName;
+            session.email = req.user.emails[0].value;
             return next();
         }
         console.log("user is not authenticated");
@@ -57,7 +63,11 @@ var App = /** @class */ (function () {
             res.append('Access-Control-Allow-Headers', 'Content-Type');
             next();
         });
-        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }), function (req, res) {
+        router.get('/auth/google', passport.authenticate('google', { scope: [
+                'https://www.googleapis.com/auth/userinfo.profile',
+                'https://www.googleapis.com/auth/userinfo.email'
+            ]
+        }), function (req, res) {
             console.log("successfully reached authentication ");
         });
         router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
@@ -132,7 +142,7 @@ var App = /** @class */ (function () {
             _this.User.retrieveAllUsersOpenToWork(res);
         });
         router.get('/oneUser', function (req, res) {
-            console.log("Here is your post");
+            //console.log("Here is your post");
             _this.User.retireveOneUser(req.query.userId.toString(), res);
         });
         // COMMENT
@@ -218,9 +228,16 @@ var App = /** @class */ (function () {
         });
         //POST
         router.get('/posts/', this.validateAuth, function (req, res) {
-            console.log("Here are your posts");
+            //this.findSessionUser();
+            _this.User.model.findOne({ ssoId: session.userOpenId }, function (err, obj) {
+                console.log("retrieved user from SSO ID");
+                session.userId = obj.userId;
+                session.userName = obj.userName;
+                console.log(obj);
+            });
             console.log("userId is " + req['user'].id + " and name is " + req['user'].displayName);
-            _this.Post.retrieveAllPosts(res);
+            console.log("printinting from posts. open id is " + session.userOpenId);
+            _this.Post.retrieveAllPosts(res, session);
         });
         router.get('/oneUsersPosts', function (req, res) {
             console.log("Here is one user posts");

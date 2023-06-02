@@ -43,7 +43,7 @@ class PostModel {
     public createCommentsModel():void{
         this.commentModel = mongooseConnection.model<ICommentModel>("comments");
     }
-    public retrieveAllPosts(response:any): any {
+    public retrieveAllPosts(response:any, session : any): any {
         console.log("retrieve all Posts ...");
         
        
@@ -67,7 +67,7 @@ class PostModel {
             }
           ]);
         query.exec( (err, itemArray) => {
-            console.log(itemArray);
+            //console.log(itemArray);
             var commentQuery = this.commentModel.aggregate([
                 {
                 $lookup: {
@@ -99,7 +99,10 @@ class PostModel {
                     //itemArray[j].postAndComment.commentAndUser = commentAndUser;
                     
                 }
-                
+                itemArray.userId = session.userId;
+                itemArray.userName = session.userName;
+                itemArray.email = session.email;
+                console.log(itemArray);
                 response.json(itemArray);
             })
             

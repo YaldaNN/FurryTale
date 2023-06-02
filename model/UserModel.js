@@ -13,8 +13,6 @@ var UserModel = /** @class */ (function () {
     UserModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
             userId: String,
-            userName: String,
-            userPassword: String,
             accountId: String,
             tailers: [String],
             tailee: [String],
@@ -23,7 +21,8 @@ var UserModel = /** @class */ (function () {
             verified: Boolean,
             verificationBadgeId: String,
             profilePic: String,
-            email: String
+            ssoId: String,
+            userName: String
         }, { collection: 'users' });
     };
     UserModel.prototype.createUserModel = function () {

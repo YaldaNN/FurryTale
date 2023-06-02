@@ -11,6 +11,7 @@ import GooglePassportObj from './GooglePassport';
 import * as passport from 'passport';
 import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
+import { nextTick } from 'process';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -50,7 +51,17 @@ class App {
 
 
   private validateAuth(req, res, next):void {
-    if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
+    if (req.isAuthenticated()) {
+       console.log("user is authenticated");
+       //console.log(req.user.id);
+       //console.log(req.user.displayName)
+       //console.log(req.user.emails[0].value)
+       session.userOpenId = req.user.id;
+       session.userName = req.user.displayName;
+       session.email = req.user.emails[0].value;
+      
+       return next(); 
+      }
     console.log("user is not authenticated");
     res.json({"authentication" : "failed"});
   }
@@ -68,7 +79,12 @@ class App {
   });
 
 
-    router.get('/auth/google', passport.authenticate('google', {scope: ['profile']}), (req, res) => {
+    router.get('/auth/google', passport.authenticate('google', 
+    {scope: [
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email']
+    }), 
+    (req, res) => {
       console.log("successfully reached authentication ");
       
       
@@ -172,7 +188,7 @@ class App {
     });
 
     router.get('/oneUser', (req, res) => {
-      console.log("Here is your post");
+      //console.log("Here is your post");
       this.User.retireveOneUser(req.query.userId.toString(), res);
     
     });
@@ -281,9 +297,17 @@ class App {
 
     //POST
     router.get('/posts/', this.validateAuth, (req, res) => {
-      console.log("Here are your posts");
+      //this.findSessionUser();
+
+      this.User.model.findOne({ssoId : session.userOpenId} , function(err,obj) { 
+        console.log("retrieved user from SSO ID");
+        session.userId = obj.userId;
+        session.userName = obj.userName;
+        console.log(obj); 
+      });
       console.log("userId is "+req['user'].id+" and name is "+req['user'].displayName)
-      this.Post.retrieveAllPosts(res);
+      console.log("printinting from posts. open id is "+session.userOpenId)
+      this.Post.retrieveAllPosts(res, session);
   
     });
 
@@ -303,6 +327,7 @@ class App {
     const postId = crypto.randomBytes(16).toString("hex");
     var jsonObj = req.body;
     jsonObj.postId = postId;
+   
     this.Post.model.create([jsonObj], (err) => {
         if (err) {
             console.log('object creation failed');

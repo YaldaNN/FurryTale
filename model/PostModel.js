@@ -27,7 +27,7 @@ var PostModel = /** @class */ (function () {
     PostModel.prototype.createCommentsModel = function () {
         this.commentModel = mongooseConnection.model("comments");
     };
-    PostModel.prototype.retrieveAllPosts = function (response) {
+    PostModel.prototype.retrieveAllPosts = function (response, session) {
         var _this = this;
         console.log("retrieve all Posts ...");
         var query = this.model.aggregate([
@@ -49,7 +49,7 @@ var PostModel = /** @class */ (function () {
             }
         ]);
         query.exec(function (err, itemArray) {
-            console.log(itemArray);
+            //console.log(itemArray);
             var commentQuery = _this.commentModel.aggregate([
                 {
                     $lookup: {
@@ -76,6 +76,10 @@ var PostModel = /** @class */ (function () {
                     }
                     //itemArray[j].postAndComment.commentAndUser = commentAndUser;
                 }
+                itemArray.userId = session.userId;
+                itemArray.userName = session.userName;
+                itemArray.email = session.email;
+                console.log(itemArray);
                 response.json(itemArray);
             });
         });
