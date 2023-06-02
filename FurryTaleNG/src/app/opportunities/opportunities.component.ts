@@ -14,7 +14,7 @@ export class OpportunitiesComponent implements OnInit {
     this.opportunitiesService.getPost().subscribe((result: any) =>
     {
       console.log('result' + JSON.stringify(result));
-      this.posts = result;
+      this.posts = result[1];
     });
   }
 }
