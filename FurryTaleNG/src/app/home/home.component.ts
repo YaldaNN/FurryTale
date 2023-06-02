@@ -33,11 +33,13 @@ export class HomeComponent implements OnInit{
       }
       //this.assignCommenterUsernameToComment(result)
       
-      this.userId = result[0].userId;
+      console.log("----- PRINTING FROM ANGULAR -----");
+      console.log(result);
+      this.userId = result.userInfo.userId;
       this.setUserInfo(this.userId);
       this.newComment.commenterId = result.userInfo.userId
       this.posts = result.posts.reverse();
-      console.log("----- PRINTING FROM ANGULAR -----");
+     
       console.log(this.posts);
       
       
