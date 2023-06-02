@@ -32,10 +32,13 @@ export class HomeComponent implements OnInit{
         this.router.navigateByUrl('/');
       }
       //this.assignCommenterUsernameToComment(result)
-      this.userId = result.userId;
+      
+      this.userId = result[0].userId;
       this.setUserInfo(this.userId);
-      this.newComment.commenterId = result.userId
-      this.posts = result.reverse();
+      this.newComment.commenterId = result[0].userId
+      this.posts = result[1].reverse();
+      console.log("----- PRINTING FROM ANGULAR -----");
+      console.log(this.posts);
       
       
     });
