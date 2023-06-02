@@ -99,11 +99,18 @@ class PostModel {
                     //itemArray[j].postAndComment.commentAndUser = commentAndUser;
                     
                 }
-                itemArray.userId = session.userId;
-                itemArray.userName = session.userName;
-                itemArray.email = session.email;
-                console.log(itemArray);
-                response.json(itemArray);
+                
+               // console.log(itemArray);
+                var postsWithUserSessionInfo = [];
+                postsWithUserSessionInfo.push({
+                    userId : session.userId,
+                    userName : session.userName,
+                    email : session.email,
+                })
+
+                postsWithUserSessionInfo.push(itemArray)
+                console.log(postsWithUserSessionInfo)
+                response.send(postsWithUserSessionInfo);
             })
             
     }
