@@ -10,7 +10,8 @@ import {Comment} from './comment'
 })
 export class HomeService {
 
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  //hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  hostUrl:string = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
 
   getPosts(){
@@ -19,7 +20,7 @@ export class HomeService {
   }
 
   addPaw(pawObj: any){
-    return this.http.put("https://furrytale.azurewebsites.net/updatePostPaw/", pawObj);
+    return this.http.put(this.hostUrl+"updatePostPaw/", pawObj);
   }
 
   getUser(userId : String){

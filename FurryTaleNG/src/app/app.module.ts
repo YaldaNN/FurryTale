@@ -24,6 +24,7 @@ import { OpportunitiesService } from './opportunities.service';
 import { PetCircleService } from './pet-circle.service';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CreatePostService } from './create-post.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CreatePostService } from './create-post.service';
     ProfileComponent,
     PetCircleComponent,
     CreatePostComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

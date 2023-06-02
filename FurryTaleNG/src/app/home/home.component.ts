@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit{
     
    
     this.route.queryParams.subscribe((params) =>{
+
       
       if (Object.keys(params).length !== 0){
         this.userId = params['userId'];
@@ -41,6 +42,10 @@ export class HomeComponent implements OnInit{
     
     this.homeService.getPosts().subscribe((result: any) => 
     {
+      
+      if(result.authentication !== undefined){
+        this.router.navigateByUrl('/');
+      }
       //this.assignCommenterUsernameToComment(result)
       this.posts = result.reverse();
       
@@ -49,7 +54,7 @@ export class HomeComponent implements OnInit{
   }
 
   setUserInfo(userId : String) : void{
-    console.log(userId)
+    //console.log(userId)
       this.homeService.getUser(userId).subscribe((res : any) => {
         
         this.userInfo = res;
