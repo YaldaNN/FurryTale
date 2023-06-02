@@ -77,13 +77,13 @@ var PostModel = /** @class */ (function () {
                     //itemArray[j].postAndComment.commentAndUser = commentAndUser;
                 }
                 // console.log(itemArray);
-                var postsWithUserSessionInfo = [];
-                postsWithUserSessionInfo.push({
+                var postsWithUserSessionInfo = {};
+                postsWithUserSessionInfo["userInfo"] = {
                     userId: session.userId,
                     userName: session.userName,
-                    email: session.email,
-                });
-                postsWithUserSessionInfo.push(itemArray);
+                    email: session.email
+                };
+                postsWithUserSessionInfo["posts"] = itemArray;
                 console.log(postsWithUserSessionInfo);
                 response.send(postsWithUserSessionInfo);
             });
