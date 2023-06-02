@@ -35,8 +35,8 @@ export class HomeComponent implements OnInit{
       
       this.userId = result[0].userId;
       this.setUserInfo(this.userId);
-      this.newComment.commenterId = result[0].userId
-      this.posts = result[1].reverse();
+      this.newComment.commenterId = result.userInfo.userId
+      this.posts = result.posts.reverse();
       console.log("----- PRINTING FROM ANGULAR -----");
       console.log(this.posts);
       
