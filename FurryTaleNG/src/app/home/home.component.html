@@ -1,0 +1,79 @@
+ 
+
+ <!-- Custom CSS -->
+ <style>
+   
+
+  </style>
+ <!-- Search bar -->
+ <div class="container">
+ 
+
+  
+  <!-- Create Post -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+          <img class="thumbnail thumbnail-img" src={{userInfo.profilePic}} alt="Profile picture">
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <input class="form-control" id="StartPost" [placeholder]="placeholderText" aria-label="Search">
+            <button class="btn btn-light" type="submit" (click)="createNewPostClickHandler()">+</button> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <!-- Post 1 -->
+      <div class="card mb-3" *ngFor="let post of posts">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-2">
+              <img class="thumbnail thumbnail-img" src="{{post.userAndPost[0].profilePic}}" alt="Profile picture">
+            </div>
+            <div class="col" >
+              
+              {{post.userAndPost[0].userName}}
+            </div>
+          </div>
+        </div>
+
+        <img src="{{post.image}}" class="card-img-top" alt="Post image" width="400" height="300" >
+        <div class="card-body">
+          <h6 class="card-title">{{post.caption}}</h6>
+        
+          <img src="https://illustoon.com/photo/7205.png" class="card-link" alt="Paws image" (click)="pawHandleClick(post.postId)"><i class="far fa-heart mr-1"></i>
+          <span class="float-right mb-1">{{post.paws.length}} paws</span>
+           
+        </div>
+         <!-- Comments -->
+         <div class="card-footer">
+          <!-- Add comment -->
+          <form (ngSubmit)="onSubmit(commentForm, post.postId)" #commentForm="ngForm">
+            <div class="form-group">
+              
+              <input type="text" name="comment" [(ngModel)]="newComment.comment" placeholder="Add a comment!" required>
+              <button class="btn btn-outline-dark" type="submit" [disabled]="!commentForm.valid">Submit</button>
+            </div>
+            
+          </form>
+          <div class="media mb-3" *ngFor="let comment of post.postAndComment">
+            <img class="thumbnail thumbnail-img mr-3" src={{comment.commentAndUser.profilePic}} alt="Profile picture">
+            <div class="media-body">
+              <h6 class="mb-0">{{comment.commenterName}}</h6>
+                {{comment.comment}}
+            </div>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+ </div>
+
+
+
