@@ -40,7 +40,7 @@ export class CreatePostComponent implements OnInit{
     this.post.postType = this.selectedOption;
     console.log(this.post);
     this.createPostService.createNewPost(this.post).subscribe((result : any) => {
-      this.router.navigateByUrl('/home?userId='+this.userId);
+      this.router.navigateByUrl('/home');
     })
     
   }

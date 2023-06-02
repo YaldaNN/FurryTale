@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit{
   userInfo: any;
   submitted = false;
   newComment : any;
-  userId = "2c78a513a28f2bf1c680b505955a7bad";
   placeholderText : any;
+  userId = "";
   constructor(private route: ActivatedRoute, private homeService: HomeService, private router: Router) 
   {
     
@@ -24,21 +24,6 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.resetComment()
     
-   
-    this.route.queryParams.subscribe((params) =>{
-
-      
-      if (Object.keys(params).length !== 0){
-        this.userId = params['userId'];
-
-      }
-
-      this.setUserInfo(this.userId)
-     
-      
-      this.newComment.commenterId = this.userId
-    })
-
     
     this.homeService.getPosts().subscribe((result: any) => 
     {
@@ -47,7 +32,11 @@ export class HomeComponent implements OnInit{
         this.router.navigateByUrl('/');
       }
       //this.assignCommenterUsernameToComment(result)
+      this.userId = result.userId;
+      this.setUserInfo(this.userId);
+      this.newComment.commenterId = result.userId
       this.posts = result.reverse();
+      
       
     });
     
