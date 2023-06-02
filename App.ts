@@ -80,7 +80,8 @@ class App {
     passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
     console.log("successfully authenticated user and returned to callback page.");
     //console.log(req['user']);
-    //res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
+   // res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
+      
     res.redirect('/home')
     
     } 
@@ -281,6 +282,7 @@ class App {
 
     //POST
     router.get('/posts/', this.validateAuth, (req, res) => {
+
       console.log("Here are your posts");
       console.log("userId is "+req['user'].id+" and name is "+req['user'].displayName)
       this.Post.retrieveAllPosts(res);
@@ -300,6 +302,7 @@ class App {
   });
 
   router.post('/posts/', (req, res) => {
+
     const postId = crypto.randomBytes(16).toString("hex");
     var jsonObj = req.body;
     jsonObj.postId = postId;
