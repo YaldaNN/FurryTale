@@ -101,14 +101,14 @@ class PostModel {
                 }
                 
                // console.log(itemArray);
-                var postsWithUserSessionInfo = [];
-                postsWithUserSessionInfo.push({
-                    userId : session.userId,
-                    userName : session.userName,
-                    email : session.email,
-                })
+               var postsWithUserSessionInfo: { [id: string] : any; } = {};
+               postsWithUserSessionInfo["userInfo"] = {
+                userId : session.userId,
+                userName : session.userName,
+                email : session.email
+               }
+               postsWithUserSessionInfo["posts"] = itemArray;
 
-                postsWithUserSessionInfo.push(itemArray)
                 console.log(postsWithUserSessionInfo)
                 response.send(postsWithUserSessionInfo);
             })
