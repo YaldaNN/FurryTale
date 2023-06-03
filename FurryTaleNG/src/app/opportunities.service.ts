@@ -6,7 +6,8 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
   providedIn: 'root'
 })
 export class OpportunitiesService {
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  //hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  hostUrl:string = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
   
   getPost(){
