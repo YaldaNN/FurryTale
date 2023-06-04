@@ -148,11 +148,16 @@ var App = /** @class */ (function () {
             _this.User.retireveOneUser(req.query.userId.toString(), res);
         });
         router.get('/getCurrentUser', this.validateAuth, function (req, res) {
+            console.log("sending user info to create post");
             res.send({
                 userId: session.userId,
                 userName: session.userName,
                 userEmail: session.email
             });
+        });
+        router.get('/getCurrentAccountType', this.validateAuth, function (req, res) {
+            console.log("sending account info to create post");
+            _this.Account.retrieveOneAccount(session.userId, res);
         });
         // COMMENT
         router.get('/comment/', function (req, res) {

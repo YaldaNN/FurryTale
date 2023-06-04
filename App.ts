@@ -195,6 +195,7 @@ class App {
     });
 
     router.get('/getCurrentUser', this.validateAuth, (req, res) => {
+      console.log("sending user info to create post")
       res.send({
         userId : session.userId,
         userName : session.userName,
@@ -202,7 +203,8 @@ class App {
       });
     })
 
-    router.get('getCurrentAccountType', this.validateAuth, (req, res) => {
+    router.get('/getCurrentAccountType', this.validateAuth, (req, res) => {
+      console.log("sending account info to create post")
       this.Account.retrieveOneAccount(session.userId, res);
     })
     

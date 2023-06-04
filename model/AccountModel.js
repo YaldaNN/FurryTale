@@ -44,6 +44,16 @@ var AccountModel = /** @class */ (function () {
             response.json(numOfAccounts);
         });
     };
+    AccountModel.prototype.retrieveOneAccount = function (userId, res) {
+        var query = this.model.findOne({ userId: userId });
+        query.exec(function (err, item) {
+            if (err) {
+                console.log("error retrieving account type");
+                res.send("error retrieving account type");
+            }
+            res.send(item.accountType.toString());
+        });
+    };
     return AccountModel;
 }());
 exports.AccountModel = AccountModel;

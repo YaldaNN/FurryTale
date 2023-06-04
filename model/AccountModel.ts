@@ -57,7 +57,11 @@ class AccountModel {
     public retrieveOneAccount(userId : String, res : any){
         var query = this.model.findOne({userId : userId});
         query.exec((err, item) => {
-            res.send(item.accountType);
+            if(err){
+                console.log("error retrieving account type");
+                res.send("error retrieving account type");
+            }
+            res.send(item.accountType.toString());
         })
     }
 
