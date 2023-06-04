@@ -14,6 +14,7 @@ var GooglePassport_1 = require("./GooglePassport");
 var passport = require("passport");
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
+var sha512 = require("js-sha512");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -47,6 +48,7 @@ var App = /** @class */ (function () {
             session.userOpenId = req.user.id;
             session.userName = req.user.displayName;
             session.email = req.user.emails[0].value;
+            console.log("sha 512 code is " + sha512.sha512(req.user.id));
             return next();
         }
         console.log("user is not authenticated");

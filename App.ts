@@ -12,6 +12,7 @@ import * as passport from 'passport';
 import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
 import { nextTick } from 'process';
+import * as sha512 from 'js-sha512';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -59,7 +60,7 @@ class App {
        session.userOpenId = req.user.id;
        session.userName = req.user.displayName;
        session.email = req.user.emails[0].value;
-      
+      console.log("sha 512 code is "+sha512.sha512(req.user.id));
        return next(); 
       }
     console.log("user is not authenticated");
