@@ -147,8 +147,12 @@ var App = /** @class */ (function () {
             //console.log("Here is your post");
             _this.User.retireveOneUser(req.query.userId.toString(), res);
         });
-        router.get('/oneUserAndAccount', this.validateAuth, function (req, res) {
-            _this.User.retrieveOneUserWithAccountInfo(session.userId, res);
+        router.get('/getCurrentUser', this.validateAuth, function (req, res) {
+            res.send({
+                userId: session.userId,
+                userName: session.userName,
+                userEmail: session.email
+            });
         });
         // COMMENT
         router.get('/comment/', function (req, res) {

@@ -194,8 +194,16 @@ class App {
     
     });
 
-    router.get('/oneUserAndAccount', this.validateAuth, (req, res) => {
-      this.User.retrieveOneUserWithAccountInfo(session.userId, res);
+    router.get('/getCurrentUser', this.validateAuth, (req, res) => {
+      res.send({
+        userId : session.userId,
+        userName : session.userName,
+        userEmail : session.email
+      });
+    })
+
+    router.get('getCurrentAccountType', this.validateAuth, (req, res) => {
+      this.Account.retrieveOneAccount(session.userId, res);
     })
     
     // COMMENT

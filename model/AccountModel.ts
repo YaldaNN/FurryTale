@@ -54,5 +54,12 @@ class AccountModel {
         });
     }
 
+    public retrieveOneAccount(userId : String, res : any){
+        var query = this.model.findOne({userId : userId});
+        query.exec((err, item) => {
+            res.send(item.accountType);
+        })
+    }
+
 }
 export {AccountModel};
