@@ -7,11 +7,15 @@ import { Post } from './posts';
 })
 export class CreatePostService {
 
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  
+  //hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  hostUrl:string = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
   
   createNewPost(postData: Post){
     return this.http.post<Post>(this.hostUrl + 'posts/', postData);
+  }
+
+  getUserAndAccountType(){
+    return this.http.get<String>(this.hostUrl+"oneUserAndAccount");
   }
 }

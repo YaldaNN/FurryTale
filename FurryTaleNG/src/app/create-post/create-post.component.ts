@@ -35,6 +35,10 @@ export class CreatePostComponent implements OnInit{
       }
   }
     );
+
+    var obj = this.createPostService.getUserAndAccountType();
+    console.log("printing user info from create post angular");
+    console.log(obj);
 }
   onSubmit(form: NgForm) {
     this.post.postType = this.selectedOption;
