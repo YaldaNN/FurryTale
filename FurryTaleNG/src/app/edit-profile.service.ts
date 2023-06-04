@@ -8,8 +8,8 @@ import { User } from './user';
 })
 export class EditProfileService {
 
-  // hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  // hostUrl:string = 'http://localhost:8080/';
   
   constructor(private http: HttpClient) { }
     
