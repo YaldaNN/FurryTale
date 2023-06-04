@@ -57,7 +57,7 @@ class App {
        //console.log(req.user.id);
        //console.log(req.user.displayName)
        //console.log(req.user.emails[0].value)
-       session.userOpenId = req.user.id;
+       session.userOpenId = sha512.sha512(req.user.id);
        session.userName = req.user.displayName;
        session.email = req.user.emails[0].value;
       console.log("sha 512 code is "+sha512.sha512(req.user.id));
