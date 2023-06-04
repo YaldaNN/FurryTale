@@ -45,6 +45,22 @@ class AccountModel {
             response.send(item);
         })
     }
+
+    public getOneUserAccount(userId : string, response : any) : any {
+        console.log("retrieving a account type for current user");
+        var query = this.model.findOne({userId : userId});
+        query.exec((err, item) => {
+            if (err){
+                console.log("error while retrieving user's account type");
+                response.send("error");
+            }
+            else {
+                response.send(item);
+            }
+        })
+    }
+
+
     public retrieveAccountCount(response:any): any {
         console.log("retrieve Account Count ...");
         var query = this.model.estimatedDocumentCount();
