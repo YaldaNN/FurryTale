@@ -10,8 +10,8 @@ import {Comment} from './comment'
 })
 export class HomeService {
 
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  //hostUrl:string = 'http://localhost:8080/';
+  //hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  hostUrl:string = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
 
   getPosts(){
