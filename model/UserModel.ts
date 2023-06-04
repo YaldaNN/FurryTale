@@ -63,7 +63,7 @@ class UserModel {
    
     public updateUser(user:any, response:any) : any {
         console.log("updating user info");
-        var query = this.model.findOneAndUpdate(user.userId, user, {
+        var query = this.model.findOneAndUpdate({userId: user.userId}, user, {
             new : true
         });
 
