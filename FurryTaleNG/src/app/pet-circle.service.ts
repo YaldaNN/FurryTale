@@ -7,6 +7,8 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 })
 export class PetCircleService {
   hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  //hostUrl:string = 'http://localhost:8080/';
+
   constructor(private http: HttpClient) { }
   
   getUser(userId: any){
