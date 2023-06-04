@@ -14,7 +14,8 @@ export class CreatePostComponent implements OnInit{
   paws : String[];
   post : Post;
   isRecruiter : boolean = false;
-  userId : String = "2c78a513a28f2bf1c680b505955a7bad";
+  //userId : String = "2c78a513a28f2bf1c680b505955a7bad";
+  userId : String = "";
   constructor(private http: HttpClient, private route: ActivatedRoute, private createPostService: CreatePostService, private router: Router) {
     this.paws = [];
     this.post = {
@@ -28,6 +29,7 @@ export class CreatePostComponent implements OnInit{
    }
   
   ngOnInit(): void {
+    /*
     this.route.queryParams.subscribe((params) =>{
       console.log(params)
       if(params['userId'].length !== 0){
@@ -36,14 +38,17 @@ export class CreatePostComponent implements OnInit{
       }
   }
     );
+    */
 
     this.createPostService.getCurrentUser().subscribe((res : any) => {
       console.log("printing user info from create post angular");
       console.log(res);
+      console.log("userId from angular create post is "+res.userId);
       this.userId = res.userId;
       this.post.userId = res.userId;
 
       this.createPostService.getCurrentUserAccount(res.accountId).subscribe((accountType : any) => {
+        console.log("account type from angular create post is "+accountType);
         if(accountType === 2){
           this.isRecruiter = true;
         }
