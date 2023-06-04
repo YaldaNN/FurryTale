@@ -60,6 +60,31 @@ class UserModel {
         })
     }
 
+    public retrieveOneUserWithAccountInfo(userId : String, res : any){
+        console.log("retrieving one user and their account info");
+        var query = this.model.aggregate([
+            { $match: { userId: userId } },
+            {
+                $lookup: {
+                  from: 'accounts', 
+                  localField: 'userId', 
+                  foreignField: 'userId', 
+                  as: 'userAndAccount' 
+                }
+              }
+          ]);
+
+          query.exec((err, item) => {
+            if(err){
+                console.log("error fetching user and account info");
+                res.send(err);
+            }
+            else{
+                console.log("retrieved user and account info");
+                res.send(item);
+            }
+          })
+    }
     public updateUser(user:any, response:any) : any {
         console.log("updating user info");
         var query = this.model.findOneAndUpdate(user.userId, user, {

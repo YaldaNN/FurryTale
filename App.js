@@ -147,6 +147,9 @@ var App = /** @class */ (function () {
             //console.log("Here is your post");
             _this.User.retireveOneUser(req.query.userId.toString(), res);
         });
+        router.get('/oneUserAndAccount', this.validateAuth, function (req, res) {
+            _this.User.retrieveOneUserWithAccountInfo(session.userId, res);
+        });
         // COMMENT
         router.get('/comment/', function (req, res) {
             console.log("Your stupid comments!");

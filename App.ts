@@ -193,6 +193,10 @@ class App {
       this.User.retireveOneUser(req.query.userId.toString(), res);
     
     });
+
+    router.get('/oneUserAndAccount', this.validateAuth, (req, res) => {
+      this.User.retrieveOneUserWithAccountInfo(session.userId, res);
+    })
     
     // COMMENT
     router.get('/comment/', (req, res) => {
