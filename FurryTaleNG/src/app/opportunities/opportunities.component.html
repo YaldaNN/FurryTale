@@ -1,6 +1,25 @@
 
 <div class="col-md-6 offset-md-3">
   <mat-tab-group>
+
+    <ng-container *ngIf="accountType === 1">
+      <mat-tab label="OPEN TO WORK">
+        <table class="table">
+          <tbody>
+            <ng-container *ngFor="let user of openToWorkUsers">
+              <td class="thumbnail">
+                <img src="{{user.profilePic}}" class="thumbnail-img">
+              </td>
+              <td>{{user.about}}</td>
+              <td>
+                <a href="#" class="button btn">Details</a>
+              </td>
+            </ng-container>
+          </tbody>
+        </table>
+      </mat-tab>
+    </ng-container>
+
     <mat-tab label="JOBS">
       <table class="table">
         <tbody>
@@ -18,6 +37,7 @@
         </tbody>
       </table>
     </mat-tab>
+
     <mat-tab label="ADOPTIONS">
       <table class="table">
         <tbody>
@@ -35,6 +55,7 @@
         </tbody>
       </table>
     </mat-tab>
+
     <mat-tab label="TRAININGS">
       <table class="table">
         <tbody>
@@ -52,6 +73,7 @@
         </tbody>
       </table>
     </mat-tab>
+
     <mat-tab label="COMPETITIONS">
       <table class="table">
         <tbody>
