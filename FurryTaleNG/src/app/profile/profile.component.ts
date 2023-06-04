@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProfileService} from '../profile.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
  profileResult: any;
  profileUserInfo: any;
  achievementDetails : any;
- constructor(private route: ActivatedRoute, private profileService: ProfileService) {}
+ constructor(private route: ActivatedRoute, private profileService: ProfileService, private router: Router,) {}
 
  ngOnInit(): void {
   this.route.params.subscribe((params: Params) => {
@@ -39,4 +39,10 @@ export class ProfileComponent implements OnInit {
 
 });
 }
+
+editProfile(){
+  const userId = '2c78a513a28f2bf1c680b505955a7bad';
+  this.router.navigateByUrl('/editProfile?userId='+userId);
+}
+
 }

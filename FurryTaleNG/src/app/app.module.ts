@@ -25,6 +25,7 @@ import { PetCircleService } from './pet-circle.service';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CreatePostService } from './create-post.service';
 import { LoginComponent } from './login/login.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LoginComponent } from './login/login.component';
     PetCircleComponent,
     CreatePostComponent,
     LoginComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

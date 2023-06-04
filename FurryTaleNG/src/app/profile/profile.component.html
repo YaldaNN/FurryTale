@@ -3,7 +3,7 @@
         <div class="row">
             <!-- User Intro -->
             <div class="Intro row col-md-8 offset-md-2 py-2 mb-3">
-                <div class="col-md-11 py-2 ml-5">
+                <div class="col-md-6 py-2 ml-5">
                     <div class="profile-info">
                         <div class="profile-picture-container" *ngIf="profileUserInfo?.openToWork">
                             <div class="ring-effect">
@@ -24,16 +24,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-1 py-2">
-                <div class="text-right">
-                    <div class="camera">
-                        <a href="#" class="camera-link">
-                            <img class="camera" src=".\\src\\assets\\Images\\camera.png" alt="Camera picture">
-                        </a>
-                    </div>
+                <!-- Edit Profile -->
+                <div class="col-md-6 text-right">                               
+                    <img class="edit" src=".\\src\\assets\\Images\\edit.png" (click)="editProfile()"  alt="Edit Profile">
                 </div>
-            </div>
+            </div>           
         </div>
 
         <div class="col-md-12">
