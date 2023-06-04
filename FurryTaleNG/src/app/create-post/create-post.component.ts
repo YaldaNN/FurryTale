@@ -13,6 +13,7 @@ export class CreatePostComponent implements OnInit{
   selectedOption: Number = -1;
   paws : String[];
   post : Post;
+  isRecruiter : boolean = false;
   userId : String = "2c78a513a28f2bf1c680b505955a7bad";
   constructor(private http: HttpClient, private route: ActivatedRoute, private createPostService: CreatePostService, private router: Router) {
     this.paws = [];
@@ -36,9 +37,20 @@ export class CreatePostComponent implements OnInit{
   }
     );
 
-    var obj = this.createPostService.getUserAndAccountType();
-    console.log("printing user info from create post angular");
-    console.log(obj);
+    this.createPostService.getCurrentUser().subscribe((res : any) => {
+      console.log("printing user info from create post angular");
+      console.log(res);
+      this.userId = res.userId;
+      this.post.userId = res.userId;
+
+      this.createPostService.getCurrentUserAccount(res.accountId).subscribe((accountType : any) => {
+        if(accountType === 2){
+          this.isRecruiter = true;
+        }
+      });
+    });
+    
+
 }
   onSubmit(form: NgForm) {
     this.post.postType = this.selectedOption;

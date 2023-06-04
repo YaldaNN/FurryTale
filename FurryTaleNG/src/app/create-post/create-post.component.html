@@ -17,7 +17,7 @@
             <select id="postType" name="accountType" [(ngModel)]="selectedOption" required>
               <option value="-1">--Select--</option>
               <option value=0>Fun</option>
-              <option value=1>Job</option>
+              <option [hidden] = "isRecruiter" value=1>Job</option>
               <option value=2>Adoption</option>
               <option value=3>Training</option>
               <option value=4>Competitions</option>
