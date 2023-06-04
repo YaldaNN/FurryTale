@@ -20,7 +20,7 @@ export class CreatePostService {
     return this.http.get<any>(this.hostUrl+"getCurrentUser");
   }
 
-  getCurrentUserAccount(accountId : String){
-    return this.http.get<String>(this.hostUrl+"getCurrentAccountType?accountId="+accountId)
+  getCurrentUserAccount(){
+    return this.http.get<String>(this.hostUrl+"getCurrentAccountType")
   }
 }

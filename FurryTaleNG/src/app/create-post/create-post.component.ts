@@ -47,7 +47,7 @@ export class CreatePostComponent implements OnInit{
       this.userId = res.userId;
       this.post.userId = res.userId;
 
-      this.createPostService.getCurrentUserAccount(res.accountId).subscribe((accountType : any) => {
+      this.createPostService.getCurrentUserAccount().subscribe((accountType : any) => {
         console.log("account type from angular create post is "+accountType);
         if(accountType === 2){
           this.isRecruiter = true;
