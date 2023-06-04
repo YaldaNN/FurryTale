@@ -1,7 +1,7 @@
 export interface User {
-    userId : String,
-    userName : String,
+    _id: string,
     accountId : String,
+    userId : String,
     tailers : String[],
     tailee : String[],
     about : String,
@@ -9,5 +9,6 @@ export interface User {
     verified : Boolean,
     verificationBadgeId : String,
     profilePic : String,
-    ssoID : String
+    userName : String,
+    ssoId: String
 }
