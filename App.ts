@@ -157,6 +157,7 @@ class App {
 
     router.put('/updateAccountType', (req, res) => {
       var jsonObj = req.body;
+      console.log("printing this.Account: " + this.Account);
       this.Account.updateAccountType(jsonObj, res);
     })
 
@@ -207,6 +208,15 @@ class App {
       console.log("sending account info to create post")
       this.Account.retrieveOneAccount(session.userId, res);
     })
+
+    router.get('/userAccount/', this.validateAuth, (req, res) => {
+      this.Account.getOneUserAccount(session.userId, res);
+  });
+
+  router.get('/currUser/', this.validateAuth, (req, res) => {
+    this.User.retireveOneUser(session.userId, res);
+  });
+
     
     // COMMENT
     router.get('/comment/', (req, res) => {

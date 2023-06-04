@@ -122,6 +122,7 @@ var App = /** @class */ (function () {
         });
         router.put('/updateAccountType', function (req, res) {
             var jsonObj = req.body;
+            console.log("printing this.Account: " + _this.Account);
             _this.Account.updateAccountType(jsonObj, res);
         });
         //USER
@@ -158,6 +159,12 @@ var App = /** @class */ (function () {
         router.get('/getCurrentAccountType', this.validateAuth, function (req, res) {
             console.log("sending account info to create post");
             _this.Account.retrieveOneAccount(session.userId, res);
+        });
+        router.get('/userAccount/', this.validateAuth, function (req, res) {
+            _this.Account.getOneUserAccount(session.userId, res);
+        });
+        router.get('/currUser/', this.validateAuth, function (req, res) {
+            _this.User.retireveOneUser(session.userId, res);
         });
         // COMMENT
         router.get('/comment/', function (req, res) {
