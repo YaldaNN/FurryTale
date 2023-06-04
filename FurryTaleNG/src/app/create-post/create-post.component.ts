@@ -41,6 +41,9 @@ export class CreatePostComponent implements OnInit{
     */
 
     this.createPostService.getCurrentUser().subscribe((res : any) => {
+      if(res.authentication !== undefined){
+        this.router.navigateByUrl('/');
+      }
       console.log("printing user info from create post angular");
       console.log(res);
       console.log("userId from angular create post is "+res.userId);
