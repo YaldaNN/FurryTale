@@ -16,6 +16,15 @@ export class CreatePostComponent implements OnInit{
   isRecruiter : boolean = false;
   //userId : String = "2c78a513a28f2bf1c680b505955a7bad";
   userId : String = "";
+
+  options = [
+    { id: -1, name: "-- Select --" },
+    { id: 0, name: "Fun" },
+    { id: 2, name: "Adoption" },
+    { id: 3, name: "Training" },
+    {id : 4, name: "Competitions"}
+  ];
+
   constructor(private http: HttpClient, private route: ActivatedRoute, private createPostService: CreatePostService, private router: Router) {
     this.paws = [];
     this.post = {
@@ -53,7 +62,7 @@ export class CreatePostComponent implements OnInit{
       this.createPostService.getCurrentUserAccount().subscribe((accountType : any) => {
         console.log("account type from angular create post is "+accountType);
         if(accountType === 2){
-          this.isRecruiter = true;
+          this.options.push( { id: 1, name: "Job" })
         }
       });
     });
