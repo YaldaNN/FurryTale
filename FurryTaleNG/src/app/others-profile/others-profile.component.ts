@@ -13,6 +13,7 @@ export class OthersProfileComponent {
   profileUserInfo : any;
   profileResult: any;
   achievementDetails : any;
+  followText = "follow"
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
@@ -60,5 +61,9 @@ export class OthersProfileComponent {
     });
   }
 
+  follow(){
+    console.log("clicked follow/unfollow button");
+    this.followText = "unfollow"
+  }
 
 }
