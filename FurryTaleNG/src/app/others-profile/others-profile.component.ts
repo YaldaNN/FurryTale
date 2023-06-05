@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProfileService} from '../profile.service';
 import { CreatePostService } from '../create-post.service';
+import { OthersProfileService } from '../others-profile.service';
 @Component({
   selector: 'app-others-profile',
   templateUrl: './others-profile.component.html',
@@ -9,7 +10,7 @@ import { CreatePostService } from '../create-post.service';
 })
 export class OthersProfileComponent {
   othersProfileId : string = "";
-  currentUserIdInSession : string | null = null;
+  currentUserIdInSession : string = "";
   profileUserInfo : any;
   profileResult: any;
   achievementDetails : any;
@@ -18,7 +19,8 @@ export class OthersProfileComponent {
     private route: ActivatedRoute,
     private profileService: ProfileService,
     private createPostService : CreatePostService,
-    private router: Router
+    private router: Router,
+    private othersProfileService : OthersProfileService
   ) {}
 
   ngOnInit(): void {
@@ -57,9 +59,22 @@ export class OthersProfileComponent {
       this.achievementDetails = achievementResult;
     }); 
 
-    });
+
+    /*
+    this.othersProfileService.checkTail(this.currentUserIdInSession, this.othersProfileId).subscribe((isTailingResult : any) => {
+      if(isTailingResult.tailing === true){
+        this.followText = "unfollow"
+      }
+      else{
+        this.followText = "following"
+      }
+    })
+
+    */
     });
   }
+    );
+}
 
   follow(){
     console.log("clicked follow/unfollow button");

@@ -37,8 +37,9 @@
               <img class="thumbnail thumbnail-img" src="{{post.userAndPost[0].profilePic}}" alt="Profile picture">
             </div>
             <div class="col" >
-              
+              <a [href]="'/othersProfile/' + post.userAndPost[0].userId">
               {{post.userAndPost[0].userName}}
+            </a>
             </div>
           </div>
         </div>
