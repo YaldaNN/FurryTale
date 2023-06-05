@@ -1,1 +1,99 @@
-<p>others-profile works!</p>
+<div class="container">
+    <div class="container-fluid bg-light mb-3">
+        <div class="row">
+            <!-- User Intro -->
+            <div class="Intro row col-md-8 offset-md-2 py-2 mb-3">
+                <div class="col-md-6 py-2 ml-5">
+                    <div class="profile-info">
+                        <div class="profile-picture-container" *ngIf="profileUserInfo?.openToWork">
+                            <div class="ring-effect">
+                                <img class="thumbnailProfile thumbnail-img" src="{{profileUserInfo?.profilePic}}"
+                                    alt="profile picture">
+                            </div>
+                        </div>
+                        <div class="profile-picture" *ngIf="!profileUserInfo?.openToWork">
+                            <img class="thumbnailProfile thumbnail-img" src="{{profileUserInfo?.profilePic}}"
+                                alt="profile picture">
+                        </div>
+                        <div class="user-details py-2 ml-1">
+                            <h5>{{ profileUserInfo?.userName }}</h5>
+                            <h6>{{profileUserInfo?.about}}</h6>
+                            <h6>
+                                <span class="open-to-work-text" *ngIf="profileUserInfo?.openToWork">Open to work</span>
+                            </h6>                         
+                        </div>
+                    </div>
+                </div>
+                
+            </div>           
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-8 offset-md-2">
+                <!-- About -->
+                <div class=" About card mb-4">
+                    <div class="form-group row m-1">
+                        <div class="col-md-6">
+                            <h5 class="py-2">About</h5>
+                            <span type="text" id="about">
+                                {{profileUserInfo?.about}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 text-right">
+                            <a href="#" class="About Edit-link">
+                                <img class="edit" src=".\\src\\assets\\Images\\edit.png" alt="Edit About">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Achievements -->
+                <div class="card mb-4">
+                    <div class="form-group row m-1">
+                        <div class="col-md-12">
+                            <h5 class="py-2">Achievements</h5>
+                            <ul>
+                                <li *ngFor="let achievementDetail of achievementDetails">
+                                    {{ achievementDetail.achievementDetail }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post -->
+                <div class="card mb-4">
+                    <div class="form-group">
+                        <h5 class="m-4">My Posts</h5>
+                        <span>
+                            <div class="row">
+                                <div class="col-md-6 offset-md-3">
+                                    <div class="card mb-3" *ngFor="let profile of profileResult">
+                                        <!-- Post- User Profile Pic -->
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="thumbnail thumbnail-img"
+                                                        src="{{profileUserInfo?.profilePic}}" alt="Profile picture">
+                                                </div>
+                                                <!-- Post- User Name -->
+                                                <div class="col-4">
+                                                    {{profileUserInfo?.userName}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Post- User Posts -->
+                                        <img src="{{profile.image}}" class="card-img-top" alt="user post" width="400"
+                                            height="300">
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{profile.caption}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

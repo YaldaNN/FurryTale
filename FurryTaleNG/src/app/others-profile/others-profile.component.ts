@@ -8,8 +8,11 @@ import { CreatePostService } from '../create-post.service';
   styleUrls: ['./others-profile.component.css']
 })
 export class OthersProfileComponent {
-  othersProfileId : string | null = null;
+  othersProfileId : string = "";
   currentUserIdInSession : string | null = null;
+  profileUserInfo : any;
+  profileResult: any;
+  achievementDetails : any;
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
@@ -19,7 +22,7 @@ export class OthersProfileComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: Params) => {
-      this.othersProfileId = this.route.snapshot.paramMap.get('userId');
+      this.othersProfileId = this.route.snapshot.paramMap.get('userId') || "";
 
      console.log("other person's Id is "+this.othersProfileId)
 
@@ -32,10 +35,27 @@ export class OthersProfileComponent {
       this.currentUserIdInSession = res.userId;
       if(this.othersProfileId === this.currentUserIdInSession){
         console.log("same user");
+        this.router.navigateByUrl('/profile');
       }
-      else{
-        console.log("diff user")
-      }
+      
+    this.profileService.getMyUser(this.othersProfileId).subscribe((userResult: any) =>  
+    {  
+    console.log("MyUserData "+'result' + JSON.stringify(userResult));  
+    this.profileUserInfo = userResult;
+    }); 
+
+    this.profileService.getMyPosts(this.othersProfileId).subscribe((postsResult: any) =>  
+    {  
+      console.log("MyUserPostData "+'result' + JSON.stringify(postsResult));  
+      this.profileResult = postsResult.reverse();
+    }); 
+
+    this.profileService.getAchievement(this.othersProfileId).subscribe((achievementResult: any) =>  
+    {  
+      console.log("MyAchievement "+'result' + JSON.stringify(achievementResult));  
+      this.achievementDetails = achievementResult;
+    }); 
+
     });
     });
   }
