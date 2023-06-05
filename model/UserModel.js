@@ -114,6 +114,71 @@ var UserModel = /** @class */ (function () {
             }
         });
     };
+    UserModel.prototype.removeTail = function (tailerId, taileeId, response) {
+        var _this = this;
+        console.log("Untailing: " + tailerId);
+        var queryTailee = this.model.findOne({ userId: taileeId });
+        var queryTailer = this.model.findOne({ userId: tailerId });
+        queryTailee.exec(function (err, currUser) {
+            if (err) {
+                console.log("error while exec query");
+                console.log(err);
+            }
+            else {
+                currUser.tailers.forEach(function (item, index) {
+                    if (item == tailerId) {
+                        currUser.tailers.splice(index, 1);
+                        console.log("User untailed " + tailerId);
+                    }
+                });
+                var updateCurrUserQuery = _this.model.findOneAndUpdate({ userId: taileeId }, currUser, {
+                    new: true
+                });
+                updateCurrUserQuery.exec(function (err, updatedTailer) {
+                    console.log("Updated tailer list");
+                });
+            }
+        });
+        queryTailer.exec(function (err, tailAtUser) {
+            if (err) {
+                console.log("error while exec query");
+                console.log(err);
+            }
+            else {
+                tailAtUser.tailee.forEach(function (item, index) {
+                    if (item == taileeId) {
+                        tailAtUser.tailee.splice(index, 1);
+                        console.log("untailed by user");
+                    }
+                });
+                var updateTailAtUserQuery = _this.model.findOneAndUpdate({ userId: tailerId }, tailAtUser, {
+                    new: true
+                });
+                updateTailAtUserQuery.exec(function (err, updatedTailee) {
+                    console.log("Updated tailer list");
+                    response.json(updatedTailee);
+                });
+            }
+        });
+    };
+    UserModel.prototype.isTailing = function (tailerId, taileeId, res) {
+        var queryTailer = this.model.findOne({ userId: tailerId });
+        //var queryTailee = this.model.findOne({userId : taileeId});
+        var tailing = false;
+        queryTailer.exec(function (err, tailer) {
+            if (err) {
+                console.log("error while exec query");
+                console.log(err);
+            }
+            else {
+                tailer.tailee.forEach(function (item, index) {
+                    if (item == taileeId) {
+                        tailing = true;
+                    }
+                });
+            }
+        });
+    };
     UserModel.prototype.retrieveAllUsersOpenToWork = function (response) {
         var query = this.model.find({ openToWork: true });
         query.exec(function (err, item) {

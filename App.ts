@@ -176,7 +176,7 @@ class App {
     router.get('/currUser/', this.validateAuth, (req, res) => {
       console.log("current user");
       this.User.retireveOneUser(session.userId, res);
-    })
+    });
     
     router.put('/user/updateUser/', (req, res) =>{
       console.log("came to update user");
@@ -185,11 +185,27 @@ class App {
 
     });
 
-    router.put('/user/addTailer', (req, res) => {
+    // Tail
+    router.put('/addTailer/', this.validateAuth, (req, res) => {
       const tailerId = req.body.tailerId;
       const taileeId = req.body.taileeId;
       this.User.addTailer(tailerId, taileeId, res);
-    })
+    });
+
+    router.delete('/unTail/', this.validateAuth, (req, res) => {
+      console.log("removing the tail");
+      const tailerId = req.body.tailerId;
+      const taileeId = req.body.taileeId;
+      this.User.removeTail(tailerId, taileeId, res);
+    });
+
+    router.get('/isTailing/', this.validateAuth, (req, res) => {
+      console.log("checking the tail");
+      const tailerId = req.body.tailerId;
+      const taileeId = req.body.taileeId;
+      this.User.isTailing(tailerId, taileeId, res);
+    });
+
 
     router.get('/openToWork/', (req, res) => {
       console.log("Here are users");

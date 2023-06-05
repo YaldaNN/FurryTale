@@ -143,10 +143,23 @@ var App = /** @class */ (function () {
             var jsonObj = req.body;
             _this.User.updateUser(jsonObj, res);
         });
-        router.put('/user/addTailer', function (req, res) {
+        // Tail
+        router.put('/addTailer/', function (req, res) {
             var tailerId = req.body.tailerId;
             var taileeId = req.body.taileeId;
             _this.User.addTailer(tailerId, taileeId, res);
+        });
+        router.delete('/unTail/', function (req, res) {
+            console.log("removing the tail");
+            var tailerId = req.body.tailerId;
+            var taileeId = req.body.taileeId;
+            _this.User.removeTail(tailerId, taileeId, res);
+        });
+        router.get('/isTailing/', function (req, res) {
+            console.log("checking the tail");
+            var tailerId = req.body.tailerId;
+            var taileeId = req.body.taileeId;
+            _this.User.isTailing(tailerId, taileeId, res);
         });
         router.get('/openToWork/', function (req, res) {
             console.log("Here are users");

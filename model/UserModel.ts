@@ -136,6 +136,77 @@ class UserModel {
         })
     }
 
+    public removeTail(tailerId:String, taileeId: String, response: any) : any {
+        console.log("Untailing: " + tailerId);
+
+        var queryTailee = this.model.findOne({userId: taileeId});
+        var queryTailer = this.model.findOne({userId : tailerId});
+
+        queryTailee.exec((err, currUser) => {
+            if (err) {
+                console.log("error while exec query");
+                console.log(err);
+            }
+            else {
+                currUser.tailers.forEach((item, index) => {
+                    if (item == tailerId) {
+                        currUser.tailers.splice(index, 1);
+                        console.log("User untailed " + tailerId);
+                    }
+                });
+                var updateCurrUserQuery = this.model.findOneAndUpdate({userId : taileeId}, currUser, {
+                    new : true
+                });
+                updateCurrUserQuery.exec((err, updatedTailer) =>{
+                    console.log("Updated tailer list");
+                })
+            }
+        });
+        
+        queryTailer.exec((err, tailAtUser) => {
+            if (err) {
+                console.log("error while exec query");
+                console.log(err);
+            }
+            else {
+                tailAtUser.tailee.forEach((item, index) => {
+                    if (item == taileeId) {
+                        tailAtUser.tailee.splice(index, 1);
+                        console.log("untailed by user");
+                    }
+                });
+                var updateTailAtUserQuery = this.model.findOneAndUpdate({userId : tailerId}, tailAtUser, {
+                    new : true
+                });
+                updateTailAtUserQuery.exec((err, updatedTailee) =>{
+                    console.log("Updated tailer list");
+                    response.json(updatedTailee);
+                })
+            }
+        });
+    }
+
+    public isTailing(tailerId: string, taileeId: string, res: any) : any {
+        var queryTailer = this.model.findOne({userId : tailerId});
+        //var queryTailee = this.model.findOne({userId : taileeId});
+        let tailing: boolean = false;
+
+        queryTailer.exec((err, tailer) => {
+            if(err){
+                console.log("error while exec query");
+                console.log(err);
+            }
+            else {
+                tailer.tailee.forEach((item, index) => {
+                    if (item == taileeId) { 
+                        tailing = true; 
+                    }
+                });
+            }
+        });
+
+    }
+
     public retrieveAllUsersOpenToWork(response : any) :any{
         var query = this.model.find({openToWork : true});
         query.exec((err, item) => {
