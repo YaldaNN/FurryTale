@@ -3,14 +3,14 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 import { EditProfile } from './edit-profile';
 import { Account } from './account';
 import { User } from './user';
+import { ConnectionURL } from './ConnectionURL';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditProfileService {
 
- hostUrl:string = 'https://furrytale.azurewebsites.net/';
- // hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = ConnectionURL.hostUrl;
 
   account: Account = {
     accountId : '',

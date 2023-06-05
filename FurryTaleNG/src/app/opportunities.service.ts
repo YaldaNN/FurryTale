@@ -3,13 +3,12 @@ import { Post } from './posts';
 import { Account } from './account';
 import { User } from './user';
 import { HttpClient, HttpRequest } from '@angular/common/http';
-
+import { ConnectionURL } from './ConnectionURL';
 @Injectable({
   providedIn: 'root'
 })
 export class OpportunitiesService {
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  //hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = ConnectionURL.hostUrl;
   
   constructor(private http: HttpClient) { }
   

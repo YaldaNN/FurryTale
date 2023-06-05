@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Post } from './posts';
-
+import { ConnectionURL } from './ConnectionURL';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReadPostService {
 
-//hostUrl:string = 'http://localhost:8080/';
- hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  hostUrl:string = ConnectionURL.hostUrl;
 
   constructor(private http: HttpClient) {}
 

@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { HttpClient, HttpRequest } from '@angular/common/http';
-
+import { ConnectionURL } from './ConnectionURL';
 @Injectable({
   providedIn: 'root'
 })
 export class PetCircleService {
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  //hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = ConnectionURL.hostUrl;
 
   constructor(private http: HttpClient) { }
   
