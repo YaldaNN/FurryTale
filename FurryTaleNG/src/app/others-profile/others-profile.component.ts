@@ -14,7 +14,7 @@ export class OthersProfileComponent {
   profileUserInfo : any;
   profileResult: any;
   achievementDetails : any;
-  followText = "follow"
+  followText = ""
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
@@ -43,13 +43,13 @@ export class OthersProfileComponent {
       
     this.profileService.getMyUser(this.othersProfileId).subscribe((userResult: any) =>  
     {  
-    console.log("MyUserData "+'result' + JSON.stringify(userResult));  
+    //console.log("MyUserData "+'result' + JSON.stringify(userResult));  
     this.profileUserInfo = userResult;
     }); 
 
     this.profileService.getMyPosts(this.othersProfileId).subscribe((postsResult: any) =>  
     {  
-      console.log("MyUserPostData "+'result' + JSON.stringify(postsResult));  
+      //console.log("MyUserPostData "+'result' + JSON.stringify(postsResult));  
       this.profileResult = postsResult.reverse();
     }); 
 
@@ -62,6 +62,8 @@ export class OthersProfileComponent {
 
     
     this.othersProfileService.checkTail(this.currentUserIdInSession, this.othersProfileId).subscribe((isTailingResult : any) => {
+       console.log("result has come back from tailing")
+      console.log(isTailingResult)
       if(isTailingResult.tailing === true){
         this.followText = "unfollow"
       }
@@ -72,13 +74,22 @@ export class OthersProfileComponent {
 
     
     });
-  }
-    );
+  });
 }
 
   follow(){
-    console.log("clicked follow/unfollow button");
-    this.followText = "unfollow"
+    if(this.followText ===  "following"){
+      this.othersProfileService.removeTail(this.currentUserIdInSession, this.othersProfileId).subscribe((result : any) => {
+        console.log("successfully removed");
+        this.ngOnInit();
+      })
+    }
+    else{
+      this.othersProfileService.addTail(this.currentUserIdInSession, this.othersProfileId).subscribe((result : any) => {
+        console.log("successfully added");
+        this.ngOnInit();
+      })
+    }
   }
 
 }

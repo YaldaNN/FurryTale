@@ -32,9 +32,9 @@ export class OthersProfileService {
 
   checkTail(tailerId: string, taileeId: string){
 
-    const reqBody = {tailerId, taileeId};
+    console.log("checking if tailing")
 
-    const url = `${this.hostUrl}isTailing?tailerId=${taileeId}&taileeId=${taileeId}`;
+    const url = `${this.hostUrl}isTailing/?tailerId=${tailerId}&taileeId=${taileeId}`;
     return this.http.get<JSON>(url);
 
   }
