@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { textChangeRangeIsUnchanged } from 'typescript';
+import { Router } from '@angular/router';
 import { OpportunitiesService } from '../opportunities.service';
 
 @Component({
@@ -13,26 +13,29 @@ export class OpportunitiesComponent implements OnInit {
   accountType : any;
   openToWorkUsers : any;
 
-  constructor(private route: ActivatedRoute, private opportunitiesService: OpportunitiesService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private opportunitiesService: OpportunitiesService) {}
   ngOnInit(): void {
 
     this.opportunitiesService.getPost().subscribe((result: any) =>
     {
-      console.log('result' + JSON.stringify(result));
+      if(result.authentication !== undefined){
+        this.router.navigateByUrl('/');
+      }
+      console.log('post result' + JSON.stringify(result));
       this.posts = result.posts;
     });
 
     this.opportunitiesService.getUserAccount().subscribe((result: any) => 
     {
-      console.log('result' + JSON.stringify(result));
+      console.log('user account result' + JSON.stringify(result));
       this.accountType = result.accountType;
     });
 
     this.opportunitiesService.getOpenToWorkUsers().subscribe((result: any) =>
     {
-      console.log('result' + JSON.stringify(result));
+      console.log('open to work result' + JSON.stringify(result));
       this.openToWorkUsers = result.users;
     })
-
   }
+
 }
