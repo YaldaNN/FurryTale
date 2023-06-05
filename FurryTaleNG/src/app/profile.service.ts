@@ -9,8 +9,8 @@ import { achievement } from './achievement';
 })
 
 export class ProfileService {
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  // hostUrl:string = 'http://localhost:8080/';
+  //hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  hostUrl:string = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
   
   getMyPosts(userId: string){
@@ -23,5 +23,9 @@ export class ProfileService {
 
   getAchievement(userId: string){
     return this.http.get<User[]>(this.hostUrl + 'oneUserAchievement?userId=' + userId);
+  }
+
+  getUserIdCurrSession(){
+    return this.http.get<any>(this.hostUrl+"getCurrentUser");
   }
 }

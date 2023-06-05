@@ -20,17 +20,24 @@ export class ProfileComponent implements OnInit {
   this.userId="2c78a513a28f2bf1c680b505955a7bad";
   console.log(params);
 
-    this.profileService.getMyPosts(this.userId).subscribe((result: any) =>  
-  {  
-    console.log("MyUserPostData "+'result' + JSON.stringify(result));  
-    this.profileResult = result.reverse();
-  }); 
-
+  this.profileService.getUserIdCurrSession().subscribe((result : any) => {
+    if(result.authentication !== undefined){
+      this.router.navigateByUrl('/');
+    }
+    this.userId = result.userId;
+  })
   this.profileService.getMyUser(this.userId).subscribe((result: any) =>  
   {  
     console.log("MyUserData "+'result' + JSON.stringify(result));  
     this.profileUserInfo = result;
   }); 
+  this.profileService.getMyPosts(this.userId).subscribe((result: any) =>  
+  {  
+    console.log("MyUserPostData "+'result' + JSON.stringify(result));  
+    this.profileResult = result.reverse();
+  }); 
+
+ 
 
   this.profileService.getAchievement(this.userId).subscribe((result: any) =>  
   {  
