@@ -28,6 +28,7 @@ import { CreatePostService } from './create-post.service';
 import { LoginComponent } from './login/login.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ReadPostService } from './read-post.service';
+import { OthersProfileComponent } from './others-profile/others-profile.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ReadPostService } from './read-post.service';
     LoginComponent,
     EditProfileComponent,
     ReadPostComponent,
+    OthersProfileComponent,
   ],
   imports: [
     BrowserModule,

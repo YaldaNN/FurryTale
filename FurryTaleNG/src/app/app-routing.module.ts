@@ -9,6 +9,7 @@ import {CreatePostComponent} from './create-post/create-post.component'
 import { LoginComponent } from './login/login.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ReadPostComponent } from './read-post/read-post.component';
+import { OthersProfileComponent } from './others-profile/others-profile.component';
 
 const routes: Routes = [
   { path: 'createProfile', component: CreateProfileComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path:'', component:LoginComponent},
   { path: 'editProfile', component: EditProfileComponent},
   { path: 'readPost/:userId/:postId', component: ReadPostComponent },
+  { path: 'othersProfile/:userId/', component: OthersProfileComponent }
 ]
 
 @NgModule({
