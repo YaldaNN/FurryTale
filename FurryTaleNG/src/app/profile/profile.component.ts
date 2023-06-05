@@ -27,27 +27,29 @@ export class ProfileComponent implements OnInit {
     console.log("got back result. it is ")
     console.log(result)
     this.userId = result.userId;
-  })
-  console.log("printing userID from profile page in angular "+this.userId)
-  this.profileService.getMyUser(this.userId).subscribe((result: any) =>  
+    console.log("userID in profile page is "+this.userId);
+
+    this.profileService.getMyUser(this.userId).subscribe((userResult: any) =>  
+    {  
+    console.log("MyUserData "+'result' + JSON.stringify(userResult));  
+    this.profileUserInfo = userResult;
+    }); 
+
+    this.profileService.getMyPosts(this.userId).subscribe((postsResult: any) =>  
   {  
-    console.log("MyUserData "+'result' + JSON.stringify(result));  
-    this.profileUserInfo = result;
+    console.log("MyUserPostData "+'result' + JSON.stringify(postsResult));  
+    this.profileResult = postsResult.reverse();
   }); 
 
-  this.profileService.getMyPosts(this.userId).subscribe((result: any) =>  
+  this.profileService.getAchievement(this.userId).subscribe((achievementResult: any) =>  
   {  
-    console.log("MyUserPostData "+'result' + JSON.stringify(result));  
-    this.profileResult = result.reverse();
-  }); 
-
- 
-
-  this.profileService.getAchievement(this.userId).subscribe((result: any) =>  
-  {  
-    console.log("MyAchievement "+'result' + JSON.stringify(result));  
-    this.achievementDetails = result;
+    console.log("MyAchievement "+'result' + JSON.stringify(achievementResult));  
+    this.achievementDetails = achievementResult;
   });   
+
+  })
+  //console.log("printing userID from profile page in angular "+this.userId)
+  
 
 
 }
