@@ -26,7 +26,7 @@ const routes: Routes = [
   { path:'', component:LoginComponent},
   { path: 'editProfile', component: EditProfileComponent},
   { path: 'readPost/:userId/:postId', component: ReadPostComponent },
-  { path: 'othersProfile/:userId/', component: OthersProfileComponent }
+  { path: 'othersProfile/:userId', component: OthersProfileComponent }
 ]
 
 @NgModule({
