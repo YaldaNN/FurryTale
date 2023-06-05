@@ -104,12 +104,12 @@ var PostModel = /** @class */ (function () {
             response.json(item);
         });
     };
-    PostModel.prototype.retireveOnePost = function (postId, response) {
-        console.log("retrieving a post");
-        var query = this.model.findOne({ postId: postId });
+    PostModel.prototype.retrieveOnePost = function (userId, postId, response) {
+        console.log("retrieving a post6.4");
+        var query = this.model.findOne({ userId: userId, postId: postId });
         query.exec(function (err, item) {
             if (err) {
-                console.log("error while retrieving user");
+                console.log("error while retrieving post");
                 response.send("error");
             }
             else {

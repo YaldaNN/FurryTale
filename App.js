@@ -265,9 +265,9 @@ var App = /** @class */ (function () {
             var userId = req.query.userId.toString();
             _this.Post.retrievePostsByUserId(userId, res);
         });
-        router.get('/onePost', function (req, res) {
-            console.log("Here is your post");
-            _this.Post.retireveOnePost(req.query.postId.toString(), res);
+        router.get('/onePost', this.validateAuth, function (req, res) {
+            console.log("Here is your post, updated 6.4");
+            _this.Post.retrieveOnePost(req.query.userId.toString(), req.query.postId.toString(), res);
         });
         router.post('/posts/', function (req, res) {
             var postId = crypto.randomBytes(16).toString("hex");
