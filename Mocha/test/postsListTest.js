@@ -15,7 +15,7 @@ describe('Test retriving all posts result', function () {
 	var response;
 		 
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request("https://furrytale.azurewebsites.net")
 			.get("/TESTposts")
 			.end(function (err, res) {
 				allPosts = res.body.posts;

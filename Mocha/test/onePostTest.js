@@ -15,9 +15,10 @@ describe('Test retriving one post from a user result', function () {
 	var response;
 		 
     before(function (done) {
-        chai.request("http://localhost:8080")
-			.get("/onePost?postId=24ab0322f899e7a6389f0857c43b5b1e")
+        chai.request("https://furrytale.azurewebsites.net")
+			.get("/onePostTest?userId=2c78a513a28f2bf1c680b505955a7bad&postId=24ab0322f899e7a6389f0857c43b5b1e")
 			.end(function (err, res) {
+				console.log(res)
 				requestResult = res.body;
 				response = res;
 				console.log(res);
