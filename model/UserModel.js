@@ -155,25 +155,28 @@ var UserModel = /** @class */ (function () {
                     new: true
                 });
                 updateTailAtUserQuery.exec(function (err, updatedTailee) {
-                    console.log("Updated tailer list");
+                    console.log("Updated tailee list");
                     response.json(updatedTailee);
                 });
             }
         });
     };
     UserModel.prototype.isTailing = function (tailerId, taileeId, res) {
-        var queryTailer = this.model.findOne({ userId: tailerId });
-        //var queryTailee = this.model.findOne({userId : taileeId});
+        //var queryTailer = this.model.findOne({userId : tailerId});
+        var queryTailee = this.model.findOne({ userId: taileeId });
         var tailing = false;
-        queryTailer.exec(function (err, tailer) {
+        queryTailee.exec(function (err, tailee) {
             if (err) {
                 console.log("error while exec query");
                 console.log(err);
+                res.json({ tailing: tailing });
             }
             else {
-                tailer.tailee.forEach(function (item, index) {
-                    if (item == taileeId) {
+                tailee.tailers.forEach(function (item, index) {
+                    if (item == tailerId) {
+                        console.log("FOUND!");
                         tailing = true;
+                        res.json({ tailing: tailing });
                     }
                 });
             }

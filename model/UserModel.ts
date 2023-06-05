@@ -179,7 +179,7 @@ class UserModel {
                     new : true
                 });
                 updateTailAtUserQuery.exec((err, updatedTailee) =>{
-                    console.log("Updated tailer list");
+                    console.log("Updated tailee list");
                     response.json(updatedTailee);
                 })
             }
@@ -187,24 +187,26 @@ class UserModel {
     }
 
     public isTailing(tailerId: string, taileeId: string, res: any) : any {
-        var queryTailer = this.model.findOne({userId : tailerId});
-        //var queryTailee = this.model.findOne({userId : taileeId});
+        //var queryTailer = this.model.findOne({userId : tailerId});
+        var queryTailee = this.model.findOne({userId : taileeId});
         let tailing: boolean = false;
 
-        queryTailer.exec((err, tailer) => {
+        queryTailee.exec((err, tailee) => {
             if(err){
                 console.log("error while exec query");
                 console.log(err);
+                res.json({tailing: tailing})
             }
             else {
-                tailer.tailee.forEach((item, index) => {
-                    if (item == taileeId) { 
-                        tailing = true; 
+                tailee.tailers.forEach((item, index) => {
+                    if (item == tailerId) { 
+                        console.log("FOUND!");
+                        tailing = true;
+                        res.json({tailing: tailing})
                     }
                 });
             }
         });
-
     }
 
     public retrieveAllUsersOpenToWork(response : any) :any{
