@@ -50,12 +50,18 @@ var UserModel = /** @class */ (function () {
     };
     UserModel.prototype.updateUser = function (user, response) {
         console.log("updating user info");
-        var query = this.model.findOneAndUpdate(user.userId, user, {
-            new: true
-        });
+        var query = this.model.findOneAndUpdate({ userId: user.userId }, {
+            $set: {
+                about: user.about,
+                openToWork: user.openToWork,
+                profilePic: user.profilePic,
+                userName: user.userName
+            }
+        }, { new: true });
         query.exec(function (err, item) {
             if (err) {
                 console.log("Update user failed");
+                response.send(err);
             }
             else {
                 console.log("Updated user");
