@@ -336,7 +336,7 @@ class App {
       });
       console.log("userId is "+req['user'].id+" and name is "+req['user'].displayName)
       console.log("printinting from posts. open id is "+session.userOpenId)
-      this.Post.retrieveAllPosts(res, session);
+      this.Post.retrieveAllPosts(res, session, false);
   
     });
 
@@ -385,7 +385,12 @@ class App {
   });
 
 
+  // ROUTES FOR TESTING PURPOSES. DO NOT CHANGE
+  router.get('/TESTposts/', (req, res) => {
+  
+    this.Post.retrieveAllPosts(res, session, true);
 
+  });
 
     this.expressApp.use('/', router);
 

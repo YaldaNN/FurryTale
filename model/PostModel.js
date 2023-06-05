@@ -27,7 +27,7 @@ var PostModel = /** @class */ (function () {
     PostModel.prototype.createCommentsModel = function () {
         this.commentModel = mongooseConnection.model("comments");
     };
-    PostModel.prototype.retrieveAllPosts = function (response, session) {
+    PostModel.prototype.retrieveAllPosts = function (response, session, isTesting) {
         var _this = this;
         console.log("retrieve all Posts ...");
         var query = this.model.aggregate([
@@ -78,11 +78,13 @@ var PostModel = /** @class */ (function () {
                 }
                 // console.log(itemArray);
                 var postsWithUserSessionInfo = {};
-                postsWithUserSessionInfo["userInfo"] = {
-                    userId: session.userId,
-                    userName: session.userName,
-                    email: session.email
-                };
+                if (isTesting == false) {
+                    postsWithUserSessionInfo["userInfo"] = {
+                        userId: session.userId,
+                        userName: session.userName,
+                        email: session.email
+                    };
+                }
                 postsWithUserSessionInfo["posts"] = itemArray;
                 console.log(postsWithUserSessionInfo);
                 response.send(postsWithUserSessionInfo);

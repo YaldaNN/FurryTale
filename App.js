@@ -262,7 +262,7 @@ var App = /** @class */ (function () {
             });
             console.log("userId is " + req['user'].id + " and name is " + req['user'].displayName);
             console.log("printinting from posts. open id is " + session.userOpenId);
-            _this.Post.retrieveAllPosts(res, session);
+            _this.Post.retrieveAllPosts(res, session, false);
         });
         router.get('/oneUsersPosts', function (req, res) {
             console.log("Here is one user posts");
@@ -296,6 +296,10 @@ var App = /** @class */ (function () {
             var postId = jsonObj.postId;
             var pawerUserId = jsonObj.pawerUserId;
             _this.Post.updatePostPaw(postId, pawerUserId, res);
+        });
+        // ROUTES FOR TESTING PURPOSES. DO NOT CHANGE
+        router.get('/TESTposts/', function (req, res) {
+            _this.Post.retrieveAllPosts(res, session, true);
         });
         this.expressApp.use('/', router);
         //this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));

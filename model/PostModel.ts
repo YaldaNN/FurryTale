@@ -43,7 +43,7 @@ class PostModel {
     public createCommentsModel():void{
         this.commentModel = mongooseConnection.model<ICommentModel>("comments");
     }
-    public retrieveAllPosts(response:any, session : any): any {
+    public retrieveAllPosts(response:any, session : any, isTesting : boolean): any {
         console.log("retrieve all Posts ...");
         
        
@@ -102,11 +102,14 @@ class PostModel {
                 
                // console.log(itemArray);
                var postsWithUserSessionInfo: { [id: string] : any; } = {};
+
+               if(isTesting == false){
                postsWithUserSessionInfo["userInfo"] = {
                 userId : session.userId,
                 userName : session.userName,
                 email : session.email
                }
+            }
                postsWithUserSessionInfo["posts"] = itemArray;
 
                 console.log(postsWithUserSessionInfo)
