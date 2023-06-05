@@ -161,7 +161,11 @@ class App {
       this.Account.updateAccountType(jsonObj, res);
     })
 
-
+    router.get('/getAccountDetailUsingAccountId', (req, res) => {
+      console.log("Here is your account details..");
+      this.Account.getAccountDetailUsingAccountId(req.query.accountId.toString(), res);
+    
+    });
   
     //USER
     router.get('/users/', (req, res) => {

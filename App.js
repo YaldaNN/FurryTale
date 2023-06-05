@@ -125,6 +125,10 @@ var App = /** @class */ (function () {
             console.log("printing this.Account: " + _this.Account);
             _this.Account.updateAccountType(jsonObj, res);
         });
+        router.get('/getAccountDetailUsingAccountId', function (req, res) {
+            console.log("Here is your account details..");
+            _this.Account.getAccountDetailUsingAccountId(req.query.accountId.toString(), res);
+        });
         //USER
         router.get('/users/', function (req, res) {
             console.log("Here are users");

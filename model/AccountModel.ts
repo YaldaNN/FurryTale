@@ -38,11 +38,36 @@ class AccountModel {
         });
     }
     public updateAccountType(account : any, response : any) : any {
-        var query = this.model.findOneAndUpdate({accountId : account.accountId}, account, {
-            new : true
-        });
+        console.log("updating account type info");
+        var query = this.model.findOneAndUpdate(
+            {accountId : account.accountId}, 
+            {$set: {accountType: account.accountType}}, 
+            {new : true}
+        );
         query.exec((err, item) => {
-            response.send(item);
+            if(err){
+                console.log("Update Account type failed");
+                response.send(err);
+            }
+            else{
+                console.log("Updated account type successfully");
+                response.send(item);
+            }
+        })
+    }
+    public getAccountDetailUsingAccountId(accountId : String, response : any) : any{
+        console.log("retrieving a account details");
+        var query = this.model.findOne({accountId : accountId});
+        query.exec((err, item) => {
+            if(err){
+                console.log("error while retrieving account details");
+                response.send("error");
+            }
+            else{
+                console.log("get account details successfully");
+                response.send(item);
+            }
+            
         })
     }
 
