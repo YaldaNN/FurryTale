@@ -17,10 +17,10 @@
                         </div>
                         <div class="user-details py-2 ml-1">
                             <h5>{{ profileUserInfo?.userName }}</h5>
-                            <h6>{{ profileUserInfo?.email }}</h6>
+                            <h6>{{profileUserInfo?.about}}</h6>
                             <h6>
                                 <span class="open-to-work-text" *ngIf="profileUserInfo?.openToWork">Open to work</span>
-                            </h6>
+                            </h6>                         
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
         <div class="col-md-12">
             <div class="col-md-8 offset-md-2">
                 <!-- About -->
-                <div class="card mb-4">
+                <div class=" About card mb-4">
                     <div class="form-group row m-1">
                         <div class="col-md-6">
                             <h5 class="py-2">About</h5>

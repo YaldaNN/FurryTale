@@ -24,6 +24,9 @@
     height: 20px;
 }
 
+.About{
+    display: none;
+}
 .thumbnail-img {
     width: 100%;
     height: 100%;

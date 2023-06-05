@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
 import { EditProfile } from '../edit-profile';
+import { Account } from '../account';
 import { EditProfileService } from '../edit-profile.service';
 import { Router } from '@angular/router';
 
@@ -26,8 +27,10 @@ export class EditProfileComponent  {
     tailee :[],
     verified : false,
     verificationBadgeId : "String",
-    ssoId : "",
+    ssoId : ""
   };
+
+  accountType: Number = 1;
   
   submitted = false;
 
@@ -40,7 +43,19 @@ export class EditProfileComponent  {
 
       this.editProfileService.getProfile(this.profile.userId).subscribe(
         (result: any) => {
-          this.profile = result; // Update the profile object with the retrieved data
+          this.profile = result;
+          console.log("Fetched user details:", result);
+
+          this.editProfileService.getAccountDetailUsingAccountId(this.profile.accountId).subscribe(
+            (accountResult: any) => {
+              console.log("Fetched account details:", accountResult, "  this.profile.accountId = "+ this.profile.accountId)
+              this.accountType = accountResult.accountType;
+              console.log("successfully fetching account type..!!",this.accountType ); 
+            },
+            (error: any) => {
+              console.log("Error fetching Account datails:", error); 
+            }
+          );
         },
         (error: any) => {
           console.log("Error fetching profile data:", error); 
@@ -54,9 +69,9 @@ export class EditProfileComponent  {
     console.log("came to editProfile onSubmit");
     this.submitted = true;
     if (form.valid) {
-      console.log(this.profile);
-      
-      this.editProfileService.editProfile(this.profile).subscribe(
+      console.log(this.profile);     
+            
+      this.editProfileService.editProfile(this.profile, this.accountType).subscribe(
         (result: any) => {
           this.router.navigateByUrl('/updateUser?userId=' + result.userId);
           console.log("Successfully navigated");
@@ -70,4 +85,3 @@ export class EditProfileComponent  {
     }
   }
 }
-

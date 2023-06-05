@@ -28,8 +28,16 @@
           <label for="profilePicture">Profile Picture:</label>
           <input type="text" id="profilePicture" name="profilePicture" [(ngModel)]="profile.profilePic" class="form-control">
         </div>
+        <div class="form-group">
+          <label for="accountType">Account Type:</label>
+          <select id="accountType" name="accountType" [(ngModel)]="accountType" class="form-control custom-dropdown">
+            <!--Setting this for now. TODO change this to the value of getAccountType in editProfile page-->
+            <option value="1">Regular</option>
+            <option value="2">Recruiter</option>
+          </select>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      </form>      
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
