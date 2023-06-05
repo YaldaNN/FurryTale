@@ -15,10 +15,10 @@ export class ProfileComponent implements OnInit {
  constructor(private route: ActivatedRoute, private profileService: ProfileService, private router: Router,) {}
 
  ngOnInit(): void {
-  this.route.params.subscribe((params: Params) => {
+
   // const userId = params['userId'];
-  this.userId="2c78a513a28f2bf1c680b505955a7bad";
-  console.log(params);
+  //this.userId="2c78a513a28f2bf1c680b505955a7bad";
+  //console.log(params);
 
   this.profileService.getUserIdCurrSession().subscribe((result : any) => {
     if(result.authentication !== undefined){
@@ -26,11 +26,13 @@ export class ProfileComponent implements OnInit {
     }
     this.userId = result.userId;
   })
+  console.log("printing userID from profile page in angular")
   this.profileService.getMyUser(this.userId).subscribe((result: any) =>  
   {  
     console.log("MyUserData "+'result' + JSON.stringify(result));  
     this.profileUserInfo = result;
   }); 
+
   this.profileService.getMyPosts(this.userId).subscribe((result: any) =>  
   {  
     console.log("MyUserPostData "+'result' + JSON.stringify(result));  
@@ -45,7 +47,7 @@ export class ProfileComponent implements OnInit {
     this.achievementDetails = result;
   });   
 
-});
+
 }
 
 editProfile(){
