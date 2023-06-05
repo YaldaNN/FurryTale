@@ -4,6 +4,7 @@ import { HomeService } from '../home.service';
 import { Router } from '@angular/router';
 import { NgForm, FormsModule } from '@angular/forms';
 import {Comment} from '../comment'
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,10 @@ export class HomeComponent implements OnInit{
   newComment : any;
   placeholderText : any;
   userId = "";
-  constructor(private route: ActivatedRoute, private homeService: HomeService, private router: Router) 
+  constructor(private route: ActivatedRoute, private homeService: HomeService, private router: Router, private appComponent : AppComponent) 
   {
     
-   }
+  }
   ngOnInit(): void {
     this.resetComment()
     
@@ -36,6 +37,7 @@ export class HomeComponent implements OnInit{
       console.log("----- PRINTING FROM ANGULAR -----");
       console.log(result);
       this.userId = result.userInfo.userId;
+      this.appComponent.nameInProfile = result.userInfo.userName;
       this.setUserInfo(this.userId);
       this.newComment.commenterId = result.userInfo.userId
       this.posts = result.posts.reverse();
