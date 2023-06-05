@@ -34,7 +34,7 @@ export class OpportunitiesComponent implements OnInit {
     this.opportunitiesService.getOpenToWorkUsers().subscribe((result: any) =>
     {
       console.log('open to work result' + JSON.stringify(result));
-      this.openToWorkUsers = result.users;
+      this.openToWorkUsers = result;
     })
   }
 
