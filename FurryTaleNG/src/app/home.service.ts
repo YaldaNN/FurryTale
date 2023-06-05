@@ -4,14 +4,14 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Post } from './posts';
 import {User} from './user';
 import {Comment} from './comment'
+import { ConnectionURL } from './ConnectionURL';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  //hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = ConnectionURL.hostUrl;
   constructor(private http: HttpClient) { }
 
   getPosts(){
