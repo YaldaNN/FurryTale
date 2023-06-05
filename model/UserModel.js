@@ -176,8 +176,8 @@ var UserModel = /** @class */ (function () {
                     if (item == tailerId) {
                         console.log("FOUND!");
                         tailing = true;
-                        res.json({ tailing: tailing });
                     }
+                    res.json({ tailing: tailing });
                 });
             }
         });

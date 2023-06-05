@@ -199,10 +199,12 @@ class App {
       this.User.removeTail(tailerId, taileeId, res);
     });
 
-    router.get('/isTailing/', this.validateAuth, (req, res) => {
+    router.get('/isTailing/', (req, res) => {
       console.log("checking the tail");
       const tailerId = req.query.tailerId;
       const taileeId = req.query.taileeId;
+      console.log(tailerId);
+      console.log(taileeId)
       this.User.isTailing(tailerId, taileeId, res);
     });
 
