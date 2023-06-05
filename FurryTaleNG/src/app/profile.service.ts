@@ -26,6 +26,7 @@ export class ProfileService {
   }
 
   getUserIdCurrSession(){
+    console.log("hitting "+this.hostUrl+"getCurrentUser")
     return this.http.get<any>(this.hostUrl+"getCurrentUser");
   }
 }

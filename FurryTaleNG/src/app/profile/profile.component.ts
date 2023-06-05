@@ -24,7 +24,9 @@ export class ProfileComponent implements OnInit {
     if(result.authentication !== undefined){
       this.router.navigateByUrl('/');
     }
-    this.userId = result.userinfo.userId;
+    console.log("got back result. it is ")
+    console.log(result)
+    this.userId = result.userId;
   })
   console.log("printing userID from profile page in angular "+this.userId)
   this.profileService.getMyUser(this.userId).subscribe((result: any) =>  
