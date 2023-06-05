@@ -16,9 +16,9 @@ describe('Test retriving all posts result', function () {
 		 
     before(function (done) {
         chai.request("http://localhost:8080")
-			.get("/posts")
+			.get("/TESTposts")
 			.end(function (err, res) {
-				allPosts = res.body;
+				allPosts = res.body.posts;
 				response = res;
 				console.log(res);
                 expect(err).to.be.null;              
@@ -28,7 +28,7 @@ describe('Test retriving all posts result', function () {
 		
     it('Should return an array object with more than 1 object', function (){
 		expect(response).to.have.status(200);
-		expect(response.body).to.have.length.above(2);
+		expect(response.body.posts).to.have.length.above(2);
 		expect(response).to.have.headers;
     });
    
