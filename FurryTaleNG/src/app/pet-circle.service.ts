@@ -6,13 +6,13 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PetCircleService {
-  hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  //hostUrl:string = 'http://localhost:8080/';
+  //hostUrl:string = 'https://furrytale.azurewebsites.net/';
+  hostUrl:string = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }
   
-  getUser(userId: any){
-    return this.http.get<User[]>(this.hostUrl + 'oneUser?userId=' + userId);
+  getCurrUser(){
+    return this.http.get<User>(this.hostUrl + 'currUser/');
   }
   getUsers(){
     return this.http.get<User[]>(this.hostUrl + 'users/');

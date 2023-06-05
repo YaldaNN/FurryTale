@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { PetCircleService } from '../pet-circle.service';
 
 @Component({
@@ -11,22 +12,29 @@ import { PetCircleService } from '../pet-circle.service';
 export class PetCircleComponent implements OnInit{
   currUser : any;
   users: any;
-  userId = "2c78a513a28f2bf1c680b505955a7bad";
+  userId = "";
 
-  constructor(private route: ActivatedRoute, private petCircleService: PetCircleService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private petCircleService: PetCircleService) {}
   ngOnInit(): void {
+
     this.route.params.subscribe(params => {
       // this.userId = params['userId'];
-      this.petCircleService.getUser(this.userId).subscribe((result: any) =>
+      this.petCircleService.getCurrUser().subscribe((result: any) =>
       {
-        console.log('result' + JSON.stringify(result));
+        if(result.authentication !== undefined){
+          this.router.navigateByUrl('/');
+        }
+        console.log('current user result' + JSON.stringify(result));
         this.currUser = result;
+        this.userId = result.userId;
       });
     });
+
     this.petCircleService.getUsers().subscribe((result: any) =>
       {
-        console.log('result' + JSON.stringify(result));
+        console.log('all users result' + JSON.stringify(result));
         this.users = result;
       });
+
   }
 }
