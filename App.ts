@@ -343,9 +343,8 @@ class App {
   })
 
   router.get('/onePost', (req, res) => {
-    console.log("Here is your post");
-    this.Post.retireveOnePost(req.query.postId.toString(), res);
-  
+    console.log("Here is your post, updated 6.4");
+    this.Post.retrieveOnePost(req.query.userId.toString(), req.query.postId.toString(), res);
   });
 
   router.post('/posts/', (req, res) => {

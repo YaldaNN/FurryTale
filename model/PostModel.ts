@@ -139,20 +139,18 @@ class PostModel {
         });
     }
 
-    public retireveOnePost(postId : String, response : any) : any{
-        console.log("retrieving a post");
-        var query = this.model.findOne({postId : postId});
+    public retrieveOnePost(userId: string, postId: string, response: any): any {
+        console.log("retrieving a post6.4");
+        var query = this.model.findOne({ userId: userId, postId: postId });
         query.exec((err, item) => {
-            if(err){
-                console.log("error while retrieving user");
-                response.send("error");
-            }
-            else{
-                response.send(item);
-            }
-            
-        })
-    }
+          if (err) {
+            console.log("error while retrieving post");
+            response.send("error");
+          } else {
+            response.send(item);
+          }
+        });
+      }
     public updatePostPaw(postId: String, pawerId : String, response:any): any {
         console.log("Updating Paw in post id number ..."+postId);
        
