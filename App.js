@@ -155,7 +155,7 @@ var App = /** @class */ (function () {
             var taileeId = req.body.taileeId;
             _this.User.removeTail(tailerId, taileeId, res);
         });
-        router.get('/isTailing', function (req, res) {
+        router.get('/isTailing/', function (req, res) {
             console.log("checking the tail");
             var tailerId = req.query.tailerId;
             var taileeId = req.query.taileeId;
