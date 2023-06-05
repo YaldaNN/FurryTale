@@ -8,8 +8,8 @@ import { Post } from './posts';
 })
 export class ReadPostService {
 
-hostUrl:string = 'http://localhost:8080/';
- //hostUrl:string = 'https://furrytale.azurewebsites.net/';
+//hostUrl:string = 'http://localhost:8080/';
+ hostUrl:string = 'https://furrytale.azurewebsites.net/';
 
   constructor(private http: HttpClient) {}
 
