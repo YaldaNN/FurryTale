@@ -291,43 +291,11 @@ class App {
      this.Achievement.retrieveAchievementByUserId(userId, res);      
     })
 
-    
-
-    router.post('/achievement/', this.validateAuth, (req, res) => {
-      const achievementId = crypto.randomBytes(16).toString("hex");
+    router.post('/achievement/', (req, res) => {
+      console.log("came to create achievement");
       var jsonObj = req.body;
-      jsonObj.achievementId = achievementId;
-      this.Achievement.model.create([jsonObj], (err) => {
-        if (err) {
-          console.log('achievement creation failed');
-        }
-        else{
-          var gettingUserQuery = this.User.model.findOne({userId : jsonObj.userId});
-          gettingUserQuery.exec((err, item) => {
-            console.log('achievement adding started');
-            item.achievement.push(achievementId);
-            console.log('achievement adding ended');
-            console.log(item.achievement)
-            var queryUpdateUser = this.User.model.findOneAndUpdate({userId : jsonObj.userId}, item, {
-              new: true
-            });
-
-            console.log('Starting updating user');
-            queryUpdateUser.exec((error, updatedUser) => {
-              if(error)
-               {console.log('User updating failed');}
-               console.log(error)
-              
-              res.send("Added achievement")
-            })
-          });
-
-          
-        }
-      });
-      
-      
-    });
+      this.Achievement.createNewAchievement(jsonObj, res);
+    });    
 
     //POST
     router.get('/posts/', this.validateAuth, (req, res) => {
