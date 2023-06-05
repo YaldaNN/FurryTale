@@ -30,15 +30,13 @@ export class OthersProfileService {
   }
 
 
-
-  /*
-
   checkTail(tailerId: string, taileeId: string){
 
     const reqBody = {tailerId, taileeId};
 
-    return this.http.get<JSON>(this.hostUrl+"isTailing/", reqBody);
+    const url = `${this.hostUrl}isTailing?tailerId=${taileeId}&taileeId=${taileeId}`;
+    return this.http.get<JSON>(url);
 
   }
-  */
+  
 }

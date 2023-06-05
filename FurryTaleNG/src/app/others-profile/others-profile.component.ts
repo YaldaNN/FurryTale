@@ -60,7 +60,7 @@ export class OthersProfileComponent {
     }); 
 
 
-    /*
+    
     this.othersProfileService.checkTail(this.currentUserIdInSession, this.othersProfileId).subscribe((isTailingResult : any) => {
       if(isTailingResult.tailing === true){
         this.followText = "unfollow"
@@ -70,7 +70,7 @@ export class OthersProfileComponent {
       }
     })
 
-    */
+    
     });
   }
     );
