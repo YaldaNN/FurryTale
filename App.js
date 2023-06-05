@@ -157,8 +157,8 @@ var App = /** @class */ (function () {
         });
         router.get('/isTailing/', this.validateAuth, function (req, res) {
             console.log("checking the tail");
-            var tailerId = req.body.tailerId;
-            var taileeId = req.body.taileeId;
+            var tailerId = req.query.tailerId;
+            var taileeId = req.query.taileeId;
             _this.User.isTailing(tailerId, taileeId, res);
         });
         router.get('/openToWork/', function (req, res) {

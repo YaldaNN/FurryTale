@@ -186,7 +186,7 @@ class UserModel {
         });
     }
 
-    public isTailing(tailerId: string, taileeId: string, res: any) : any {
+    public isTailing(tailerId: any, taileeId: any, res: any) : any {
         //var queryTailer = this.model.findOne({userId : tailerId});
         var queryTailee = this.model.findOne({userId : taileeId});
         let tailing: boolean = false;

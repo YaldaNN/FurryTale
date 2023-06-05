@@ -201,8 +201,8 @@ class App {
 
     router.get('/isTailing/', this.validateAuth, (req, res) => {
       console.log("checking the tail");
-      const tailerId = req.body.tailerId;
-      const taileeId = req.body.taileeId;
+      const tailerId = req.query.tailerId;
+      const taileeId = req.query.taileeId;
       this.User.isTailing(tailerId, taileeId, res);
     });
 
