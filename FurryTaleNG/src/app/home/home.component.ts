@@ -18,9 +18,10 @@ export class HomeComponent implements OnInit{
   newComment : any;
   placeholderText : any;
   userId = "";
+  userName = "";
   constructor(private route: ActivatedRoute, private homeService: HomeService, private router: Router, private appComponent : AppComponent) 
   {
-    
+    appComponent.nameInProfile = this.userName;
   }
   ngOnInit(): void {
     this.resetComment()
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit{
       console.log("----- PRINTING FROM ANGULAR -----");
       console.log(result);
       this.userId = result.userInfo.userId;
-      this.appComponent.nameInProfile = result.userInfo.userName;
+      this.userName = result.userInfo.userName;
       this.setUserInfo(this.userId);
       this.newComment.commenterId = result.userInfo.userId
       this.posts = result.posts.reverse();
