@@ -9,7 +9,7 @@ import { User } from './user';
 export class EditProfileService {
 
   hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  // hostUrl:string = 'http://localhost:8080/';
+ // hostUrl:string = 'http://localhost:8080/';
   
   constructor(private http: HttpClient) { }
     
@@ -17,5 +17,10 @@ export class EditProfileService {
     console.log("Calling editUserProfile endpoint:", editProfileData);
     return this.http.put(this.hostUrl + 'user/updateUser/', editProfileData);
     console.log("After Calling editUserProfile endpoint");
+  }
+
+  getProfile(userId: String) {
+    console.log("Fetching profile data for userId:", userId);
+    return this.http.get<User>(this.hostUrl + 'oneUser?userId=' + userId);
   }
 }

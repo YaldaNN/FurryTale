@@ -10,7 +10,7 @@ import { achievement } from './achievement';
 
 export class ProfileService {
   hostUrl:string = 'https://furrytale.azurewebsites.net/';
-  //hostUrl:string = 'http://localhost:8080/';
+  // hostUrl:string = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
   
   getMyPosts(userId: string){

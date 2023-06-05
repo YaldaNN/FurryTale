@@ -37,6 +37,16 @@ export class EditProfileComponent  {
     this.route.queryParams.subscribe(params => {
       this.profile.userId = params['userId'];
       console.log(this.profile.userId); // or use userId as needed
+
+      this.editProfileService.getProfile(this.profile.userId).subscribe(
+        (result: any) => {
+          this.profile = result; // Update the profile object with the retrieved data
+        },
+        (error: any) => {
+          console.log("Error fetching profile data:", error); 
+        }
+      );
+
     });
   }
   
@@ -50,6 +60,8 @@ export class EditProfileComponent  {
         (result: any) => {
           this.router.navigateByUrl('/updateUser?userId=' + result.userId);
           console.log("Successfully navigated");
+          this.router.navigateByUrl('/profile');
+          console.log("Edit profile submited successfully..!!");
         },
         (error: any) => {
           console.log("Error updating profile:", error); 
@@ -58,3 +70,4 @@ export class EditProfileComponent  {
     }
   }
 }
+
