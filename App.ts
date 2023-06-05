@@ -396,6 +396,41 @@ class App {
 
   });
 
+  router.get('/onePostTest', (req, res) => {
+    console.log("finding post")
+    this.Post.retrieveOnePost(req.query.userId.toString(), req.query.postId.toString(), res);
+  });
+
+  router.post('/TESTposts/', (req, res) => {
+    const postId = crypto.randomBytes(16).toString("hex");
+    var jsonObj = req.body;
+    jsonObj.postId = postId;
+   
+    this.Post.model.create([jsonObj], (err) => {
+        if (err) {
+            console.log('object creation failed');
+            res.send(err);
+        }
+    });
+
+    
+    res.send(jsonObj);
+  
+  });
+
+  router.delete('/TESTdelete/:id', (req, res) => {
+    const postId = req.params.id;
+    this.Post.model.deleteOne({postId : postId} , (err) => {
+      if (err) {
+          console.log('object creation failed');
+          res.send(err)
+      }
+  });
+    // Perform the necessary logic to delete the user with the given ID
+    
+    res.send({"status" : "deleted"});
+  });
+
     this.expressApp.use('/', router);
 
     //this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
