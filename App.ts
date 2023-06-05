@@ -342,7 +342,7 @@ class App {
   this.Post.retrievePostsByUserId(userId, res);    
   })
 
-  router.get('/onePost', (req, res) => {
+  router.get('/onePost', this.validateAuth, (req, res) => {
     console.log("Here is your post, updated 6.4");
     this.Post.retrieveOnePost(req.query.userId.toString(), req.query.postId.toString(), res);
   });
