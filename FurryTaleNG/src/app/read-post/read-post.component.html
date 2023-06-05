@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="col-md-12">
+      <div class="col-md-8 offset-md-2">
+        <!-- Post -->
+        <div class="card mb-4">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <div class="card mb-3">
+                  <!-- Post- User Profile Pic -->
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-2">
+                        <img class="thumbnail thumbnail-img" src="{{profileUserInfo?.profilePic}}" alt="Profile picture">
+                      </div>
+                      <!-- Post- User Name -->
+                      <div class="col-4">
+                        {{profileUserInfo?.userName}}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Post- User Posts -->
+                  <img src="{{post?.image}}" class="card-img-top" alt="user post" width="400" height="300">
+                  <div class="card-body">
+                    <h6 class="card-title">{{post?.caption}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -63,7 +63,7 @@ var App = /** @class */ (function () {
         router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
             //console.log(req['user']);
-            //res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
+            // res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
             res.redirect('/home');
         });
         router.get('/account/', function (req, res) {
