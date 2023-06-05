@@ -130,6 +130,10 @@ var App = /** @class */ (function () {
             console.log("Here are users");
             _this.User.retrieveAllUsers(res);
         });
+        router.get('/currUser/', this.validateAuth, function (req, res) {
+            console.log("current user");
+            _this.User.retireveOneUser(session.userId, res);
+        });
         router.put('/user/updateUser/', function (req, res) {
             console.log("came to update user");
             var jsonObj = req.body;

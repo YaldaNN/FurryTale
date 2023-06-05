@@ -165,11 +165,15 @@ class App {
   
     //USER
     router.get('/users/', (req, res) => {
-          console.log("Here are users");
-          this.User.retrieveAllUsers(res);
-      
-        });
-  
+      console.log("Here are users");
+      this.User.retrieveAllUsers(res);  
+    });
+        
+    router.get('/currUser/', this.validateAuth, (req, res) => {
+      console.log("current user");
+      this.User.retireveOneUser(session.userId, res);
+    })
+    
     router.put('/user/updateUser/', (req, res) =>{
       console.log("came to update user");
       var jsonObj = req.body;
