@@ -46,6 +46,7 @@ export class OthersProfileComponent {
     {  
     //console.log("MyUserData "+'result' + JSON.stringify(userResult));  
     this.profileUserInfo = userResult;
+    console.log(this.profileUserInfo)
     }); 
 
     this.profileService.getMyPosts(this.othersProfileId).subscribe((postsResult: any) =>  
