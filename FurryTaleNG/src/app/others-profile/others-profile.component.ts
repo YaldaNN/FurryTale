@@ -81,7 +81,7 @@ export class OthersProfileComponent {
 }
 
   follow(){
-    if(this.followText ===  "unfollow"){
+    if(this.followText ===  "Untail"){
       this.othersProfileService.removeTail(this.currentUserIdInSession, this.othersProfileId).subscribe((result : any) => {
         console.log("successfully removed");
         this.ngOnInit();
