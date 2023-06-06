@@ -23,7 +23,7 @@ export class OthersProfileService {
 
   removeTail(tailerId: string, taileeId: string){
 
-    const url = `${this.hostUrl}isTailing/?tailerId=${tailerId}&taileeId=${taileeId}`;
+    const url = `${this.hostUrl}untail/?tailerId=${tailerId}&taileeId=${taileeId}`;
 
     return this.http.delete(url);
 
