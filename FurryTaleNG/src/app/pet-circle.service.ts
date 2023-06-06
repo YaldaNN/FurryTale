@@ -13,7 +13,25 @@ export class PetCircleService {
   getCurrUser(){
     return this.http.get<User>(this.hostUrl + 'currUser/');
   }
+  
   getUsers(){
     return this.http.get<User[]>(this.hostUrl + 'users/');
   }
+
+  addTail(tailerId: string, taileeId: string){
+    const reqBody = {tailerId, taileeId};
+    return this.http.put(this.hostUrl+"addTailer/", reqBody);
+  }
+
+  removeTail(tailerId: string, taileeId: string){
+    const url = `${this.hostUrl}untail/?tailerId=${tailerId}&taileeId=${taileeId}`;
+    return this.http.delete(url);
+  }
+
+  // checkTail(tailerId: string, taileeId: string){
+  //   // const reqBody = {tailerId, taileeId};
+  //   const url = `${this.hostUrl}isTailing?tailerId=${tailerId}&taileeId=${taileeId}`;
+  //   return this.http.get<boolean>(url);
+  // }
+
 }

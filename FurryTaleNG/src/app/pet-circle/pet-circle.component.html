@@ -15,15 +15,23 @@
                     </td>
                     <td>{{user.userName}}</td>
                     <td>
-                      <a href="petCircle/2c78a513a28f2bf1c680b505955a7bad" class="button btn">Tailing/Tail</a>
+                      <ng-container *ngIf="!isTailing(user)">
+                        <!-- Display tail back button if not tailing -->
+                        <button (click)="tailClick(user.userId)" class="button btn">Tail Back</button>
+                      </ng-container>
+                      <ng-container *ngIf="isTailing(user)">
+                        <!-- Display disabled Tailing button if already tailing -->
+                        <button class="button btn disabled" disabled>Tailing</button>
+                      </ng-container>
                     </td>
                  </tr>
                 </ng-container>
             </ng-container>
-           
+          
          </tbody>
        </table>
      </mat-tab>
+
      <mat-tab label="TAILEES">
        <table class="table">
          <tbody>
@@ -36,7 +44,8 @@
                     </td>
                     <td>{{user.userName}}</td>
                     <td>
-                       <a href="petCircle/2c78a513a28f2bf1c680b505955a7bad" class="button btn">Untail</a>
+                      <!-- Display unTail button -->
+                      <button (click)="unTailClick(user.userId)" class="button btn">UnTail</button>
                     </td>
                  </tr>
                 </ng-container>

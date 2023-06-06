@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { PetCircleService } from '../pet-circle.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-pet-circle',
@@ -37,4 +38,27 @@ export class PetCircleComponent implements OnInit{
       });
 
   }
+
+  tailClick(targetId: string) : void {
+    console.log("clicked tail");
+    this.petCircleService.addTail(this.currUser.userId, targetId).subscribe((res : any) => {
+        console.log("successfully added tail");
+        this.ngOnInit();
+    })
+  }
+
+  unTailClick(targetId: string) : void {
+    console.log("clicked untail");
+
+    this.petCircleService.removeTail(this.currUser.userId, targetId).subscribe((res : any) => {
+        console.log("successfully removed tail");
+        this.ngOnInit();
+    })
+  }
+
+  isTailing(target: User) : boolean {
+    console.log("checking tailing");
+    return this.currUser.tailee.includes(target.userId);
+  }
+
 }
