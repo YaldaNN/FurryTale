@@ -12,7 +12,7 @@
               </td>
               <td>{{user.about}}</td>
               <td>
-                <!--<a [routerLink]="['/readPost', post.userId, post.postId]" class="button btn">Details</a>-->
+                <a [href]="'/othersProfile/' + user.userId" class="button btn" >Profile</a>
               </td>
             </ng-container>
           </tbody>
