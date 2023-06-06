@@ -78,11 +78,11 @@ var App = /** @class */ (function () {
             //res.send("userId is "+req['user'].id+" and name is "+req['user'].displayName);
             res.redirect('/home');
         });
-        router.get('/account/', function (req, res) {
+        router.get('/account/', this.validateAuth, function (req, res) {
             console.log("why?");
             _this.Account.retrieveAllAccounts(res);
         });
-        router.post('/account/', function (req, res) {
+        router.post('/account/', this.validateAuth, function (req, res) {
             var accountId = crypto.randomBytes(16).toString("hex");
             var userId = crypto.randomBytes(16).toString("hex");
             var jsonObj = req.body;
@@ -120,17 +120,17 @@ var App = /** @class */ (function () {
             });
             res.send(userJsonObj);
         });
-        router.put('/updateAccountType', function (req, res) {
+        router.put('/updateAccountType', this.validateAuth, function (req, res) {
             var jsonObj = req.body;
             console.log("printing this.Account: " + _this.Account);
             _this.Account.updateAccountType(jsonObj, res);
         });
-        router.get('/getAccountDetailUsingAccountId', function (req, res) {
+        router.get('/getAccountDetailUsingAccountId', this.validateAuth, function (req, res) {
             console.log("Here is your account details..");
             _this.Account.getAccountDetailUsingAccountId(req.query.accountId.toString(), res);
         });
         //USER
-        router.get('/users/', function (req, res) {
+        router.get('/users/', this.validateAuth, function (req, res) {
             console.log("Here are users");
             _this.User.retrieveAllUsers(res);
         });
@@ -138,7 +138,7 @@ var App = /** @class */ (function () {
             console.log("current user");
             _this.User.retireveOneUser(session.userId, res);
         });
-        router.put('/user/updateUser/', function (req, res) {
+        router.put('/user/updateUser/', this.validateAuth, function (req, res) {
             console.log("came to update user");
             var jsonObj = req.body;
             _this.User.updateUser(jsonObj, res);
@@ -159,7 +159,7 @@ var App = /** @class */ (function () {
             console.log("from deleting. taileeId is " + taileeId);
             _this.User.removeTail(tailerId, taileeId, res);
         });
-        router.get('/isTailing/', function (req, res) {
+        router.get('/isTailing/', this.validateAuth, function (req, res) {
             console.log("checking the tail");
             var tailerId = req.query.tailerId;
             var taileeId = req.query.taileeId;
@@ -167,11 +167,11 @@ var App = /** @class */ (function () {
             console.log(taileeId);
             _this.User.isTailing(tailerId, taileeId, res);
         });
-        router.get('/openToWork/', function (req, res) {
+        router.get('/openToWork/', this.validateAuth, function (req, res) {
             console.log("Here are users");
             _this.User.retrieveAllUsersOpenToWork(res);
         });
-        router.get('/oneUser', function (req, res) {
+        router.get('/oneUser', this.validateAuth, function (req, res) {
             //console.log("Here is your post");
             _this.User.retireveOneUser(req.query.userId.toString(), res);
         });
@@ -194,11 +194,11 @@ var App = /** @class */ (function () {
             _this.User.retireveOneUser(session.userId, res);
         });
         // COMMENT
-        router.get('/comment/', function (req, res) {
+        router.get('/comment/', this.validateAuth, function (req, res) {
             console.log("Your stupid comments!");
             _this.Comment.retrieveAllComments(res);
         });
-        router.post('/comment/', function (req, res) {
+        router.post('/comment/', this.validateAuth, function (req, res) {
             var commentId = crypto.randomBytes(16).toString("hex");
             var jsonObj = req.body;
             jsonObj.commentId = commentId;
@@ -209,24 +209,17 @@ var App = /** @class */ (function () {
             });
             res.send('{"Comment Id is":"' + commentId + '"}');
         });
-        router.put('/updateComment', function (req, res) {
-            var jsonObj = req.body;
-            _this.Comment.updateComment(jsonObj, res);
-        });
-        router.delete('/comment/delete', function (req, res) {
-            _this.Comment.deleteComment(req.query.commentId.toString(), res);
-        });
         // ACHIEVEMENT
-        router.get('/achievement/', function (req, res) {
+        router.get('/achievement/', this.validateAuth, function (req, res) {
             console.log("Better your achievment worth it!");
             _this.Achievement.retrieveAllAchievement(res);
         });
-        router.get('/oneUserAchievement', function (req, res) {
+        router.get('/oneUserAchievement', this.validateAuth, function (req, res) {
             console.log("Here is one user achievement");
             var userId = req.query.userId.toString();
             _this.Achievement.retrieveAchievementByUserId(userId, res);
         });
-        router.post('/achievement/', function (req, res) {
+        router.post('/achievement/', this.validateAuth, function (req, res) {
             var achievementId = crypto.randomBytes(16).toString("hex");
             var jsonObj = req.body;
             jsonObj.achievementId = achievementId;
@@ -256,24 +249,6 @@ var App = /** @class */ (function () {
                 }
             });
         });
-        //VERIFICATION BADGE
-        router.get('/verificationBadge/', function (req, res) {
-            console.log("Here is your verification badge docs!");
-            _this.VerificationBadge.retrieveAllVerificationBadge(res);
-        });
-        router.post('/verificationBadge/', function (req, res) {
-            var verificationBadgeId = crypto.randomBytes(16).toString("hex");
-            var userId = crypto.randomBytes(16).toString("hex");
-            var jsonObj = req.body;
-            jsonObj.verificationBadgeId = verificationBadgeId;
-            jsonObj.userId = userId;
-            _this.VerificationBadge.model.create([jsonObj], function (err) {
-                if (err) {
-                    console.log('object creation failed');
-                }
-            });
-            res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
-        });
         //POST
         router.get('/posts/', this.validateAuth, function (req, res) {
             //this.findSessionUser();
@@ -287,7 +262,7 @@ var App = /** @class */ (function () {
             console.log("printinting from posts. open id is " + session.userOpenId);
             _this.Post.retrieveAllPosts(res, session, false);
         });
-        router.get('/oneUsersPosts', function (req, res) {
+        router.get('/oneUsersPosts', this.validateAuth, function (req, res) {
             console.log("Here is one user posts");
             var userId = req.query.userId.toString();
             _this.Post.retrievePostsByUserId(userId, res);
@@ -296,7 +271,7 @@ var App = /** @class */ (function () {
             console.log("Here is your post, updated 6.4");
             _this.Post.retrieveOnePost(req.query.userId.toString(), req.query.postId.toString(), res);
         });
-        router.post('/posts/', function (req, res) {
+        router.post('/posts/', this.validateAuth, function (req, res) {
             var postId = crypto.randomBytes(16).toString("hex");
             var jsonObj = req.body;
             jsonObj.postId = postId;
@@ -307,13 +282,7 @@ var App = /** @class */ (function () {
             });
             res.send('{"Post Id is":"' + postId + '"}');
         });
-        router.put('/updatePost/', function (req, res) {
-            console.log("Staterted Updating");
-            var jsonObj = req.body;
-            var postId = jsonObj.postId;
-            _this.Post.updatePost(postId, jsonObj, res);
-        });
-        router.put('/updatePostPaw/', function (req, res) {
+        router.put('/updatePostPaw/', this.validateAuth, function (req, res) {
             console.log("Staterted Updating Post Paw");
             var jsonObj = req.body;
             var postId = jsonObj.postId;
