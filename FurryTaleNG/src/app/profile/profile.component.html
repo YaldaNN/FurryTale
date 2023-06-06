@@ -17,7 +17,7 @@
                         </div>
                         <div class="user-details py-2 ml-1">
                             <h5>{{ profileUserInfo?.userName }}</h5>
-                            <h5>{{ profileUserInfo?.emailId }}</h5>
+                            <h6>{{ profileUserInfo?.emailId }}</h6>
                             <h6>{{profileUserInfo?.about}}</h6>
                             <h6>
                                 <span class="open-to-work-text" *ngIf="profileUserInfo?.openToWork">Open to work</span>
@@ -27,7 +27,7 @@
                 </div>
                 <!-- Edit Profile -->
                 <div class="col-md-6 text-right">                               
-                    <img class="edit" src=".\\src\\assets\\Images\\edit.png" (click)="editProfile()"  alt="Edit Profile">
+                    <img class="edit" src=".\src\assets\Images\edit.png" (click)="editProfile()"  alt="Edit Profile">
                 </div>
             </div>           
         </div>
