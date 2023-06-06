@@ -104,13 +104,13 @@ class App {
   );
 
 
-    router.get('/account/', (req, res) => {
+    router.get('/account/', this.validateAuth, (req, res) => {
       console.log("why?");
       this.Account.retrieveAllAccounts(res);
       
   });
 
-    router.post('/account/', (req, res) => {
+    router.post('/account/', this.validateAuth, (req, res) => {
       const accountId = crypto.randomBytes(16).toString("hex");
       const userId = crypto.randomBytes(16).toString("hex");
       var jsonObj = req.body;
@@ -155,20 +155,20 @@ class App {
       res.send(userJsonObj);
     });
 
-    router.put('/updateAccountType', (req, res) => {
+    router.put('/updateAccountType', this.validateAuth, (req, res) => {
       var jsonObj = req.body;
       console.log("printing this.Account: " + this.Account);
       this.Account.updateAccountType(jsonObj, res);
     })
 
-    router.get('/getAccountDetailUsingAccountId', (req, res) => {
+    router.get('/getAccountDetailUsingAccountId', this.validateAuth, (req, res) => {
       console.log("Here is your account details..");
       this.Account.getAccountDetailUsingAccountId(req.query.accountId.toString(), res);
     
     });
   
     //USER
-    router.get('/users/', (req, res) => {
+    router.get('/users/', this.validateAuth, (req, res) => {
       console.log("Here are users");
       this.User.retrieveAllUsers(res);  
     });
@@ -178,7 +178,7 @@ class App {
       this.User.retireveOneUser(session.userId, res);
     });
     
-    router.put('/user/updateUser/', (req, res) =>{
+    router.put('/user/updateUser/', this.validateAuth, (req, res) =>{
       console.log("came to update user");
       var jsonObj = req.body;
       this.User.updateUser(jsonObj, res);
@@ -205,7 +205,7 @@ class App {
       this.User.removeTail(tailerId, taileeId, res);
     });
 
-    router.get('/isTailing/', (req, res) => {
+    router.get('/isTailing/', this.validateAuth, (req, res) => {
       console.log("checking the tail");
       const tailerId = req.query.tailerId;
       const taileeId = req.query.taileeId;
@@ -215,13 +215,13 @@ class App {
     });
 
 
-    router.get('/openToWork/', (req, res) => {
+    router.get('/openToWork/', this.validateAuth, (req, res) => {
       console.log("Here are users");
       this.User.retrieveAllUsersOpenToWork(res);
   
     });
 
-    router.get('/oneUser', (req, res) => {
+    router.get('/oneUser', this.validateAuth, (req, res) => {
       //console.log("Here is your post");
       this.User.retireveOneUser(req.query.userId.toString(), res);
     
@@ -251,13 +251,13 @@ class App {
 
     
     // COMMENT
-    router.get('/comment/', (req, res) => {
+    router.get('/comment/', this.validateAuth, (req, res) => {
       console.log("Your stupid comments!");
       this.Comment.retrieveAllComments(res);
       
     });
 
-    router.post('/comment/', (req, res) => {
+    router.post('/comment/', this.validateAuth, (req, res) => {
       const commentId = crypto.randomBytes(16).toString("hex");
       var jsonObj = req.body;
       jsonObj.commentId = commentId;
@@ -269,25 +269,15 @@ class App {
       res.send('{"Comment Id is":"' + commentId + '"}');
     });
 
-    router.put('/updateComment', (req, res) => {
-      var jsonObj = req.body;
-      
-      this.Comment.updateComment(jsonObj, res)
-    });
-
-    router.delete('/comment/delete', (req, res) => {
-       this.Comment.deleteComment(req.query.commentId.toString(), res);
-    });
-
 
     // ACHIEVEMENT
-    router.get('/achievement/', (req, res) => {
+    router.get('/achievement/', this.validateAuth, (req, res) => {
       console.log("Better your achievment worth it!");
       this.Achievement.retrieveAllAchievement(res);
   
     });
 
-    router.get('/oneUserAchievement', (req, res) => {
+    router.get('/oneUserAchievement', this.validateAuth, (req, res) => {
      console.log("Here is one user achievement");      
     var userId = req.query.userId.toString();      
      this.Achievement.retrieveAchievementByUserId(userId, res);      
@@ -295,7 +285,7 @@ class App {
 
     
 
-    router.post('/achievement/', (req, res) => {
+    router.post('/achievement/', this.validateAuth, (req, res) => {
       const achievementId = crypto.randomBytes(16).toString("hex");
       var jsonObj = req.body;
       jsonObj.achievementId = achievementId;
@@ -331,27 +321,6 @@ class App {
       
     });
 
-    //VERIFICATION BADGE
-    router.get('/verificationBadge/', (req, res) => {
-      console.log("Here is your verification badge docs!");
-      this.VerificationBadge.retrieveAllVerificationBadge(res);
-  
-    });
-
-    router.post('/verificationBadge/', (req, res) => {
-      const verificationBadgeId = crypto.randomBytes(16).toString("hex");
-      const userId = crypto.randomBytes(16).toString("hex");
-      var jsonObj = req.body;
-      jsonObj.verificationBadgeId = verificationBadgeId;
-      jsonObj.userId = userId
-      this.VerificationBadge.model.create([jsonObj], (err) => {
-          if (err) {
-              console.log('object creation failed');
-          }
-      });
-      res.send('{"Verification Badge Id is":"' + verificationBadgeId + '"}');
-    });
-
     //POST
     router.get('/posts/', this.validateAuth, (req, res) => {
       //this.findSessionUser();
@@ -368,7 +337,7 @@ class App {
   
     });
 
-  router.get('/oneUsersPosts', (req, res) =>{
+  router.get('/oneUsersPosts', this.validateAuth, (req, res) =>{
     console.log("Here is one user posts");    
   var userId = req.query.userId.toString();    
   this.Post.retrievePostsByUserId(userId, res);    
@@ -379,7 +348,7 @@ class App {
     this.Post.retrieveOnePost(req.query.userId.toString(), req.query.postId.toString(), res);
   });
 
-  router.post('/posts/', (req, res) => {
+  router.post('/posts/', this.validateAuth, (req, res) => {
     const postId = crypto.randomBytes(16).toString("hex");
     var jsonObj = req.body;
     jsonObj.postId = postId;
@@ -395,15 +364,8 @@ class App {
   
   });
 
-  router.put('/updatePost/', (req, res) => {
-    console.log("Staterted Updating")
-    var jsonObj = req.body;
-    const postId = jsonObj.postId
-    this.Post.updatePost(postId, jsonObj, res);
-  
-  });
 
-  router.put('/updatePostPaw/', (req, res) => {
+  router.put('/updatePostPaw/', this.validateAuth, (req, res) => {
     console.log("Staterted Updating Post Paw")
     var jsonObj = req.body;
     const postId = jsonObj.postId
