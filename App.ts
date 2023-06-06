@@ -291,7 +291,7 @@ class App {
      this.Achievement.retrieveAchievementByUserId(userId, res);      
     })
 
-    router.post('/achievement/', (req, res) => {
+    router.post('/achievement/', this.validateAuth,(req, res) => {
       console.log("came to create achievement");
       var jsonObj = req.body;
       this.Achievement.createNewAchievement(jsonObj, res);
