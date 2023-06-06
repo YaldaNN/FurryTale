@@ -177,8 +177,8 @@ var UserModel = /** @class */ (function () {
                         console.log("FOUND!");
                         tailing = true;
                     }
-                    res.json({ tailing: tailing });
                 });
+                res.json({ tailing: tailing });
             }
         });
     };

@@ -204,8 +204,9 @@ class UserModel {
                         tailing = true;
                         
                     }
-                    res.json({tailing: tailing})
+                    
                 });
+                res.json({tailing: tailing})
             }
         });
     }
