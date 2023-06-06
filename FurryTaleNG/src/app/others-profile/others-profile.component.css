@@ -122,3 +122,11 @@ a.camera-link {
   .followDiv {
     display: flex;
   }
+
+  #followingHidden {
+    display: none;
+  }
+
+  #followingShowing {
+    display: none;
+  }

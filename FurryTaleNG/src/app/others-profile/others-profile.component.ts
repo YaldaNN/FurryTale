@@ -15,6 +15,7 @@ export class OthersProfileComponent {
   profileResult: any;
   achievementDetails : any;
   followText = ""
+  hideUnhide = "followingHidden";
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
@@ -66,9 +67,11 @@ export class OthersProfileComponent {
       console.log(isTailingResult)
       if(isTailingResult.tailing === true){
         this.followText = "unfollow"
+        this.hideUnhide = "followingShowing"
       }
       else{
         this.followText = "follow"
+        this.hideUnhide = "followingHidden";
       }
     })
 
