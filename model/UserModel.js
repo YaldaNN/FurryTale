@@ -76,6 +76,7 @@ var UserModel = /** @class */ (function () {
         queryToGetTailee.exec(function (err, tailee) {
             if (err) {
                 console.log("Failed to get tailee");
+                response.send(err);
             }
             else {
                 console.log("step 1. tailee id is " + taileeId);
@@ -89,28 +90,31 @@ var UserModel = /** @class */ (function () {
                     if (err) {
                         console.log(err);
                     }
-                    console.log("step 2");
-                    console.log("Updated tailee");
-                    console.log(updatedTailee);
+                    else {
+                        console.log("step 2");
+                        console.log("Updated tailee");
+                        console.log(updatedTailee);
+                        queryToGetTailer.exec(function (error, tailer) {
+                            if (error) {
+                                console.log("Failer to add tailer");
+                                response.send(error);
+                            }
+                            else {
+                                console.log("step 3");
+                                console.log("Addid tailee to tailer");
+                                tailer.tailee.push(taileeId);
+                                var updateTailerQuery = _this.model.findOneAndUpdate({ userId: tailerId }, tailer, {
+                                    new: true
+                                });
+                                updateTailerQuery.exec(function (err, updatedTailer) {
+                                    console.log("step 4");
+                                    console.log("Updated tailer");
+                                });
+                                response.send("done updating tailer and tailee!");
+                            }
+                        });
+                    }
                 });
-            }
-        });
-        queryToGetTailer.exec(function (err, tailer) {
-            if (err) {
-                console.log("Failer to add tailer");
-            }
-            else {
-                console.log("step 3");
-                console.log("Addid tailee to tailer");
-                tailer.tailee.push(taileeId);
-                var updateTailerQuery = _this.model.findOneAndUpdate({ userId: tailerId }, tailer, {
-                    new: true
-                });
-                updateTailerQuery.exec(function (err, updatedTailer) {
-                    console.log("step 4");
-                    console.log("Updated tailer");
-                });
-                response.send("done updating tailer and tailee!");
             }
         });
     };

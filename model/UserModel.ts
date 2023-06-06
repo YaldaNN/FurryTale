@@ -95,6 +95,7 @@ class UserModel {
        queryToGetTailee.exec((err, tailee) => {
             if(err){
                 console.log("Failed to get tailee");
+                response.send(err)
             }
             else{
                 console.log("step 1. tailee id is "+taileeId)
@@ -109,31 +110,40 @@ class UserModel {
                     if(err){
                         console.log(err)
                     }
+                    else{
+
                     console.log("step 2")
                     console.log("Updated tailee");
                     console.log(updatedTailee)
-                })
-            }
-        });
+               
+            
+       
 
-        queryToGetTailer.exec((err, tailer) => {
-            if(err){
-                console.log("Failer to add tailer");
-            }
-            else{
-                console.log("step 3")
-                console.log("Addid tailee to tailer");
-                tailer.tailee.push(taileeId);
-                var updateTailerQuery = this.model.findOneAndUpdate({userId : tailerId}, tailer, {
-                    new : true
-                });
-                updateTailerQuery.exec((err, updatedTailer) =>{
-                    console.log("step 4")
-                    console.log("Updated tailer");
+                queryToGetTailer.exec((error, tailer) => {
+                    if(error){
+                        console.log("Failer to add tailer");
+                        response.send(error)
+                    }
+                    else{
+                        console.log("step 3")
+                        console.log("Addid tailee to tailer");
+                        tailer.tailee.push(taileeId);
+                        var updateTailerQuery = this.model.findOneAndUpdate({userId : tailerId}, tailer, {
+                            new : true
+                        });
+                        updateTailerQuery.exec((err, updatedTailer) =>{
+                            console.log("step 4")
+                            console.log("Updated tailer");
+                        })
+                        response.send("done updating tailer and tailee!");
+                    }
                 })
-                response.send("done updating tailer and tailee!");
             }
-        })
+
+            })
+            }
+            });
+
     }
 
     public removeTail(tailerId:String, taileeId: String, response: any) : any {

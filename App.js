@@ -145,10 +145,10 @@ var App = /** @class */ (function () {
         });
         // Tail
         router.put('/addTailer/', this.validateAuth, function (req, res) {
+            console.log("tailer ID from addTailer is " + req.body.tailerId);
+            console.log("tailee id addTailer is " + req.body.taileeId);
             var tailerId = req.body.tailerId;
             var taileeId = req.body.taileeId;
-            console.log("tailer ID is " + tailerId);
-            console.log("tailee id is " + taileeId);
             _this.User.addTailer(tailerId, taileeId, res);
         });
         router.delete('/unTail/', this.validateAuth, function (req, res) {
