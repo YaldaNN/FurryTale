@@ -110,7 +110,7 @@ var UserModel = /** @class */ (function () {
                                     console.log("step 4");
                                     console.log("Updated tailer");
                                 });
-                                response.send("done updating tailer and tailee!");
+                                response.send({ "update": "success" });
                             }
                         });
                     }
