@@ -128,5 +128,5 @@ a.camera-link {
   }
 
   #followingShowing {
-    display: none;
+    display: block;
   }
