@@ -20,7 +20,8 @@
                             <h6>{{profileUserInfo?.about}}</h6>
                             <h6>
                                 <span class="open-to-work-text" *ngIf="profileUserInfo?.openToWork">Open to work</span>
-                            </h6>                         
+                            </h6>   
+                            <button class={{hideUnhide}} (click)="follow()">{{followText}}</button>                      
                         </div>
                     </div>
                 </div>
@@ -43,10 +44,7 @@
                     </div>
                     
                 </div>
-                <div class="followDiv">
-                    <p id = {{hideUnhide}}> Following </p>
-                    <button class="follow-button" (click)="follow()">{{followText}}</button>
-                </div>
+        
                 <!-- Achievements -->
                 <div class="card mb-4">
                     <div class="form-group row m-1">
@@ -63,7 +61,7 @@
                 <!-- Post -->
                 <div class="card mb-4">
                     <div class="form-group">
-                        <h5 class="m-4">My Posts</h5>
+                        <h5 class="m-4">Posts</h5>
                         <span>
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
@@ -76,7 +74,7 @@
                                                         src="{{profileUserInfo?.profilePic}}" alt="Profile picture">
                                                 </div>
                                                 <!-- Post- User Name -->
-                                                <div class="col-4">
+                                                <div class="col" >
                                                     {{profileUserInfo?.userName}}
                                                 </div>
                                             </div>

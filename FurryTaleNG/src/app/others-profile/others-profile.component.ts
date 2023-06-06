@@ -66,12 +66,12 @@ export class OthersProfileComponent {
        console.log("result has come back from tailing")
       console.log(isTailingResult)
       if(isTailingResult.tailing === true){
-        this.followText = "unfollow"
-        this.hideUnhide = "followingShowing"
+        this.followText = "Untail"
+        this.hideUnhide = "unfollow-button"
       }
       else{
-        this.followText = "follow"
-        this.hideUnhide = "followingHidden";
+        this.followText = "Tail"
+        this.hideUnhide = "follow-button";
       }
     })
 
