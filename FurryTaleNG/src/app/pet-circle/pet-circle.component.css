@@ -21,6 +21,7 @@
     padding: 0.75rem;
     vertical-align: middle;
     border-top: 1px solid #dee2e6;
+    width: fit-content;
  }
  
  td:last-child, th:last-child {
@@ -41,23 +42,32 @@
  }
  
  .button {
-   background-color: #4CAF50; /* Green */
-   border: none;
-   color: white;
-   padding: 8px 12px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 12px;
-   margin: 4px 2px;
-   transition-duration: 0.4s;
-   cursor: pointer;
- }
- 
- .btn {
-   background-color: white;
-   color: black;
-   border: 2px solid #c4c3c3;
- }
- 
- .btn:hover {background-color: #bcbaba;}
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.btn {
+  background-color: white;
+  color: black;
+  border: 2px solid #c4c3c3;
+}
+
+.btn_disabled {
+  background-color:  #c4c3c3;
+  color: black;
+  border: 2px solid #c4c3c3;
+  border-radius: 5%;
+}
+
+.btn_disabled:hover {pointer-events: none; cursor: default;}
+
+.btn:hover {background-color: #bcbaba;}
