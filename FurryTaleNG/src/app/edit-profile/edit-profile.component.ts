@@ -42,7 +42,13 @@ export class EditProfileComponent  {
       console.log(this.profile.userId); // or use userId as needed
 
       this.editProfileService.getProfile(this.profile.userId).subscribe(
+        
         (result: any) => {
+
+          if(result.authentication !== undefined){
+            this.router.navigateByUrl('/');
+          }
+          
           this.profile = result;
           console.log("Fetched user details:", result);
 
