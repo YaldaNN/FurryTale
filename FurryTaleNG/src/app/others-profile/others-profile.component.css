@@ -112,7 +112,8 @@ a.camera-link {
   }
 
   .follow-button {
-
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
@@ -129,7 +130,8 @@ a.camera-link {
   }
 
   .unfollow-button {
-
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
