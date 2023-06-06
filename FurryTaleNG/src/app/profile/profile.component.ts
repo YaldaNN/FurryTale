@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
     {  
     console.log("MyUserData "+'result' + JSON.stringify(userResult));  
     this.profileUserInfo = userResult;
+    this.profileUserInfo.emailId = result.userEmail;
     }); 
 
     this.profileService.getMyPosts(this.userId).subscribe((postsResult: any) =>  
