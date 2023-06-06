@@ -7,13 +7,15 @@
         <table class="table">
           <tbody>
             <ng-container *ngFor="let user of openToWorkUsers">
-              <td class="thumbnail">
-                <img src="{{user.profilePic}}" class="thumbnail-img">
-              </td>
-              <td>{{user.about}}</td>
-              <td>
-                <a [href]="'/othersProfile/' + user.userId" class="button btn" >Profile</a>
-              </td>
+              <tr>
+                <td class="thumbnail">
+                  <img src="{{user.profilePic}}" class="thumbnail-img">
+                </td>
+                <td>{{user.about}}</td>
+                <td>
+                  <a [href]="'/othersProfile/' + user.userId" class="button btn" >Profile</a>
+                </td>
+              </tr>
             </ng-container>
           </tbody>
         </table>
