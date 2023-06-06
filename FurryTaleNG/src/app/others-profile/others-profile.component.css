@@ -118,3 +118,7 @@ a.camera-link {
     border: none;
     cursor: pointer;
   }
+
+  .followDiv {
+    display: flex;
+  }
