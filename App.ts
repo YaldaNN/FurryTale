@@ -189,6 +189,8 @@ class App {
     router.put('/addTailer/', this.validateAuth, (req, res) => {
       const tailerId = req.body.tailerId;
       const taileeId = req.body.taileeId;
+      console.log("tailer ID is "+tailerId)
+      console.log("tailee id is "+taileeId)
       this.User.addTailer(tailerId, taileeId, res);
     });
 
