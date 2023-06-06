@@ -58,7 +58,6 @@ class App {
        //console.log(req.user.displayName)
        //console.log(req.user.emails[0].value)
        session.userOpenId = sha512.sha512(req.user.id);
-       session.userName = req.user.displayName;
        session.email = req.user.emails[0].value;
       console.log("sha 512 code is "+sha512.sha512(req.user.id));
        return next(); 
@@ -229,11 +228,20 @@ class App {
 
     router.get('/getCurrentUser', this.validateAuth, (req, res) => {
       console.log("sending user info to create post")
-      res.send({
-        userId : session.userId,
-        userName : session.userName,
-        userEmail : session.email
+      this.User.model.findOne({ssoId : session.userOpenId} , function(err,obj) { 
+        console.log("retrieved user from SSO ID");
+        session.userId = obj.userId;
+        session.userName = obj.userName;
+        console.log(obj); 
+
+        res.send({
+          userId : session.userId,
+          userName : session.userName,
+          userEmail : session.email
+        });
       });
+
+     
     })
 
     router.get('/getCurrentAccountType', this.validateAuth, (req, res) => {
