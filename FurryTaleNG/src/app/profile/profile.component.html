@@ -21,13 +21,15 @@
                             <h6>{{profileUserInfo?.about}}</h6>
                             <h6>
                                 <span class="open-to-work-text" *ngIf="profileUserInfo?.openToWork">Open to work</span>
-                            </h6>                         
+                            </h6>     
+                            <button type="submit" class="btn editProfileButton" (click)="editProfile()">Edit</button>                    
                         </div>
                     </div>
                 </div>
                 <!-- Edit Profile -->
-                <div class="col-md-6 text-right">                               
-                    <img class="edit" src=".\src\assets\Images\edit.png" (click)="editProfile()"  alt="Edit Profile">
+                <div class="col-md-6">                               
+                    <!-- <img class="edit" src=".\src\assets\Images\edit.png" (click)="editProfile()"  alt="Edit Profile"> -->
+                    
                 </div>
             </div>           
         </div>
