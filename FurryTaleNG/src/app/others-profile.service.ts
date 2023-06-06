@@ -23,9 +23,9 @@ export class OthersProfileService {
 
   removeTail(tailerId: string, taileeId: string){
 
-    const reqBody = {tailerId, taileeId};
+    const url = `${this.hostUrl}isTailing/?tailerId=${tailerId}&taileeId=${taileeId}`;
 
-    return this.http.put(this.hostUrl+"unTail/", reqBody);
+    return this.http.delete(url);
 
   }
 
