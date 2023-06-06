@@ -196,8 +196,11 @@ class App {
 
     router.delete('/unTail/', this.validateAuth, (req, res) => {
       console.log("removing the tail");
-      const tailerId = req.body.tailerId;
-      const taileeId = req.body.taileeId;
+      const tailerId = req.query.tailerId.toString();
+      const taileeId = req.query.taileeId.toString();
+
+      console.log("from deleting. tailerId is "+tailerId)
+      console.log("from deleting. taileeId is "+taileeId)
       this.User.removeTail(tailerId, taileeId, res);
     });
 
